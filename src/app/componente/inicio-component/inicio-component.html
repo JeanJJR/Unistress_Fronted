@@ -1,0 +1,54 @@
+<div class="page-container">
+  <div class="gradient-background"></div>
+
+  <header class="header">
+    <nav class="nav-container">
+      <div class="logo-section">
+        <img
+          class="logo-image"
+          alt="UniStress Logo"
+          src="https://c.animaapp.com/mh771gblimdv6V/img/chatgpt-image-may-13--2025--05-12-05-pm-2.png"
+        />
+        <h1 class="logo-text">UniStress</h1>
+      </div>
+
+      <ul class="nav-links">
+        <li *ngFor="let link of navigationLinks">
+          <a [href]="link.href" class="nav-link">{{ link.label }}</a>
+        </li>
+      </ul>
+
+      <button class="btn-ingresar" routerLink="/iniciar-sesion">Ingresar</button>
+    </nav>
+  </header>
+
+  <main class="main-content">
+    <div class="content-grid">
+      <section class="text-section">
+        <h2 class="main-title">
+          Cuidamos tu bienestar<br />
+          emocional
+        </h2>
+
+        <p class="main-description">
+          UniStress detecta señales de ansiedad y estrés académico<br />
+          en estudiantes universitarios, brindando<br />
+          acompañamiento personalizado.
+        </p>
+
+        <div class="cta-container">
+          <button class="btn-cta">Empieza ahora</button>
+        </div>
+      </section>
+
+      <aside class="image-section">
+        <img
+          class="hero-image"
+          alt="Student studying illustration"
+          src="https://c.animaapp.com/mh771gblimdv6V/img/image-4.png"
+        />
+      </aside>
+    </div>
+  </main>
+</div>
+

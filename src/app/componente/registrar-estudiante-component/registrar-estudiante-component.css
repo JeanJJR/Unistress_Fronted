@@ -1,0 +1,846 @@
+
+@import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css ");
+* {
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0px;
+  height: 100%;
+}
+/* a blue color as a generic focus style */
+button:focus-visible {
+  outline: 2px solid #4a90e2 !important;
+  outline: -webkit-focus-ring-color auto 5px !important;
+}
+a {
+  text-decoration: none;
+}
+.registrarse {
+  background-color: #eff2f5;
+  width: 100%;
+  min-width: 1813px;
+  min-height: 1117px;
+  position: relative;
+}
+
+.registrarse .rectangle {
+  position: absolute;
+  top: 56px;
+  left: 420px;
+  width: 1032px;
+  height: 1036px;
+  background-color: #ffffff;
+  border: 5px solid;
+  border-color: #00000080;
+  box-shadow: 0px 4px 4px #00000040;
+  opacity: 0.5;
+}
+
+.registrarse .text-wrapper {
+  position: absolute;
+  top: 90px;
+  left: 492px;
+  width: 929px;
+  font-family: "Poppins-Bold", Helvetica;
+  font-weight: 700;
+  color: #4a6274;
+  font-size: 64px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.registrarse .div {
+  position: absolute;
+  top: 588px;
+  left: 948px;
+  width: 133px;
+  font-family: "Poppins-SemiBold", Helvetica;
+  font-weight: 600;
+  color: #f4f6f8;
+  font-size: 20px;
+  text-align: center;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.registrarse .rectangle-2 {
+  position: absolute;
+  top: 261px;
+  left: 524px;
+  width: 402px;
+  height: 44px;
+  border: 1px solid;
+  border-color: #000000;
+}
+
+.registrarse .rectangle-3 {
+  position: absolute;
+  top: 260px;
+  left: 972px;
+  width: 389px;
+  height: 44px;
+  border: 1px solid;
+  border-color: #000000;
+}
+
+.registrarse .rectangle-4 {
+  position: absolute;
+  top: 864px;
+  left: 530px;
+  width: 818px;
+  height: 54px;
+  background-color: #6ca6cd;
+}
+
+.registrarse .text-wrapper-2 {
+  position: absolute;
+  top: 213px;
+  left: 524px;
+  width: 98px;
+  font-family: "Poppins-Regular", Helvetica;
+  font-weight: 400;
+  color: #4a6274;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.registrarse .text-wrapper-3 {
+  top: 270px;
+  left: 546px;
+  position: absolute;
+  width: 195px;
+  font-family: "Poppins-Regular", Helvetica;
+  font-weight: 400;
+  color: #4a6274;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.registrarse .text-wrapper-4 {
+  top: 265px;
+  left: 992px;
+  position: absolute;
+  width: 195px;
+  font-family: "Poppins-Regular", Helvetica;
+  font-weight: 400;
+  color: #4a6274;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.registrarse .text-wrapper-5 {
+  position: absolute;
+  top: 213px;
+  left: 972px;
+  width: 98px;
+  font-family: "Poppins-Regular", Helvetica;
+  font-weight: 400;
+  color: #4a6274;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.registrarse .rectangle-5 {
+  position: absolute;
+  top: 478px;
+  left: 526px;
+  width: 400px;
+  height: 44px;
+  border: 1px solid;
+  border-color: #000000;
+}
+
+.registrarse .text-wrapper-6 {
+  position: absolute;
+  top: 430px;
+  left: 526px;
+  width: 240px;
+  font-family: "Poppins-Regular", Helvetica;
+  font-weight: 400;
+  color: #4a6274;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.registrarse .text-wrapper-7 {
+  position: absolute;
+  top: 487px;
+  left: 535px;
+  width: 282px;
+  font-family: "Poppins-Regular", Helvetica;
+  font-weight: 400;
+  color: #4a6274;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.registrarse .rectangle-6 {
+  position: absolute;
+  top: 365px;
+  left: 524px;
+  width: 402px;
+  height: 44px;
+  border: 1px solid;
+  border-color: #000000;
+}
+
+.registrarse .text-wrapper-8 {
+  position: absolute;
+  top: 326px;
+  left: 524px;
+  width: 211px;
+  font-family: "Poppins-Regular", Helvetica;
+  font-weight: 400;
+  color: #4a6274;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.registrarse .text-wrapper-9 {
+  position: absolute;
+  top: 374px;
+  left: 546px;
+  width: 268px;
+  font-family: "Poppins-Regular", Helvetica;
+  font-weight: 400;
+  color: #4a6274;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.registrarse .rectangle-7 {
+  position: absolute;
+  top: 365px;
+  left: 972px;
+  width: 389px;
+  height: 44px;
+  border: 1px solid;
+  border-color: #000000;
+}
+
+.registrarse .text-wrapper-10 {
+  position: absolute;
+  top: 321px;
+  left: 972px;
+  width: 145px;
+  font-family: "Poppins-Regular", Helvetica;
+  font-weight: 400;
+  color: #4a6274;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.registrarse .text-wrapper-11 {
+  position: absolute;
+  top: 878px;
+  left: 866px;
+  width: 145px;
+  height: 27px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Poppins-Bold", Helvetica;
+  font-weight: 700;
+  color: #ffffff;
+  font-size: 20px;
+  text-align: center;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.registrarse .text-wrapper-12 {
+  position: absolute;
+  top: 374px;
+  left: 989px;
+  width: 212px;
+  font-family: "Poppins-Regular", Helvetica;
+  font-weight: 400;
+  color: #4a6274;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.registrarse .p {
+  position: absolute;
+  top: 947px;
+  left: 748px;
+  width: 390px;
+  font-family: "Poppins-Regular", Helvetica;
+  font-weight: 400;
+  color: #4a6274;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+  text-decoration: underline;
+}
+
+.registrarse .line {
+  position: absolute;
+  top: 672px;
+  left: 766px;
+  width: 13px;
+  height: 13px;
+  object-fit: cover;
+}
+
+.registrarse .rectangle-8 {
+  position: absolute;
+  top: 583px;
+  left: 524px;
+  width: 824px;
+  height: 51px;
+  border: 1px solid;
+  border-color: #000000;
+}
+
+.registrarse .rectangle-9 {
+  position: absolute;
+  top: 684px;
+  left: 524px;
+  width: 824px;
+  height: 51px;
+  border: 1px solid;
+  border-color: #000000;
+}
+
+.registrarse .rectangle-10 {
+  position: absolute;
+  top: 787px;
+  left: 524px;
+  width: 354px;
+  height: 38px;
+  border: 1px solid;
+  border-color: #000000;
+}
+
+.registrarse .rectangle-11 {
+  position: absolute;
+  top: 793px;
+  left: 989px;
+  width: 354px;
+  height: 38px;
+  border: 1px solid;
+  border-color: #000000;
+}
+
+.registrarse .text-wrapper-13 {
+  position: absolute;
+  top: 543px;
+  left: 524px;
+  width: 278px;
+  font-family: "Poppins-Regular", Helvetica;
+  font-weight: 400;
+  color: #4a6274;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.registrarse .text-wrapper-14 {
+  position: absolute;
+  top: 753px;
+  left: 524px;
+  width: 733px;
+  font-family: "Poppins-Regular", Helvetica;
+  font-weight: 400;
+  color: #4a6274;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.registrarse .text-wrapper-15 {
+  position: absolute;
+  top: 753px;
+  left: 994px;
+  width: 733px;
+  font-family: "Poppins-Regular", Helvetica;
+  font-weight: 400;
+  color: #4a6274;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.registrarse .text-wrapper-16 {
+  position: absolute;
+  top: 650px;
+  left: 524px;
+  width: 278px;
+  font-family: "Poppins-Regular", Helvetica;
+  font-weight: 400;
+  color: #4a6274;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+/* Original CSS code should be injected here from globals.css */
+
+.registrarse {
+  background-color: #eff2f5;
+  width: 100%;
+  min-width: 1813px;
+  min-height: 1117px;
+  position: relative;
+}
+
+.registrarse .rectangle {
+  position: absolute;
+  top: 56px;
+  left: 420px;
+  width: 1032px;
+  height: 1036px;
+  background-color: #ffffff;
+  border: 5px solid;
+  border-color: #00000080;
+  box-shadow: 0px 4px 4px #00000040;
+  opacity: 0.5;
+}
+
+.registrarse .text-wrapper {
+  position: absolute;
+  top: 90px;
+  left: 492px;
+  width: 929px;
+  font-family: "Poppins-Bold", Helvetica;
+  font-weight: 700;
+  color: #4a6274;
+  font-size: 64px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.registrarse .registration-form {
+  position: relative;
+  z-index: 1;
+}
+
+.registrarse .form-row {
+  display: flex;
+  gap: 46px;
+}
+
+.registrarse .form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.registrarse .rectangle-2 {
+  position: absolute;
+  top: 261px;
+  left: 524px;
+  width: 402px;
+  height: 44px;
+  border: 1px solid;
+  border-color: #000000;
+  background-color: #ffffff;
+  font-family: "Poppins-Regular", Helvetica;
+  font-weight: 400;
+  color: #4a6274;
+  font-size: 20px;
+  padding: 0 22px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.registrarse .rectangle-2::placeholder {
+  color: #4a6274;
+  opacity: 1;
+}
+
+.registrarse .rectangle-3 {
+  position: absolute;
+  top: 260px;
+  left: 972px;
+  width: 389px;
+  height: 44px;
+  border: 1px solid;
+  border-color: #000000;
+  background-color: #ffffff;
+  font-family: "Poppins-Regular", Helvetica;
+  font-weight: 400;
+  color: #4a6274;
+  font-size: 20px;
+  padding: 0 20px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.registrarse .rectangle-3::placeholder {
+  color: #4a6274;
+  opacity: 1;
+}
+
+.registrarse .rectangle-4 {
+  position: absolute;
+  top: 864px;
+  left: 530px;
+  width: 818px;
+  height: 54px;
+  background-color: #6ca6cd;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.registrarse .rectangle-4:hover {
+  background-color: #5a94ba;
+}
+
+.registrarse .rectangle-4:focus {
+  outline: 2px solid #4a90e2;
+  outline-offset: 2px;
+}
+
+.registrarse .text-wrapper-2 {
+  position: absolute;
+  top: 213px;
+  left: 524px;
+  width: 98px;
+  font-family: "Poppins-Regular", Helvetica;
+  font-weight: 400;
+  color: #4a6274;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.registrarse .text-wrapper-5 {
+  position: absolute;
+  top: 213px;
+  left: 972px;
+  width: 98px;
+  font-family: "Poppins-Regular", Helvetica;
+  font-weight: 400;
+  color: #4a6274;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.registrarse .rectangle-5 {
+  position: absolute;
+  top: 478px;
+  left: 526px;
+  width: 400px;
+  height: 44px;
+  border: 1px solid;
+  border-color: #000000;
+  background-color: #ffffff;
+  font-family: "Poppins-Regular", Helvetica;
+  font-weight: 400;
+  color: #4a6274;
+  font-size: 20px;
+  padding: 0 9px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.registrarse .rectangle-5::placeholder {
+  color: #4a6274;
+  opacity: 1;
+}
+
+.registrarse .text-wrapper-6 {
+  position: absolute;
+  top: 430px;
+  left: 526px;
+  width: 240px;
+  font-family: "Poppins-Regular", Helvetica;
+  font-weight: 400;
+  color: #4a6274;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.registrarse .rectangle-6 {
+  position: absolute;
+  top: 365px;
+  left: 524px;
+  width: 402px;
+  height: 44px;
+  border: 1px solid;
+  border-color: #000000;
+  background-color: #ffffff;
+  font-family: "Poppins-Regular", Helvetica;
+  font-weight: 400;
+  color: #4a6274;
+  font-size: 20px;
+  padding: 0 22px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.registrarse .rectangle-6::placeholder {
+  color: #4a6274;
+  opacity: 1;
+}
+
+.registrarse .text-wrapper-8 {
+  position: absolute;
+  top: 326px;
+  left: 524px;
+  width: 211px;
+  font-family: "Poppins-Regular", Helvetica;
+  font-weight: 400;
+  color: #4a6274;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.registrarse .rectangle-7 {
+  position: absolute;
+  top: 365px;
+  left: 972px;
+  width: 389px;
+  height: 44px;
+  border: 1px solid;
+  border-color: #000000;
+  background-color: #ffffff;
+  font-family: "Poppins-Regular", Helvetica;
+  font-weight: 400;
+  color: #4a6274;
+  font-size: 20px;
+  padding: 0 17px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.registrarse .rectangle-7::placeholder {
+  color: #4a6274;
+  opacity: 1;
+}
+
+.registrarse .text-wrapper-10 {
+  position: absolute;
+  top: 321px;
+  left: 972px;
+  width: 145px;
+  font-family: "Poppins-Regular", Helvetica;
+  font-weight: 400;
+  color: #4a6274;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.registrarse .text-wrapper-11 {
+  position: absolute;
+  top: 878px;
+  left: 866px;
+  width: 145px;
+  height: 27px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Poppins-Bold", Helvetica;
+  font-weight: 700;
+  color: #ffffff;
+  font-size: 20px;
+  text-align: center;
+  letter-spacing: 0;
+  line-height: normal;
+  pointer-events: none;
+}
+
+.registrarse .p {
+  position: absolute;
+  top: 947px;
+  left: 748px;
+  width: 390px;
+  font-family: "Poppins-Regular", Helvetica;
+  font-weight: 400;
+  color: #4a6274;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+  text-align: center;
+}
+
+.registrarse .login-link {
+  color: #4a6274;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.registrarse .login-link:hover {
+  color: #6ca6cd;
+}
+
+.registrarse .login-link:focus {
+  outline: 2px solid #4a90e2;
+  outline-offset: 2px;
+}
+
+.registrarse .rectangle-8 {
+  position: absolute;
+  top: 583px;
+  left: 524px;
+  width: 824px;
+  height: 51px;
+  border: 1px solid;
+  border-color: #000000;
+  background-color: #ffffff;
+  font-family: "Poppins-Regular", Helvetica;
+  font-weight: 400;
+  color: #4a6274;
+  font-size: 20px;
+  padding: 0 10px;
+  letter-spacing: 0;
+  line-height: normal;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+}
+
+.registrarse .rectangle-9 {
+  position: absolute;
+  top: 684px;
+  left: 524px;
+  width: 824px;
+  height: 51px;
+  border: 1px solid;
+  border-color: #000000;
+  background-color: #ffffff;
+  font-family: "Poppins-Regular", Helvetica;
+  font-weight: 400;
+  color: #4a6274;
+  font-size: 20px;
+  padding: 0 10px;
+  letter-spacing: 0;
+  line-height: normal;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+}
+
+.registrarse .rectangle-10 {
+  position: absolute;
+  top: 787px;
+  left: 524px;
+  width: 354px;
+  height: 38px;
+  border: 1px solid;
+  border-color: #000000;
+  background-color: #ffffff;
+  font-family: "Poppins-Regular", Helvetica;
+  font-weight: 400;
+  color: #4a6274;
+  font-size: 20px;
+  padding: 0 10px;
+  letter-spacing: 0;
+  line-height: normal;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+}
+
+.registrarse .rectangle-11 {
+  position: absolute;
+  top: 793px;
+  left: 989px;
+  width: 354px;
+  height: 38px;
+  border: 1px solid;
+  border-color: #000000;
+  background-color: #ffffff;
+  font-family: "Poppins-Regular", Helvetica;
+  font-weight: 400;
+  color: #4a6274;
+  font-size: 20px;
+  padding: 0 10px;
+  letter-spacing: 0;
+  line-height: normal;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+}
+
+.registrarse .text-wrapper-13 {
+  position: absolute;
+  top: 543px;
+  left: 524px;
+  width: 278px;
+  font-family: "Poppins-Regular", Helvetica;
+  font-weight: 400;
+  color: #4a6274;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.registrarse .text-wrapper-14 {
+  position: absolute;
+  top: 753px;
+  left: 524px;
+  width: 733px;
+  font-family: "Poppins-Regular", Helvetica;
+  font-weight: 400;
+  color: #4a6274;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.registrarse .text-wrapper-15 {
+  position: absolute;
+  top: 753px;
+  left: 994px;
+  width: 733px;
+  font-family: "Poppins-Regular", Helvetica;
+  font-weight: 400;
+  color: #4a6274;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.registrarse .text-wrapper-16 {
+  position: absolute;
+  top: 650px;
+  left: 524px;
+  width: 278px;
+  font-family: "Poppins-Regular", Helvetica;
+  font-weight: 400;
+  color: #4a6274;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.registrarse input:focus,
+.registrarse select:focus,
+.registrarse button:focus {
+  outline: 2px solid #4a90e2;
+  outline-offset: 2px;
+}
+
+.registrarse input:invalid:not(:placeholder-shown),
+.registrarse select:invalid:not(:placeholder-shown) {
+  border-color: #d32f2f;
+}
+
+.registrarse input:valid:not(:placeholder-shown),
+.registrarse select:valid:not(:placeholder-shown) {
+  border-color: #388e3c;
+}
+

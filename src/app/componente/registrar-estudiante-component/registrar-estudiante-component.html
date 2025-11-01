@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" />
+  <title>Registrarse - UniStress</title>
+</head>
+<body>
+<main class="registrarse">
+  <div class="rectangle" role="presentation"></div>
+  <h1 class="text-wrapper">Crea tu cuenta en UniStress</h1>
+  <form class="registration-form" novalidate>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="nombre" class="text-wrapper-2">Nombre</label>
+        <input
+          type="text"
+          id="nombre"
+          name="nombre"
+          class="rectangle-2"
+          placeholder="Tu nombre"
+          aria-required="true"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="apellidos" class="text-wrapper-5">Apellidos</label>
+        <input
+          type="text"
+          id="apellidos"
+          name="apellidos"
+          class="rectangle-3"
+          placeholder="Tu apellido"
+          aria-required="true"
+          required
+        />
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="correo" class="text-wrapper-8">Correo electrónico</label>
+        <input
+          type="email"
+          id="correo"
+          name="correo"
+          class="rectangle-6"
+          placeholder="correo@ejemplo.com"
+          aria-required="true"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="contrasena" class="text-wrapper-10">Contraseña</label>
+        <input
+          type="password"
+          id="contrasena"
+          name="contrasena"
+          class="rectangle-7"
+          placeholder="********"
+          aria-required="true"
+          required
+        />
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="telefono" class="text-wrapper-6">Teléfono</label>
+      <input
+        type="tel"
+        id="telefono"
+        name="telefono"
+        class="rectangle-5"
+        placeholder="Tu numero de telefono"
+        aria-required="true"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="universidad" class="text-wrapper-13">Universidad</label>
+      <select id="universidad" name="universidad" class="rectangle-8" aria-required="true" required>
+        <option value="" disabled selected></option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="carrera" class="text-wrapper-16">Carrera</label>
+      <select id="carrera" name="carrera" class="rectangle-9" aria-required="true" required>
+        <option value="" disabled selected></option>
+      </select>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="ciclo" class="text-wrapper-14">Ciclo</label>
+        <select id="ciclo" name="ciclo" class="rectangle-10" aria-required="true" required>
+          <option value="" disabled selected></option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="estado-academico" class="text-wrapper-15">Estado Academico</label>
+        <select id="estado-academico" name="estado-academico" class="rectangle-11" aria-required="true" required>
+          <option value="" disabled selected></option>
+        </select>
+      </div>
+    </div>
+    <button type="submit" class="rectangle-4">
+      <span class="text-wrapper-11">Registrarse</span>
+    </button>
+  </form>
+  <p class="p">
+    <a routerLink="/iniciar-sesion" class="login-link">¿Ya tienes una cuenta? Inicia sesión</a>
+  </p>
+</main>
+</body>
+</html>
+

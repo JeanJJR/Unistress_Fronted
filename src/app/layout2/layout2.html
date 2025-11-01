@@ -1,0 +1,45 @@
+<div class="usuario">
+  <div class="rectangle"></div>
+
+  <aside class="sidebar">
+    <header class="sidebar-header">
+      <h1 class="app-title">UniStress</h1>
+    </header>
+    <nav class="sidebar-nav" aria-label="Navegación principal">
+      <ul class="nav-list">
+        <li class="nav-item">
+          <a routerLink="/perfil-psicologo" class="nav-link" routerLinkActive="nav-link-active">Perfil del Psicólogo</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/vista-emocional" class="nav-link" routerLinkActive="nav-link-active">Vista Emocional</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/historial-de-sesiones" class="nav-link" routerLinkActive="nav-link-active">Historial de Sesiones</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/recomendaciones-psicologo" class="nav-link" routerLinkActive="nav-link-active">Recomendaciones</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/banco-preguntas" class="nav-link" routerLinkActive="nav-link-active">Banco de Preguntas</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/tendencias-emocionales" class="nav-link" routerLinkActive="nav-link-active">Tendencias Emocionales</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/notificaciones-psicologo" class="nav-link" routerLinkActive="nav-link-active">Notificaciones</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/configuraciones-psicologo" class="nav-link" routerLinkActive="nav-link-active">Configuraciones</a>
+        </li>
+        <li class="nav-item">
+          <button type="button" class="nav-link nav-link-logout" (click)="cerrarSesion()">Cerrar sesión</button>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <router-outlet></router-outlet>
+  </main>
+</div>
+

@@ -1,0 +1,19 @@
+// src/app/services/perfil.service.ts
+import { Injectable, inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { PerfilDetalle } from '../model/perfil-detalle';
+import { environment } from '../../environments/environment';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class PerfilDetalleService {
+  private url = environment.apiURL;
+  private http = inject(HttpClient);
+
+  // Obtener perfil por ID de usuario
+  obtenerPerfilPorId(usuarioId: number): Observable<PerfilDetalle> {
+    return this.http.get<PerfilDetalle>(`${this.url}/perfil/perfilusuario/${usuarioId}`);
+  }
+}

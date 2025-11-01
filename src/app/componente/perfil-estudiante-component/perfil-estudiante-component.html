@@ -1,0 +1,31 @@
+<div class="main-content">
+  <div class="page-header">
+    <h2 class="page-title">Perfil del Estudiante</h2>
+  </div>
+
+  <div class="perfil-container">
+    @if (loading) {
+      <p>Cargando perfil...</p>
+    }
+
+    @if (error) {
+      <p class="error">{{ error }}</p>
+    }
+
+    @if (perfil && perfil.tipoPerfil === 'ESTUDIANTE') {
+      <div class="perfil-card">
+        <p><strong>Nombre:</strong> {{ perfil.nombre }} {{ perfil.apellidos }}</p>
+        <p><strong>Correo:</strong> {{ perfil.correo }}</p>
+        <p><strong>Teléfono:</strong> {{ perfil.telefono }}</p>
+        <p><strong>Universidad:</strong> {{ perfil.universidad }}</p>
+        <p><strong>Carrera:</strong> {{ perfil.carrera }}</p>
+        <p><strong>Ciclo:</strong> {{ perfil.ciclo }}</p>
+        <p><strong>Estado Académico:</strong> {{ perfil.estadoAcademico }}</p>
+      </div>
+    }
+
+    @if (perfil && perfil.tipoPerfil !== 'ESTUDIANTE') {
+      <p class="error">Este perfil no corresponde a un estudiante.</p>
+    }
+  </div>
+</div>

@@ -1,0 +1,51 @@
+<div class="usuario">
+  <div class="rectangle"></div>
+
+  <aside class="sidebar">
+    <header class="sidebar-header">
+      <h1 class="app-title">UniStress</h1>
+    </header>
+    <nav class="sidebar-nav" aria-label="Navegación principal">
+      <ul class="nav-list">
+        <li class="nav-item">
+          <a routerLink="/perfil" class="nav-link" routerLinkActive="nav-link-active">Perfil</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/test-emocional" class="nav-link" routerLinkActive="nav-link-active">Test Emocional</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/estado-emocional" class="nav-link" routerLinkActive="nav-link-active">Estado emocional</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/sesiones" class="nav-link" routerLinkActive="nav-link-active">Sesiones</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/recomendaciones" class="nav-link" routerLinkActive="nav-link-active">Recomendaciones</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/mi-evolucion" class="nav-link" routerLinkActive="nav-link-active">Mi evolución</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/pagos" class="nav-link" routerLinkActive="nav-link-active">Pagos</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/suscripcion" class="nav-link" routerLinkActive="nav-link-active">Suscripción</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/notificaciones" class="nav-link" routerLinkActive="nav-link-active">Notificaciones</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/configuracion" class="nav-link" routerLinkActive="nav-link-active">Configuraciones</a>
+        </li>
+        <li class="nav-item">
+          <button type="button" class="nav-link nav-link-logout" (click)="cerrarSesion()">Cerrar sesión</button>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- Aquí se cargan los componentes de las rutas -->
+  <main class="main-content">
+    <router-outlet></router-outlet>
+  </main>
+</div>

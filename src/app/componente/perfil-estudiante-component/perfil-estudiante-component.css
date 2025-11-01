@@ -1,0 +1,44 @@
+/* Contenedor principal de todas las páginas (a la derecha del sidebar) */
+.main-content {
+  margin-left: 280px; /* ancho del sidebar */
+  padding: 60px 40px;
+  min-height: 100vh;
+  background-color: #f4f6f8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;       /* centra horizontalmente */
+  justify-content: center;   /* centra verticalmente */
+}
+
+/* Título de la página */
+.page-title {
+  font-family: "Poppins-Medium", Helvetica;
+  font-weight: 500;
+  font-size: 32px;
+  color: #000;
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+/* Contenedor del perfil (centrado y con estilo) */
+.perfil-container {
+  background: white;
+  padding: 32px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  max-width: 700px;
+  width: 100%;
+  text-align: left;
+}
+
+.perfil-container p {
+  margin: 12px 0;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.error {
+  color: #d32f2f;
+  font-weight: 500;
+  text-align: center;
+}
