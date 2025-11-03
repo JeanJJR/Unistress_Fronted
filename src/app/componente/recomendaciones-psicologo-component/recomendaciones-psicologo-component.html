@@ -1,1 +1,82 @@
-<p>recomendaciones-psicologo-component works!</p>
+<div class="main-content">
+
+  <h2 class="page-title">Recomendaciones</h2>
+
+  <div class="form-container">
+
+    <div class="form-group-horizontal">
+      <label for="select-paciente">Estudiante:</label>
+      <select id="select-paciente" class="custom-select">
+        <option value="" disabled selected>Seleccionar paciente</option>
+        <option value="1">Carlos Pérez (Ejemplo 1)</option>
+        <option value="2">Ana García (Ejemplo 2)</option>
+      </select>
+    </div>
+
+    <div class="form-group-horizontal">
+      <label for="select-registro">Registro emocional:</label>
+      <select id="select-registro" class="custom-select">
+        <option value="" disabled selected>Seleccionar registro</option>
+        <option value="10">Registro del 01/11 (Ansioso)</option>
+        <option value="11">Registro del 02/11 (Estresado)</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="text-recomendacion">Recomendacion:</label>
+      <textarea id="text-recomendacion" rows="4"
+                placeholder="Mantener una rutina de sueño y practicar respiración..."></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>Tipo:</label>
+      <div class="tipo-options-group">
+        <label class="tipo-option-label">
+          <input type="checkbox" name="tipo">
+          <span class="tipo-box">EMOCIONAL</span>
+        </label>
+
+        <label class="tipo-option-label">
+          <input type="checkbox" name="tipo">
+          <span class="tipo-box">GENERAL</span>
+        </label>
+
+        <label class="tipo-option-label">
+          <input type="checkbox" name="tipo">
+          <span class="tipo-box">BIENESTAR</span>
+        </label>
+      </div>
+    </div>
+
+    <button class="btn-guardar">GUARDAR</button>
+
+  </div> <div class="history-container">
+  <h3 class="history-title">HISTORIAL DE RECOMENDACION</h3>
+
+  <div class="history-table-wrapper">
+    <table class="history-table">
+      <thead>
+      <tr>
+        <th>Recomendación</th>
+        <th>Tipo</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>Hacer pausas activas</td>
+        <td>BIENESTAR</td>
+      </tr>
+      <tr>
+        <td>Hablar con un amigo cercano</td>
+        <td>EMOCIONAL</td>
+      </tr>
+      <tr>
+        <td>Organizar horario de estudio</td>
+        <td>GENERAL</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+</div>
