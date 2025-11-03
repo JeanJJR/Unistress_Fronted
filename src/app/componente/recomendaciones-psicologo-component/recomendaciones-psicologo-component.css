@@ -1,0 +1,204 @@
+/* Contenedor principal (a la derecha del sidebar) */
+.main-content {
+  margin-left: 280px;
+  padding: 60px 40px;
+  min-height: 100vh;
+  background-color: #f4f6f8;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Título de la página */
+.page-title {
+  font-family: "Poppins-Medium", Helvetica;
+  font-weight: 500;
+  font-size: 32px;
+  color: #000;
+  margin-bottom: 32px;
+  text-align: left;
+  width: 100%;
+}
+
+/* Contenedor del formulario */
+.form-container {
+  width: 100%;
+  max-width: 800px;
+  margin-bottom: 48px;
+}
+
+/* Estilo base común para los grupos de formulario */
+.form-group,
+.form-group-horizontal {
+  display: flex;
+  margin-bottom: 24px;
+}
+
+.form-group {
+  flex-direction: column;
+}
+
+.form-group label {
+  font-family: "Poppins-Medium", Helvetica;
+  font-weight: 500;
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+/* Estilo para grupos HORIZONTALES */
+.form-group-horizontal {
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+}
+
+.form-group-horizontal label {
+  font-family: "Poppins-Medium", Helvetica;
+  font-weight: 500;
+  font-size: 16px;
+  color: #333;
+  flex-shrink: 0;
+  width: 180px;
+}
+
+
+/* Estilo para los Combobox (Select) */
+.custom-select {
+  background-color: #B6E2D3;
+  border: 1px solid #b2c9c1;
+  border-radius: 8px;
+  padding: 14px;
+  font-size: 16px;
+  font-family: "Poppins-Regular", Helvetica;
+  width: auto;
+  min-width: 250px;
+  flex-grow: 1;
+  max-width: 400px;
+
+}
+
+/* Estilo para el Textbox */
+#text-recomendacion {
+  background: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 16px;
+  font-family: "Poppins-Regular", Helvetica;
+  line-height: 1.6;
+  width: 100%;
+}
+
+/* --- Estilos para los Checkboxes --- */
+.tipo-options-group {
+  display: flex;
+  gap: 30px;
+}
+
+/* Oculta el checkbox real */
+.tipo-option-label input[type="checkbox"] {
+  display: none;
+}
+
+
+.tipo-box {
+  display: inline-block;
+  padding: 12px 18px;
+  background-color: #e0e8e5;
+  border: 1px solid #b2c9c1;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: "Poppins-Medium", Helvetica;
+  font-weight: 500;
+  color: #333;
+  transition: all 0.2s ease;
+}
+
+
+.tipo-box:after {
+  content: '[ ]';
+  margin-left: 8px;
+  font-weight: normal;
+  color: #555;
+}
+
+
+.tipo-option-label input[type="checkbox"]:checked + .tipo-box {
+  background-color: #B6E2D3;
+  border-color: #8da9a1;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+
+.tipo-option-label input[type="checkbox"]:checked + .tipo-box:after {
+  content: '[x]';
+  color: #111;
+}
+
+/* --- Botón Guardar --- */
+.btn-guardar {
+  background-color: #a0d9c8;
+  border: none;
+  border-radius: 8px;
+  padding: 14px 28px;
+  font-size: 16px;
+  font-weight: bold;
+  color: black;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-guardar:hover {
+  background-color: #8cc9b6;
+}
+
+/* --- Estilos para el Historial --- */
+.history-container {
+  width: 100%;
+  max-width: 800px;
+}
+
+.history-title {
+  font-family: "Poppins-Medium", Helvetica;
+  font-weight: 500;
+  font-size: 20px;
+  color: #000;
+  margin-bottom: 16px;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 8px;
+}
+
+/* Contenedor de la tabla */
+.history-table-wrapper {
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.history-table th,
+.history-table td {
+  padding: 16px;
+  text-align: left;
+  border-bottom: 1px solid #f0f0f0;
+  font-family: "Poppins-Regular", Helvetica;
+}
+
+/* Cabecera de la tabla */
+.history-table th {
+  background-color: #f9f9f9;
+  font-weight: 600;
+  color: #555;
+  font-family: "Poppins-Medium", Helvetica;
+}
+
+/* Quita la última línea de borde en la tabla */
+.history-table tr:last-child td {
+  border-bottom: none;
+}
