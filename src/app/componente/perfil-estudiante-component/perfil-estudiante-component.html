@@ -1,31 +1,93 @@
 <div class="main-content">
-  <div class="page-header">
-    <h2 class="page-title">Perfil del Estudiante</h2>
-  </div>
-
   <div class="perfil-container">
-    @if (loading) {
-      <p>Cargando perfil...</p>
-    }
+    <!-- Encabezado -->
+    <h2 class="page-title">Perfil</h2>
 
-    @if (error) {
-      <p class="error">{{ error }}</p>
-    }
-
-    @if (perfil && perfil.tipoPerfil === 'ESTUDIANTE') {
-      <div class="perfil-card">
-        <p><strong>Nombre:</strong> {{ perfil.nombre }} {{ perfil.apellidos }}</p>
-        <p><strong>Correo:</strong> {{ perfil.correo }}</p>
-        <p><strong>Teléfono:</strong> {{ perfil.telefono }}</p>
-        <p><strong>Universidad:</strong> {{ perfil.universidad }}</p>
-        <p><strong>Carrera:</strong> {{ perfil.carrera }}</p>
-        <p><strong>Ciclo:</strong> {{ perfil.ciclo }}</p>
-        <p><strong>Estado Académico:</strong> {{ perfil.estadoAcademico }}</p>
+    <!-- Contenido principal -->
+    <div class="perfil-header">
+      <div class="avatar-section">
+        <div class="avatar-wrapper">
+          <img
+            [src]="(perfil?.fotoUrl || 'assets/default-avatar.png') + '?t=' + timestamp"
+            alt="Foto de perfil"
+            class="avatar-img"
+          />
+        </div>
+        <input type="file" id="fileInput" accept="image/*" (change)="onFileSelected($event)" style="display: none" />
+        <button class="btn-gradient" (click)="document.getElementById('fileInput')?.click()">Cambiar foto</button>
       </div>
+
+      <div class="user-info">
+        <h1 class="user-name">{{ perfil?.nombre }} {{ perfil?.apellidos }}</h1>
+
+        <div class="info-columns">
+          <!-- Datos Personales -->
+          <div class="info-column">
+            <h3>Datos Personales</h3>
+            <div class="info-item">
+              <span>Cuenta:</span>
+              <span class="badge">
+                {{ suscripcion?.tipo =='PREMIUM' ? 'Premium' :
+                   suscripcion?.tipo === 'BASICA' ? 'Básica' :
+                 'Sin suscripción' }}</span>
+            </div>
+            <div class="info-item">
+              <span>Correo:</span>
+              <span>{{ perfil?.correo }}</span>
+            </div>
+            <div class="info-item">
+              <span>Teléfono:</span>
+              <span>{{ perfil?.telefono }}</span>
+            </div>
+          </div>
+
+          <!-- Datos Académicos -->
+          <div class="info-column">
+            <h3>Datos Académicos</h3>
+            <div class="info-item">
+              <span>Universidad:</span>
+              <span>{{ perfil?.universidad || 'No especificada' }}</span>
+            </div>
+            <div class="info-item">
+              <span>Carrera:</span>
+              <span>{{ perfil?.carrera || 'No especificada' }}</span>
+            </div>
+            <div class="info-item">
+              <span>Ciclo académico:</span>
+              <span>{{ perfil?.estadoAcademico || 'No especificado' }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Botón Editar Perfil -->
+    <!-- Dentro del contenido principal, donde está "Editar Perfil" -->
+    <div class="edit-button">
+      <button class="btn-gradient" (click)="abrirModal()">Editar Perfil</button>
+    </div>
+
+    <!-- Modal (solo si está abierto y hay perfil) -->
+    @if (mostrarModal && perfil) {
+      <app-perfil-editar
+        [perfil]="perfil"
+        (save)="guardarPerfil($event)"
+        (cancel)="cerrarModal()">
+      </app-perfil-editar>
     }
 
-    @if (perfil && perfil.tipoPerfil !== 'ESTUDIANTE') {
-      <p class="error">Este perfil no corresponde a un estudiante.</p>
-    }
+    <!-- Test Emocional -->
+    <section class="test-emocional-section">
+      <h3>Test Emocional</h3>
+      <p>Responde en una escala del 1 (nada de acuerdo) al 5 (totalmente de acuerdo)</p>
+      <div class="test-actions">
+        <button class="btn-gradient" onclick="window.location.href='/test-emocional'">Realizar test</button>
+        <div class="emotional-average">
+          <div class="bar"></div>
+          <div class="label">Promedio emocional</div>
+          <div class="value">0.0</div>
+        </div>
+      </div>
+    </section>
   </div>
 </div>
