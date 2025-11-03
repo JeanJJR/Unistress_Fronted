@@ -1,1 +1,102 @@
-<p>pagos-component works!</p>
+<section class="page">
+  <h2 class="titulo">Pagos</h2>
+
+  <div class="grid two">
+    <article
+      *ngFor="let p of planes"
+      class="card"
+      [class.selected]="selected() === p.id"
+      [class.dimmed]="selected() && selected() !== p.id"
+      (click)="seleccionar(p.id)"
+      role="button"
+      tabindex="0"
+      [attr.aria-selected]="selected() === p.id"
+      (keydown.enter)="seleccionar(p.id)"
+      (keydown.space)="seleccionar(p.id); $event.preventDefault()"
+    >
+      <!-- Encabezado (se mantiene verde) -->
+      <div class="card-head">
+        <h3 class="plan">
+          {{ p.titulo }} <span class="sub">{{ p.subtitulo }}</span>
+        </h3>
+        <div class="monto">
+          {{ p.precio | currency:'PEN':'symbol-narrow':'1.2-2' }}
+        </div>
+      </div>
+
+      <!-- Cuerpo: es lo que cambia a celeste cuando está seleccionado -->
+      <div class="card-body" (click)="$event.stopPropagation()">
+        <ul class="features">
+          <li *ngFor="let f of p.features">• {{ f }}</li>
+        </ul>
+
+        <div class="resumen">
+          <div class="row">
+            <span>Suscripción</span>
+            <span>{{ p.precio | currency:'PEN':'symbol-narrow':'1.2-2' }}</span>
+          </div>
+          <div class="row">
+            <span>IGV</span>
+            <span>{{ p.igv | currency:'PEN':'symbol-narrow':'1.2-2' }}</span>
+          </div>
+          <div class="row total">
+            <span>Total</span>
+            <span>{{ total(p) | currency:'PEN':'symbol-narrow':'1.2-2' }}</span>
+          </div>
+        </div>
+
+        <div class="metodos interact">
+          <p class="label">Métodos de pago</p>
+
+          <label class="radio">
+            <input
+              type="radio"
+              name="metodo-{{p.id}}"
+              (change)="elegirMetodo('card')"
+              [disabled]="selected() !== p.id"
+              [checked]="selected() === p.id && metodo() === 'card'"
+              (click)="$event.stopPropagation()"
+            />
+            <span>Tarjeta <small>visa, mc, amex</small></span>
+            <!-- tira de marcas tarjetas -->
+            <img
+              class="brand-strip card-logos"
+              src="/metodos%20de%20pago.png"
+              alt="Visa, MasterCard, Amex, Diners"
+              (click)="$event.stopPropagation()"
+            />
+          </label>
+
+          <label class="radio">
+            <input
+              type="radio"
+              name="metodo-{{p.id}}"
+              (change)="elegirMetodo('yape')"
+              [disabled]="selected() !== p.id"
+              [checked]="selected() === p.id && metodo() === 'yape'"
+              (click)="$event.stopPropagation()"
+            />
+            <span>Yape / Plin</span>
+            <!-- tira de marcas yape/plin -->
+            <img
+              class="brand-strip yape-logos"
+              src="/tarjetas%20digitales.png"
+              alt="Yape, Plin"
+              (click)="$event.stopPropagation()"
+            />
+          </label>
+        </div>
+
+        <button
+          type="button"
+          class="btn btn-primary interact"
+          (click)="confirmar(p); $event.stopPropagation()"
+          [disabled]="!(selected() === p.id && metodo())"
+          [attr.aria-disabled]="!(selected() === p.id && metodo())"
+        >
+          Confirmar pago
+        </button>
+      </div>
+    </article>
+  </div>
+</section>
