@@ -1,5 +1,6 @@
 // src/app/model/perfil-detalle.model.ts
 export interface PerfilDetalle {
+  id: number;
   usuarioId: number;
   nombre: string;
   apellidos: string;

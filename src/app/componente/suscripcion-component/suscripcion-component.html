@@ -1,28 +1,31 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Saludo Global</title>
-  <style>
-    body {
-      background-color: #f0f8ff;
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding-top: 100px;
-    }
-    h1 {
-      color: #003366;
-      font-size: 48px;
-    }
-    p {
-      color: #555;
-      font-size: 24px;
-    }
-  </style>
-</head>
-<body>
-<h1>¡Hola a todo el mundo!</h1>
-<p>Bienvenidos a esta página de saludo universal.</p>
-</body>
-</html>
+<section class="page">
+  <h2 class="titulo">Mi Suscripción</h2>
 
+  <div class="card">
+    <div class="card-header">Suscripción</div>
+
+    <div class="rows">
+      <div class="row">
+        <span>Plan: <b>{{ plan }}</b></span>
+        <span>Estado: <b>{{ estado }}</b></span>
+      </div>
+
+      <div class="row">
+        <span>Inicio: {{ inicio | date:'dd/MM/yyyy' }}</span>
+        <span>Fin: {{ fin | date:'dd/MM/yyyy' }}</span>
+      </div>
+    </div>
+
+    <div class="beneficios">
+      <p><b>Beneficios:</b></p>
+      <ul>
+        <li *ngFor="let b of beneficios">{{ b }}</li>
+      </ul>
+    </div>
+
+    <div class="acciones">
+      <button class="btn btn-primary" (click)="renovar()">Renovar</button>
+      <button class="btn btn-danger" (click)="cancelar()">Cancelar</button>
+    </div>
+  </div>
+</section>

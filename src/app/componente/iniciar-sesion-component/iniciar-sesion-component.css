@@ -187,7 +187,15 @@ body {
   cursor: pointer;
   transition: color 0.3s ease;
 }
-
+:host {
+  display: grid;
+  place-items: center;
+  min-height: 100dvh;           /* altura de viewport moderna */
+  background-color: #eff2f4;
+  padding: 16px;
+  box-sizing: border-box;
+  width: 100%;
+}
 .link:hover {
   color: #3a5264;
 }
