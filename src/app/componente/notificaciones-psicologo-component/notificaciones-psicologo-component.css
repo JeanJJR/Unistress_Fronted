@@ -1,0 +1,72 @@
+.main-content {
+  margin-left: 280px;
+  padding: 40px;
+}
+.main-content h2 {
+  font-size: 2.2rem;
+  font-weight: 500;
+  margin-bottom: 30px;
+  color: #1a1a1a;
+  }
+
+.notificaciones-estado-header{
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eee;
+  font-size: 20px;
+}
+.estado-label{
+    font-size: 1rem;
+    color: #555;
+    margin-right: 8px;
+  }
+
+.toggle-button {
+  background-color: #e0f2f1;
+  color: #00796b;
+  font-weight: 500;
+    padding: 0 16px;
+    height: 32px;
+    line-height: 32px;
+    min-width: 80px;
+    border-radius: 4px;
+  box-shadow: none;
+
+}
+
+.list-title {
+  color: #555;
+  margin-bottom: 20px;
+  gap:10px
+}
+
+.tabla-container {
+border: 1px solid #ddd;
+  border-radius: 0;
+}
+
+.full-width-table {
+  width: 100%;
+}
+
+.mat-header-cell {
+  color: #333;
+font-weight: 600;
+padding: 0 16px;
+}
+
+.mat-cell {
+  color: #555;
+  padding: 0 16px;
+}
+
+.mat-row, .mat-header-row {
+  height: 48px;
+}
+
+  .empty-table-placeholder {
+     min-height: 300px; /* Altura que ocupa la tabla vacía en la imagen */
+     width: 100%;
+  }

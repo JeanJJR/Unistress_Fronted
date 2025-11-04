@@ -25,6 +25,9 @@ import {
 import {
   RecomendacionesPsicologoComponent
 } from './componente/recomendaciones-psicologo-component/recomendaciones-psicologo-component';
+import {
+  NotificacionesPsicologoComponent
+} from './componente/notificaciones-psicologo-component/notificaciones-psicologo-component';
 
 export const routes: Routes = [
   { path: '', component: InicioComponent },
@@ -58,7 +61,7 @@ export const routes: Routes = [
       { path: 'recomendaciones-psicologo', component: RecomendacionesPsicologoComponent },
       { path: 'banco-preguntas', component: BancoPreguntasComponent },
       { path: 'tendencias-emocionales', component: TendenciasEmocionalesComponent },
-      { path: 'notificaciones-psicologo', component: NotificacionesComponent },
+      { path: 'notificaciones-psicologo', component: NotificacionesPsicologoComponent },
       { path: 'configuraciones-psicologo', component: ConfiguracionesComponent }
     ]
   }
