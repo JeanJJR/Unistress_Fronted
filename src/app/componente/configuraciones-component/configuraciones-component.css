@@ -1,0 +1,168 @@
+.configuracion-solo {
+  position: relative;
+  min-height: 100vh;
+  background-color: #f4f6f8;
+  padding: 40px 0 0 280px; /* Ajusta para el sidebar */
+}
+
+.text-wrapper-2 {
+  font-family: "Poppins-Medium", Helvetica;
+  font-weight: 500;
+  font-size: 40px;
+  color: #000;
+  margin-bottom: 40px;
+}
+
+.recordatorio-de-test {
+  font-family: "Poppins-Regular", Helvetica;
+  font-weight: 400;
+  font-size: 24px;
+  color: #000;
+  margin-bottom: 8px;
+}
+
+.span {
+  font-family: "Poppins-Regular", Helvetica;
+  font-weight: 400;
+  font-size: 24px;
+  color: #000;
+}
+
+.button {
+  all: unset;
+  box-sizing: border-box;
+  display: flex;
+  width: 100px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  background-color: #b6e2d3;
+  cursor: pointer;
+  border-radius: 100px;
+  transition: opacity 0.2s;
+}
+
+.button:hover {
+  opacity: 0.9;
+}
+
+.button.active {
+  background-color: #4a90e2;
+  color: white;
+}
+
+.content {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex: 0 0 auto;
+  background-color: inherit;
+  border-radius: 100px;
+  overflow: hidden;
+}
+
+.state-layer {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 16px;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.label {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  margin-top: -1.00px;
+  font-family: var(--m3-label-large-font-family);
+  font-weight: var(--m3-label-large-font-weight);
+  color: var(--m-3black);
+  font-size: var(--m3-label-large-font-size);
+  letter-spacing: var(--m3-label-large-letter-spacing);
+  line-height: var(--m3-label-large-line-height);
+  white-space: nowrap;
+  font-style: var(--m3-label-large-font-style);
+}
+
+.config-link {
+  color: #4a90e2;
+  text-decoration: none;
+}
+
+.font-size-value {
+  min-width: 40px;
+  text-align: center;
+  font-weight: 500;
+  color: #4a90e2;
+}
+
+/* Tema oscuro */
+body.tema-oscuro {
+  background-color: #121212;
+  color: #f0f0f0;
+}
+
+body.tema-oscuro .configuracion-solo {
+  background-color: #121212;
+}
+
+body.tema-oscuro .text-wrapper-2,
+body.tema-oscuro .recordatorio-de-test,
+body.tema-oscuro .span {
+  color: #f0f0f0;
+}
+
+body.tema-oscuro .button {
+  background-color: #444;
+  color: #f0f0f0;
+}
+
+body.tema-oscuro .button.active {
+  background-color: #4a90e2;
+  color: white;
+}
+
+body.tema-oscuro .config-link {
+  color: #4a90e2;
+}
+/* Modo oscuro global */
+body.tema-oscuro {
+  background-color: #121212;
+  color: #f0f0f0;
+}
+
+/* Fondo principal */
+body.tema-oscuro .configuracin {
+  background-color: #121212;
+}
+
+/* Fondo del área de contenido */
+body.tema-oscuro .configuracin .rectangle {
+  background-color: #1e1e1e;
+}
+
+/* Textos */
+body.tema-oscuro .configuracin .text-wrapper,
+body.tema-oscuro .configuracin .text-wrapper-2,
+body.tema-oscuro .configuracin .recordatorio-de-test,
+body.tema-oscuro .configuracin .span,
+body.tema-oscuro .configuracin .label {
+  color: #f0f0f0;
+}
+
+/* Botones */
+body.tema-oscuro .configuracin .button {
+  background-color: #444;
+  color: #f0f0f0;
+}
+
+body.tema-oscuro .configuracin .button.active {
+  background-color: #4a90e2;
+  color: white;
+}

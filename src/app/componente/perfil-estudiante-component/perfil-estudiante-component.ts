@@ -1,5 +1,5 @@
 // src/app/componente/perfil-estudiante-component/perfil-estudiante-component.ts
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { PerfilDetalleService } from '../../services/perfil-detalle-service';
 import { SuscripcionService } from '../../services/suscripcion-service';
@@ -15,21 +15,17 @@ import { PerfilEditarComponent } from './perfil-editar/perfil-editar';
   styleUrls: ['./perfil-estudiante-component.css']
 })
 export class PerfilEstudianteComponent implements OnInit {
+  private perfilService = inject(PerfilDetalleService);
+  private suscripcionService = inject(SuscripcionService);
+  private router = inject(Router);
+
   perfil: PerfilDetalle | null = null;
   suscripcion: Suscripcion | null = null;
   loading = true;
   error: string | null = null;
   mostrarModal = false;
   timestamp = Date.now(); // fuerza recarga de imagen
-  subiendoFoto = false;   // opcional para mostrar estado
-
-
-  constructor(
-    private perfilService: PerfilDetalleService,
-    private suscripcionService: SuscripcionService,
-    private router: Router
-  ) {
-  }
+  subiendoFoto = false;
 
   ngOnInit(): void {
     const usuarioId = 2;
@@ -70,17 +66,14 @@ export class PerfilEstudianteComponent implements OnInit {
     const usuarioId = 2;
     this.perfilService.actualizarPerfil(usuarioId, perfilEditado).subscribe({
       next: (respuesta) => {
-        console.log(' Respuesta del backend:', respuesta); // Será un string
-        this.perfil = {...perfilEditado};
+        console.log('Respuesta del backend:', respuesta);
+        this.perfil = { ...perfilEditado };
         this.cerrarModal();
-        //alert(' Perfil actualizado correctamente');
       },
       error: (err) => {
-        console.error(' Error real:', err);
-        // alert(' No se pudo guardar los cambios.');
+        console.error('Error real:', err);
       }
     });
-
   }
 
   onFileSelected(event: Event): void {
@@ -90,30 +83,21 @@ export class PerfilEstudianteComponent implements OnInit {
     const archivo = input.files[0];
     const usuarioId = 2;
 
-    if (!usuarioId) {
-      console.error(' usuarioId no disponible');
-      return;
-    }
-
     this.perfilService.actualizarFoto(usuarioId, archivo).subscribe({
       next: () => {
-        // Recarga el perfil (usando el mismo usuarioId)
         this.perfilService.obtenerPerfilPorId(usuarioId).subscribe({
           next: (data) => {
             this.perfil = data;
-            this.timestamp = Date.now(); // fuerza recarga de imagen
+            this.timestamp = Date.now();
           }
         });
       },
       error: (err) => {
-        console.error(' Error al subir foto:', err);
+        console.error('Error al subir foto:', err);
         alert('No se pudo actualizar la foto');
       }
     });
   }
 
-
-
   protected readonly document = document;
 }
-

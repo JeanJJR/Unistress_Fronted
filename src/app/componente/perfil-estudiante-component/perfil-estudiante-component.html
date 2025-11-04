@@ -8,10 +8,11 @@
       <div class="avatar-section">
         <div class="avatar-wrapper">
           <img
-            [src]="(perfil?.fotoUrl || 'assets/default-avatar.png') + '?t=' + timestamp"
+            [src]="(perfil?.fotoUrl?.startsWith('http') ? perfil?.fotoUrl : 'assets/foto.png') + '?t=' + timestamp"
             alt="Foto de perfil"
             class="avatar-img"
           />
+
         </div>
         <input type="file" id="fileInput" accept="image/*" (change)="onFileSelected($event)" style="display: none" />
         <button class="btn-gradient" (click)="document.getElementById('fileInput')?.click()">Cambiar foto</button>

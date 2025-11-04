@@ -1,0 +1,164 @@
+/* src/app/estado-emocional/estado-emocional.component.css */
+
+.main-content {
+  margin-left: 280px;
+  padding: 40px;
+  min-height: calc(100vh - 80px);
+  background-color: #f4f6f8;
+}
+
+.page-title {
+  font-family: "Poppins-Medium", Helvetica;
+  font-weight: 500;
+  font-size: 32px;
+  color: #000;
+  margin-bottom: 24px;
+}
+
+.section {
+  margin-bottom: 40px;
+}
+
+.registro-diario,
+.historial-emociones {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  overflow: hidden;
+  margin-bottom: 40px;
+}
+
+.header {
+  background: #b6e2d3;
+  padding: 16px 24px;
+  font-weight: 500;
+  font-size: 18px;
+  color: #000;
+}
+
+.content {
+  padding: 24px;
+}
+
+.pregunta p {
+  margin: 0 0 12px 0;
+  font-size: 16px;
+  color: #333;
+}
+
+.emojis {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.emojis button {
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  border: 2px solid #ddd;
+  border-radius: 50%;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.emojis button:hover {
+  transform: scale(1.1);
+}
+
+.emojis button.selected {
+  border-color: #4a90e2;
+  background: #e8f4ff;
+}
+
+.comentario label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 16px;
+  color: #333;
+}
+
+.comentario-input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 16px;
+  resize: vertical;
+}
+
+.btn-primary {
+  background: linear-gradient(90deg, rgba(116, 173, 205, 1) 0%, rgba(161, 209, 209, 1) 100%);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  margin-top: 12px;
+  transition: opacity 0.2s;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+.emociones-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 16px;
+}
+
+.emociones-table th,
+.emociones-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.emociones-table th {
+  background: #f5f5f5;
+  font-weight: 500;
+  color: #333;
+}
+
+.emociones-table td {
+  color: #555;
+}
+
+.empty {
+  text-align: center;
+  color: #999;
+  padding: 24px;
+  font-style: italic;
+}
+
+.emocion-nivel-container {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 20px;
+  align-items: flex-start;
+}
+
+.nivel-seccion {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.nivel-seccion label {
+  font-size: 14px;
+  color: #555;
+}
+
+.nivel-seccion input[type="range"] {
+  width: 120px;
+}
+
+.nivel-valor {
+  font-weight: bold;
+  color: #4a90e2;
+  font-size: 18px;
+}

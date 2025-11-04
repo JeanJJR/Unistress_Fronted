@@ -1,1 +1,80 @@
-<p>estado-emocional-component works!</p>
+<div class="main-content">
+  <h2 class="page-title">Estado Emocional</h2>
+
+  <!-- Registro Diario -->
+  <section class="registro-diario">
+    <div class="header">Registro Diario</div>
+    <div class="content">
+      <div class="emocion-nivel-container">
+        <!-- Emociones -->
+        <div class="emocion-seccion">
+          <p>¿Cómo te sientes hoy?</p>
+          <div class="emojis">
+            <button type="button" (click)="emocionSeleccionada = 'feliz'" [class.selected]="emocionSeleccionada === 'feliz'">😊</button>
+            <button type="button" (click)="emocionSeleccionada = 'triste'" [class.selected]="emocionSeleccionada === 'triste'">😢</button>
+            <button type="button" (click)="emocionSeleccionada = 'enojado'" [class.selected]="emocionSeleccionada === 'enojado'">😠</button>
+            <button type="button" (click)="emocionSeleccionada = 'ansioso'" [class.selected]="emocionSeleccionada === 'ansioso'">😟</button>
+            <button type="button" (click)="emocionSeleccionada = 'neutral'" [class.selected]="emocionSeleccionada === 'neutral'">😐</button>
+          </div>
+        </div>
+
+        <!-- Nivel -->
+        <div class="nivel-seccion">
+          <label>Nivel (1–10):</label>
+          <input type="range" min="1" max="10" [(ngModel)]="nivel" />
+          <span class="nivel-valor">{{ nivel }}</span>
+        </div>
+      </div>
+
+      <div class="comentario">
+        <label>Descripción:</label>
+        <textarea
+          [(ngModel)]="comentario"
+          placeholder="Escribe cómo te sientes..."
+          rows="3"
+        ></textarea>
+      </div>
+
+      <button class="btn-primary" (click)="guardarEmocion()">Registrar emoción</button>
+    </div>
+  </section>
+
+  <!-- Historial -->
+  <section class="historial-emociones">
+    <div class="header">Historial de emociones</div>
+    <div class="content">
+      <table class="emociones-table">
+        <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Emoción</th>
+          <th>Nivel</th>
+          <th>Descripción</th>
+        </tr>
+        </thead>
+        <tbody>
+          @if (historial.length > 0) {
+            @for (item of historial; track item.id) {
+              <tr>
+                <td>{{ item.id ? 'Hoy' : '—' }}</td>
+                <td>
+                  @switch (item.emocion) {
+                    @case ('feliz') { 😊 }
+                    @case ('triste') { 😢 }
+                    @case ('enojado') { 😠 }
+                    @case ('ansioso') { 😟 }
+                    @case ('neutral') { 😐 }
+                  }
+                </td>
+                <td>{{ item.nivel }}/10</td>
+                <td>{{ item.descripcion }}</td>
+              </tr>
+            }
+          } @else {
+            <tr><td colspan="4" class="empty">No hay registros</td></tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>
