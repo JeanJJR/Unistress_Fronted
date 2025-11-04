@@ -18,7 +18,7 @@ import {Layout2} from './layout2/layout2';
 import {PerfilPsicologoComponent} from './componente/perfil-psicologo-component/perfil-psicologo-component';
 import {VistaEmocionalComponent} from './componente/vista-emocional-component/vista-emocional-component';
 import {HistorialSesionesComponent} from './componente/historial-sesiones-component/historial-sesiones-component';
-import {BancoPreguntasComponent} from './componente/banco-preguntas-component/banco-preguntas-component';
+import {BancoPreguntasComponent} from './componente/banco-preguntas-component/banco-preguntas.component';
 import {
   TendenciasEmocionalesComponent
 } from './componente/tendencias-emocionales-component/tendencias-emocionales-component';
@@ -56,7 +56,7 @@ export const routes: Routes = [
       { path: 'vista-emocional', component: VistaEmocionalComponent },
       { path: 'historial-de-sesiones', component: HistorialSesionesComponent },
       { path: 'recomendaciones-psicologo', component: RecomendacionesPsicologoComponent },
-      { path: 'banco-preguntas', component: BancoPreguntasComponent },
+      { path: 'banco', component: BancoPreguntasComponent },
       { path: 'tendencias-emocionales', component: TendenciasEmocionalesComponent },
       { path: 'notificaciones-psicologo', component: NotificacionesComponent },
       { path: 'configuraciones-psicologo', component: ConfiguracionesComponent }
