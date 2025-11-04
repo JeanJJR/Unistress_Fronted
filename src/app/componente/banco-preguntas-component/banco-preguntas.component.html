@@ -1,0 +1,20 @@
+<div class="banco-container">
+  <h2>Banco de Preguntas</h2>
+
+  <!-- Crear Pregunta -->
+  <div class="crear-pregunta">
+    <label for="nuevaPregunta">Mis Preguntas</label>
+    <textarea id="nuevaPregunta" placeholder="Escribe su pregunta" [(ngModel)]="nuevaPregunta"></textarea>
+    <button (click)="crearPregunta()">Crear</button>
+  </div>
+
+  <!-- Historial de Preguntas -->
+  <div class="historial">
+    <div class="historial-header">Historial de preguntas</div>
+    <ul>
+      <li *ngFor="let pregunta of preguntas">
+        <div class="pregunta-text">{{ pregunta.enunciado }}</div>
+      </li>
+    </ul>
+  </div>
+</div>
