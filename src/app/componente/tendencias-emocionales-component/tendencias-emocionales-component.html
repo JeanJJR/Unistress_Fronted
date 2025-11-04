@@ -1,1 +1,21 @@
-<p>tendencias-emocionales-component works!</p>
+<section class="page">
+  <h2 class="titulo">Tendencias de emociones</h2>
+
+  <div class="filters">
+    <div class="date-field">
+      <span class="label">Fecha inicial:</span>
+      <input type="date" [(ngModel)]="startDate" (change)="onFilterChange()">
+      <span class="icon">🗓️</span>
+    </div>
+
+    <div class="date-field">
+      <span class="label">Fecha final:</span>
+      <input type="date" [(ngModel)]="endDate" (change)="onFilterChange()">
+      <span class="icon">🗓️</span>
+    </div>
+  </div>
+
+  <div class="chart-wrap">
+    <canvas #chartCanvas aria-label="Gráfico de tendencias de emociones"></canvas>
+  </div>
+</section>
