@@ -11,7 +11,7 @@ import { EstadoEmocionalComponent } from './componente/estado-emocional-componen
 import { SesionesComponent } from './componente/sesiones-component/sesiones-component';
 import { RecomendacionesComponent } from './componente/recomendaciones-component/recomendaciones-component';
 import { MiEvolucionComponent } from './componente/mi-evolucion-component/mi-evolucion-component';
-import { NotificacionesComponent } from './componente/notificaciones-component/notificaciones-component';
+import { NotificacionesEstudianteComponent } from './componente/notificaciones-component/notificaciones-component';
 import { SuscripcionComponent } from './componente/suscripcion-component/suscripcion-component';
 import { PagosComponent } from './componente/pagos-component/pagos-component';
 import { ConfiguracionesComponent } from './componente/configuraciones-component/configuraciones-component';
@@ -21,6 +21,9 @@ import { HistorialSesionesComponent } from './componente/historial-sesiones-comp
 import { TendenciasEmocionalesComponent } from './componente/tendencias-emocionales-component/tendencias-emocionales-component';
 import { RecomendacionesPsicologoComponent } from './componente/recomendaciones-psicologo-component/recomendaciones-psicologo-component';
 import { BancoPreguntasComponent } from './componente/banco-preguntas-component/banco-preguntas-component';
+import {
+  NotificacionesPsicologoComponent
+} from './componente/notificaciones-psicologo-component/notificaciones-psicologo-component';
 export const routes: Routes = [
   { path: '', component: InicioComponent },
   { path: 'iniciar-sesion', component: IniciarSesionComponent },
@@ -38,7 +41,7 @@ export const routes: Routes = [
       { path: 'sesiones', component: SesionesComponent },
       { path: 'recomendaciones', component: RecomendacionesComponent },
       { path: 'mi-evolucion', component: MiEvolucionComponent },
-      { path: 'notificaciones', component: NotificacionesComponent },
+      { path: 'notificaciones', component: NotificacionesEstudianteComponent },
       { path: 'suscripcion', component: SuscripcionComponent },
       { path: 'pagos', component: PagosComponent },
       { path: 'configuracion', component: ConfiguracionesComponent }
@@ -56,7 +59,7 @@ export const routes: Routes = [
       { path: 'recomendaciones-psicologo', component: RecomendacionesPsicologoComponent },
       { path: 'banco-preguntas', component: BancoPreguntasComponent }, // standalone
       { path: 'tendencias-emocionales', component: TendenciasEmocionalesComponent },
-      { path: 'notificaciones-psicologo', component: NotificacionesComponent },
+      { path: 'notificaciones-psicologo', component: NotificacionesPsicologoComponent },
       { path: 'configuraciones-psicologo', component: ConfiguracionesComponent }
     ]
   },

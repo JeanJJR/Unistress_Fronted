@@ -1,0 +1,36 @@
+.wrapper {
+  padding-left: 3cm;
+  box-sizing: border-box;
+}
+
+.notificaciones-container {
+  max-width: 900px;
+  width: 100%;
+  margin: 20px auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+@media (max-width: 1024px) {
+  .wrapper {
+    padding-left: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    padding-left: 1rem;
+  }
+
+  .estado {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .estado button {
+    margin-top: 8px;
+  }
+}
