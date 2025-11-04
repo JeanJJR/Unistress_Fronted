@@ -1,0 +1,23 @@
+/* src/app/suscripcion/suscripcion.css */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+.page { margin-left: 280px; padding: 25px; background: #f5f8fa; font-family: 'Montserrat', sans-serif;min-height: 100vh; }
+.titulo { margin: 0 0 12px; font-family: 'Montserrat', sans-serif; font-size: 40px; font-weight: 600; }
+
+.card { width: 460px; background: #fff; border: 1px solid #bdbdbd; border-radius: 4px; }
+.card-header { background: #bfe3d3; padding: 10px 12px; font-size: 20px;font-weight: 300; border-bottom: 1px solid #bdbdbd; }
+
+.rows { padding: 14px 16px 0; }
+.row { display: flex; justify-content: space-between; margin-bottom: 12px; }
+
+.beneficios { padding: 0 16px 8px; color: #4d4d4d; }
+.beneficios ul { margin: 6px 0 0 0; padding-left: 16px; }
+
+.acciones { display: flex; gap: 12px; align-items: center; padding: 10px 16px 16px; }
+
+.btn { padding: 10px 18px; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; }
+.btn-primary { background: #6aa9c7; color: #fff; }
+.btn-danger { background: #e01b1b; color: #fff; padding: 10px 18px; border-radius: 8px; }
+
+
+.btn:hover { opacity: .92; }
+.btn:focus { outline: 2px solid #1a1a1a22; outline-offset: 2px; }

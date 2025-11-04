@@ -1,0 +1,33 @@
+<div class="wrapper">
+  <section class="notificaciones-container">
+    <h2>Notificaciones</h2>
+    <div class="estado">
+      <span>Estado de las notificaciones: {{ estadoActivado ? 'Activado' : 'Desactivado' }}</span>
+      <button (click)="toggleEstado()">
+        {{ estadoActivado ? 'Apagar' : 'Encender' }}
+      </button>
+    </div>
+
+    <div class="historial">
+      <div class="historial-header">Listado de notificaciones</div>
+      <table>
+        <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Emisor</th>
+          <th>Tipo</th>
+          <th>Mensaje</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let noti of notificaciones">
+          <td>{{ noti.fecha }}</td>
+          <td>{{ noti.emisor }}</td>
+          <td>{{ noti.tipo }}</td>
+          <td>{{ noti.mensaje }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>
