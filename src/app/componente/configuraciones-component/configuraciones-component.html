@@ -1,29 +1,73 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Saludo Global</title>
-  <style>
-    body {
-      background-color: #f0f8ff;
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding-top: 100px;
-    }
-    h1 {
-      color: #003366;
-      font-size: 48px;
-    }
-    p {
-      color: #555;
-      font-size: 24px;
-    }
-  </style>
-</head>
-<body>
-<h1>¡Hola a todo el mundo!</h1>
-<p>Bienvenidos a esta página de saludo universal.</p>
-</body>
-</html>
+<div class="main-content">
+
+  <section id="configuracion" class="container py-4">
+    <h2 class="mb-4">Configuración</h2>
+
+    <div class="card custom-card mb-4">
+      <div class="card-header custom-card-header">
+        <strong>Modo Claro / Oscuro</strong>
+      </div>
+      <div class="card-body config-row-horizontal">
+        <span>Activar modo oscuro</span>
+        <div class="form-check form-switch custom-toggle-switch">
+          <input class="form-check-input" type="checkbox" id="toggleModoOscuro">
+        </div>
+      </div>
+    </div>
+
+    <div class="card custom-card mb-4">
+      <div class="card-header custom-card-header">
+        <strong>Color de Acento</strong>
+      </div>
+      <div class="card-body config-row-vertical">
+        <label for="selectorColorAcento" class="form-label">Elige tu color preferido:</label>
+        <select id="selectorColorAcento" class="form-select custom-select-dropdown">
+          <option value="#dc3545">Rojo coral</option>
+          <option value="#0d6efd">Azul (predeterminado)</option>
+          <option value="#198754">Verde</option>
+          <option value="#6f42c1">Morado</option>
+          <option value="#fd7e14">Naranja</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="card custom-card mb-4">
+      <div class="card-header custom-card-header">
+        <strong>Idioma</strong>
+      </div>
+      <div class="card-body config-row-vertical">
+        <label for="selectorIdioma" class="form-label">Selecciona tu idioma:</label>
+        <select id="selectorIdioma" class="form-select custom-select-dropdown">
+          <option value="en" selected>English</option>
+          <option value="es">Español</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="card custom-card mb-4">
+      <div class="card-header custom-card-header">
+        <strong>Notificaciones</strong>
+      </div>
+      <div class="card-body config-row-horizontal">
+        <span>Habilitar notificaciones del sistema</span>
+        <div class="form-check form-switch custom-toggle-switch">
+          <input class="form-check-input" type="checkbox" id="toggleNotificaciones" checked>
+        </div>
+      </div>
+    </div>
+
+    <div class="card custom-card">
+      <div class="card-header custom-card-header">
+        <strong>Cuenta</strong>
+      </div>
+      <div class="card-body">
+        <button id="btnEliminarCuenta" class="btn btn-danger custom-btn-danger">
+          Eliminar cuenta
+        </button>
+      </div>
+    </div>
+  </section>
+
+</div>
 
 

@@ -1,0 +1,67 @@
+/* Contenedor principal (a la derecha del sidebar) */
+.main-content {
+  margin-left: 280px;
+  padding: 60px 40px;
+  min-height: 100vh;
+  background-color: #f4f6f8;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Título de la página */
+.page-title {
+  font-family: "Poppins-Medium", Helvetica;
+  font-weight: 500;
+  font-size: 32px;
+  color: #000;
+  margin-bottom: 32px;
+  text-align: left;
+  width: 100%;
+}
+
+/* Contenedor de la lista de tarjetas */
+.recommendation-list {
+  width: 100%;
+  max-width: 1500px;
+}
+
+/* tarjeta blanca */
+.recommendation-card {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 24px;
+  width: 100%;
+  margin-bottom: 24px;
+  box-sizing: border-box;
+}
+
+.card-title {
+  font-family: "Poppins-Medium", Helvetica;
+  font-size: 20px;
+  font-weight: 600;
+  color: #000;
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+.card-content p {
+  font-family: "Poppins-Regular", Helvetica;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+/* Fecha */
+.card-content p strong {
+  font-weight: 600;
+  color: #111;
+}
+
+/* Quita el margen de abajo del último párrafo */
+.card-content p:last-child {
+  margin-bottom: 0;
+}
