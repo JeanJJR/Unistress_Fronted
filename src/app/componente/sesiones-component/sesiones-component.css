@@ -1,0 +1,178 @@
+.main-content {
+  margin-left: 280px;
+  padding: 40px;
+}
+.page-title{
+  font-size: 32px;
+}
+.top-sections-container {
+  display: flex;
+  gap: 60px;
+  margin-bottom: 40px;
+  width: 100%;
+}
+
+mat-card {
+  background-color: transparent;
+  border: 1px solid #e0e0e0;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+}
+
+.new-session-card {
+  flex: 1;
+  min-width: 400px;
+}
+
+.upcoming-session-card {
+  flex: 2;
+  min-width: 650px;
+  width: 100%;
+}
+
+.history-session-card {
+  width: 100%;
+  flex: 1;
+}
+
+.card-title {
+  font-size: 23px;
+  font-weight: 500;
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 25px;
+}
+
+
+.session-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-group-single{
+  width: 100%;
+  background-color: #B6E2D3;
+
+}
+
+.form-group-double{
+  display: flex;
+  gap:10px;
+  width: 100%;
+
+}
+
+.form-group-double mat-form-field {
+  flex:1;
+  background-color: #B6E2D3;
+
+}
+
+/* Estilos de inputs de Material */
+.mat-mdc-form-field {
+  width: 100%;
+  margin-bottom: 0;
+}
+.mat-mdc-form-field-flex {
+  background-color: #e6f7ef !important;
+  border: 1px solid #b3e0c7 !important;
+  border-radius: 4px;
+  padding: 0 10px 0 10px !important;
+}
+
+.mat-mdc-form-field-subscript-wrapper {
+  display: none;
+}
+
+.message-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.form-group-triple mat-form-field {
+  flex: 1;
+}
+.message-group mat-form-field {
+  width: 100%;
+}
+
+.textarea-field {
+  width: 90%;
+}
+
+.register-button {
+  background: linear-gradient(90deg, #74a8d0 0%, #a0d9c8 100%);
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 20px;
+  align-self: flex-start;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+.filter-controls {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 25px;
+
+}
+
+.filter-label {
+  font-weight: bold;
+  color: #333;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.filter-input-field {
+  flex: 1;
+  background-color: #B6E2D3;
+
+}
+
+.sessions-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 17px;
+  text-align: left;
+  background-color: transparent;
+  border: 1px solid #000;
+}
+
+.mat-column-id, .mat-column-fecha, .mat-column-hora, .mat-column-psicologo, .mat-column-observaciones {
+  padding: 10px 3px;
+  border-bottom: 1px solid #000;
+}
+
+.actions-cell {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.edit-btn, .cancel-btn {
+
+  min-width: unset;
+  padding: 0;
+  height: 30px;
+  width: 30px;
+  line-height: 30px;
+  border-radius: 50%;
+}
+
+.edit-btn {
+  color: #3cb371;
+}
+
+.cancel-btn {
+  color: #a0d4c5;
+}
