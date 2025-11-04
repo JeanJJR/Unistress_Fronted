@@ -1,20 +1,28 @@
-<div class="banco-container">
+<!-- src/app/componente/banco-preguntas-component/banco-preguntas.component.html -->
+<section class="banco-container">
   <h2>Banco de Preguntas</h2>
 
   <!-- Crear Pregunta -->
   <div class="crear-pregunta">
     <label for="nuevaPregunta">Mis Preguntas</label>
-    <textarea id="nuevaPregunta" placeholder="Escribe su pregunta" [(ngModel)]="nuevaPregunta"></textarea>
+    <textarea id="nuevaPregunta" placeholder="Escribe tu pregunta" [(ngModel)]="nuevaPregunta"></textarea>
     <button (click)="crearPregunta()">Crear</button>
   </div>
 
   <!-- Historial de Preguntas -->
-  <div class="historial">
+  <div class="historial" *ngIf="preguntas.length > 0">
     <div class="historial-header">Historial de preguntas</div>
     <ul>
-      <li *ngFor="let pregunta of preguntas">
-        <div class="pregunta-text">{{ pregunta.enunciado }}</div>
+      <li *ngFor="let pregunta of preguntas; let i = index" (click)="selectQuestion(i)" [class.selected]="selectedIndex === i">
+        <div class="pregunta-text">{{ pregunta.title }}</div>
       </li>
     </ul>
   </div>
-</div>
+
+  <!-- Detalle Pregunta -->
+  <div class="detail" *ngIf="selectedQuestion as sq">
+    <h3>Detalle</h3>
+    <p>{{ sq.title }}</p>
+    <p><strong>Respuesta ejemplo:</strong> {{ sq.exampleAnswer }}</p>
+  </div>
+</section>

@@ -1,6 +1,7 @@
+/* src/app/componente/banco-preguntas-component/banco-preguntas.component.css */
 .banco-container {
   max-width: 800px;
-  margin: 20px auto;
+  margin: 20px 2cm 20px auto; /* margen derecho 2cm */
   padding: 20px;
   font-family: Arial, sans-serif;
   background-color: #f0f2f5;
@@ -13,7 +14,6 @@ h2 {
   font-weight: 600;
 }
 
-/* Crear pregunta */
 .crear-pregunta {
   margin-bottom: 30px;
 }
@@ -42,13 +42,13 @@ h2 {
   border-radius: 4px;
   cursor: pointer;
   font-weight: 500;
+  margin-right: 2cm; /* evita choque con el borde derecho */
 }
 
 .crear-pregunta button:hover {
   background-color: #80cbc4;
 }
 
-/* Historial de preguntas */
 .historial {
   background-color: #b2dfdb;
   border-radius: 4px;
@@ -74,9 +74,21 @@ h2 {
   margin-bottom: 8px;
   border-radius: 4px;
   border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.historial li.selected {
+  background: #eef;
+  border-color: #99c;
 }
 
 .pregunta-text {
   font-size: 0.95rem;
   color: #333;
+}
+
+.detail {
+  margin-top: 12px;
+  padding: 8px;
+  border-top: 1px solid #eee;
 }
