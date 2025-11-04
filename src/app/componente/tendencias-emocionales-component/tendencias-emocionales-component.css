@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+
+.page {
+  margin-left: 280px;
+  padding: 24px;
+  background: #f5f8fa;
+  min-height: 100vh;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.titulo { margin: 0 0 12px; }
+
+.filters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+  margin-bottom: 16px;
+}
+
+.date-field {
+  position: relative;
+  background: #cfeadf;
+  border-radius: 6px;
+  padding: 10px 36px 10px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.date-field .label { font-weight: 600; }
+
+.date-field input[type="date"] {
+  border: none;
+  background: transparent;
+  outline: none;
+  font: inherit;
+  padding: 4px 6px;
+}
+
+.date-field .icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.chart-wrap {
+  margin: 18px auto 0;
+  padding-top: 100px;
+  width: min(880px, calc(100% - 400px));
+  height: 380px;
+  background: #fff;
+  border-radius: 8px;
+}
