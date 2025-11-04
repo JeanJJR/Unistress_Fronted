@@ -1,0 +1,191 @@
+/* Centrar contenido y dar espacio */
+.main-content {
+  margin-left: 280px;
+  padding: 40px;
+  background-color: #f4f6f8;
+  min-height: 100vh;
+}
+
+.perfil-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  background: white;
+  padding: 32px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.page-title {
+  font-family: "Poppins-Medium", Helvetica;
+  font-weight: 500;
+  font-size: 32px;
+  color: #000;
+  margin-bottom: 32px;
+}
+
+/* Header: avatar + info */
+.perfil-header {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+  margin-bottom: 40px;
+}
+
+.avatar-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Fondo azul detrás de la imagen */
+.avatar-wrapper {
+  width: 100px;
+  height: 100px;
+  background-color: #137EAA;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Botones con degradado */
+.btn-gradient {
+  background: linear-gradient(to left, #74ADCD, #A1D1D1);
+  color: #000;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.btn-gradient:hover {
+  filter: brightness(0.95);
+}
+
+/* Información del usuario */
+.user-info {
+  flex: 1;
+}
+
+.user-name {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 36px;
+  color: #000;
+  margin: 0 0 24px;
+}
+
+.info-columns {
+  display: flex;
+  gap: 40px;
+  margin-top: 24px;
+}
+
+.info-column {
+  flex: 1;
+}
+
+.info-column h3 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: #000;
+  margin: 0 0 16px;
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  margin: 8px 0;
+  font-size: 16px;
+  color: #333;
+}
+
+.info-item span:first-child {
+  font-weight: 600;
+}
+
+/* Badge Premium */
+.badge {
+  background: #B6E2D3;
+  color: #000;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Botón Editar Perfil */
+.edit-button {
+  text-align: center;
+  margin: 40px 0;
+}
+
+/* Sección Test Emocional */
+.test-emocional-section {
+  margin-top: 40px;
+  padding-top: 40px;
+  border-top: 1px solid #eee;
+}
+
+.test-emocional-section h3 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+  color: #000;
+  margin: 0 0 16px;
+}
+
+.test-emocional-section p {
+  font-size: 16px;
+  color: #555;
+  margin: 0 0 24px;
+}
+
+.test-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.emotional-average {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.bar {
+  width: 10px;
+  height: 100px;
+  background: #ddd;
+  border-radius: 5px;
+  position: relative;
+}
+
+.value {
+  font-size: 24px;
+  font-weight: 600;
+  color: #007BFF;
+  margin: 8px 0;
+}
+
+.label {
+  font-size: 14px;
+  color: #555;
+}

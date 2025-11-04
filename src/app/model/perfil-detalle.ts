@@ -17,7 +17,7 @@ export interface PerfilDetalle {
   // Campos solo para psicólogo (opcional, pero los dejamos por si acaso)
   especialidad?: string;
   colegiatura?: string;
-  añosExperiencia?: number;
+  anosExperiencia?: number;
   telefonoConsulta?: string;
   fotoUrl?: string;
   descripcion?: string;

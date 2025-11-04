@@ -1,1 +1,75 @@
-<p>perfil-psicologo-component works!</p>
+<div class="main-content">
+  <div class="perfil-container">
+    <!-- Encabezado -->
+    <h2 class="page-title">Perfil</h2>
+
+    <!-- Contenido principal -->
+    <div class="perfil-header">
+      <div class="avatar-section">
+        <div class="avatar-wrapper">
+          <img
+            [src]="(perfil?.fotoUrl?.startsWith('http') ? perfil?.fotoUrl : 'assets/foto.png') + '?t=' + timestamp"
+            alt="Foto de perfil"
+            class="avatar-img"
+          />
+
+        </div>
+        <input type="file" id="fileInput" accept="image/*" (change)="onFileSelected($event)" style="display: none" />
+        <button class="btn-gradient" (click)="document.getElementById('fileInput')?.click()">Cambiar foto</button>
+      </div>
+
+      <div class="user-info">
+        <h1 class="user-name">{{ perfil?.nombre }} {{ perfil?.apellidos }}</h1>
+
+        <div class="info-columns">
+          <!-- Datos Personales -->
+          <div class="info-column">
+            <h3>Datos Personales</h3>
+            <div class="info-item">
+              <span>Correo:</span>
+              <span>{{ perfil?.correo }}</span>
+            </div>
+            <div class="info-item">
+              <span>Teléfono:</span>
+              <span>{{ perfil?.telefono }}</span>
+            </div>
+          </div>
+
+          <!-- Datos Académicos -->
+          <div class="info-column">
+            <h3>Datos Académicos</h3>
+            <div class="info-item">
+              <span>Especialidad:</span>
+              <span>{{ perfil?.especialidad || 'No especificada' }}</span>
+            </div>
+            <div class="info-item">
+              <span>Colegiatura:</span>
+              <span>{{ perfil?.colegiatura || 'No especificada' }}</span>
+            </div>
+            <div class="info-item">
+              <span>Años de experiencia:</span>
+              <span>{{ perfil?.anosExperiencia || 'No especificado' }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Botón Editar Perfil -->
+    <!-- Dentro del contenido principal, donde está "Editar Perfil" -->
+    <div class="edit-button">
+      <button class="btn-gradient" (click)="abrirModal()">Editar Perfil</button>
+    </div>
+
+    <!-- Modal (solo si está abierto y hay perfil) -->
+    @if (mostrarModal && perfil) {
+      <app-perfil-editar-psicologo
+        [perfil]="perfil"
+        (save)="guardarPerfil($event)"
+        (cancel)="cerrarModal()">
+      </app-perfil-editar-psicologo>
+
+    }
+  </div>
+</div>
+

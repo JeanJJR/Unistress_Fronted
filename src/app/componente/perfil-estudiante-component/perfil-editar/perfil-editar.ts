@@ -1,4 +1,4 @@
-// src/app/componente/perfil-editar/perfil-editar.component.ts
+// src/app/componente/perfil-editar2/perfil-editar2.component.ts
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { PerfilDetalle } from '../../../model/perfil-detalle';
