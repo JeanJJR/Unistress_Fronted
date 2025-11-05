@@ -56,7 +56,10 @@
           @if (historial.length > 0) {
             @for (item of historial; track item.id) {
               <tr>
-                <td>{{ item.id ? 'Hoy' : '—' }}</td>
+                <td>
+                  {{ esHoy(item.fechaRegistro) ? 'Hoy' : (item.fechaRegistro | date: 'yyyy-MM-dd') }}
+                </td>
+
                 <td>
                   @switch (item.emocion) {
                     @case ('feliz') { 😊 }

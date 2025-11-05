@@ -3,12 +3,13 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {RegistroEmocionalService} from '../../services/estado-emocional-service';
 import {RegistroEmocional} from '../../model/estado-emocional';
+import {DatePipe} from '@angular/common';
 
 
 @Component({
   selector: 'app-estado-emocional-component',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, DatePipe],
   templateUrl: './estado-emocional-component.html',
   styleUrls: ['./estado-emocional-component.css']
 })
@@ -70,4 +71,14 @@ export class EstadoEmocionalComponent implements OnInit {
     this.nivel = 5;
     this.comentario = '';
   }
+
+  esHoy(fechaStr: string | undefined): boolean {
+    if (!fechaStr) return false;
+    const fecha = new Date(fechaStr);
+    const hoy = new Date();
+    return fecha.getDate() === hoy.getDate() &&
+      fecha.getMonth() === hoy.getMonth() &&
+      fecha.getFullYear() === hoy.getFullYear();
+  }
+
 }

@@ -1,69 +1,156 @@
-.main-content {
-  margin-left: 280px;
-  padding: 40px;
+.vista-emocional {
+  position: relative;
+  min-height: 100vh;
+  background-color: #f4f6f8;
+  padding: 40px 0 0 280px;
 }
-h2 {
-  font-size: 32px;
+
+.text-wrapper-2 {
+  font-family: "Poppins-Medium", Helvetica;
   font-weight: 500;
-  margin-bottom: 30px;
+  font-size: 40px;
+  color: #000;
+  margin-bottom: 40px;
+  margin-left: 40px;
+}
+
+.seleccion-paciente,
+.historial-emociones {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto 40px auto; /* centrado horizontal + separación inferior */
+}
+
+
+/* Sobrescribe colores de Material para mantener tu identidad */
+.mat-mdc-card {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  border-radius: 8px;
+}
+
+.mat-mdc-card-header .mat-mdc-card-title {
+  font-family: "Poppins-Medium", Helvetica;
+  font-size: 20px;
+  color: #000;
+}
+
+.mat-mdc-form-field {
+  width: 100%;
+}
+
+.mat-mdc-raised-button {
+  background: #b6e2d3;
+  color: #000;
+  font-weight: 500;
+}
+
+.mat-mdc-raised-button:hover {
+  background: #a0d4c0;
+}
+
+.emociones-table {
+  width: 100%;
+}
+
+.mat-mdc-header-cell,
+.mat-mdc-cell {
+  font-family: "Poppins-Regular", Helvetica;
+  color: #000;
+  padding: 12px 8px;
+}
+
+.mat-mdc-header-cell {
+  background: #f5f5f5;
+  font-weight: 600;
   color: #333;
 }
-
-.select-patient-label {
-  display: block;
-  font-size: 18px;
-  margin-bottom: 10px;
-  color: #555;
+::ng-deep .mat-mdc-card {
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
 }
 
+::ng-deep .mat-mdc-card-header .mat-mdc-card-title {
+  font-family: "Poppins-Medium", Helvetica;
+  font-size: 20px;
+  color: #000;
+}
 
-.patient-highlight-card {
-  background-color: #d4edda;
+::ng-deep .mat-mdc-form-field-infix {
+  background-color: white;
   border-radius: 4px;
-  padding: 15px 20px;
-  margin-bottom: 20px;
-  box-shadow: none;
+  padding: 8px;
+  font-family: "Poppins-Regular", Helvetica;
+  color: #000;
 }
 
-.card-content {
-  font-size: 18px;
+::ng-deep .mat-mdc-raised-button {
+  background-color: #b6e2d3;
+  color: #000;
+  font-weight: 500;
+}
+
+::ng-deep .mat-mdc-raised-button:hover {
+  background-color: #a0d4c0;
+}
+
+::ng-deep .mat-mdc-header-cell,
+::ng-deep .mat-mdc-cell {
+  font-family: "Poppins-Regular", Helvetica;
+  color: #000;
+  padding: 12px 8px;
+}
+
+::ng-deep .mat-mdc-header-cell {
+  background-color: #f5f5f5;
   font-weight: 600;
+  color: #333;
+}
+/* Fondo verde claro para encabezados de tarjetas */
+::ng-deep .mat-mdc-card-header {
+  background-color: #b6e2d3;
+  padding: 16px 24px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
 }
 
-.search-bar-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+/* Color de texto en encabezado de tarjeta */
+::ng-deep .mat-mdc-card-title {
+  font-family: "Poppins-Medium", Helvetica;
+  font-size: 20px;
+  color: #000;
 }
 
-.search-label {
-  font-size: 18px;
-  white-space: nowrap;
-  color: #555;
+/* Fondo verde claro para encabezado de tabla */
+::ng-deep .mat-mdc-header-row {
+  background-color: #b6e2d3;
 }
 
-
-.search-input-field {
-  flex-grow: 1;
-  max-width: 250px;
-  font-weight: 500;
-  height: 55px;
-  line-height: 10px;
-
+/* Celdas del encabezado de tabla */
+::ng-deep .mat-mdc-header-cell {
+  font-family: "Poppins-Medium", Helvetica;
+  font-weight: 600;
+  color: #000;
+  padding: 12px 8px;
+}
+.buscador-ajustado {
+  width: 200px;
+  min-width: unset; /* evita que Angular Material lo expanda automáticamente */
+}
+.boton-pequeno {
+  width: 160px;
+  min-width: unset; /* evita que Angular Material lo expanda */
+  padding: 8px 16px;
+  font-size: 14px;
+  margin-left: 12px; /* mueve el botón hacia la derecha */
 }
 
-.search-input-field.mat-form-field-appearance-outline .mat-form-field-wrapper {
-  margin: 0;
-  padding-bottom: 0 !important;
+::ng-deep .seleccion-paciente .mat-mdc-card-content {
+  margin-top: 16px; /* ajusta según lo que te parezca cómodo */
 }
-
-
-.search-button {
-  background-color: #74a8d0;
-  color:white;
-  font-weight: 500;
-  height: 40px;
-  line-height: 40px;
+.emociones-table td {
+  white-space: pre-wrap; /* permite saltos de línea y respeta los \n */
+  word-break: break-word; /* corta palabras largas si es necesario */
+  overflow-wrap: break-word;
+  max-width: 400px; /* o el ancho que tú definas */
 }
-
-
