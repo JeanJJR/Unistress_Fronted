@@ -1,15 +1,28 @@
 // src/app/estado-emocional/estado-emocional.component.ts
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import {RegistroEmocionalService} from '../../services/estado-emocional-service';
-import {RegistroEmocional} from '../../model/estado-emocional';
-import {DatePipe} from '@angular/common';
+import { CommonModule } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatTableModule } from '@angular/material/table';
 
+import { RegistroEmocionalService } from '../../services/estado-emocional-service';
+import { RegistroEmocional } from '../../model/estado-emocional';
 
 @Component({
   selector: 'app-estado-emocional-component',
   standalone: true,
-  imports: [FormsModule, DatePipe],
+  imports: [
+    CommonModule,
+    FormsModule,
+    MatButtonModule,
+    MatCardModule,
+    MatInputModule,
+    MatSliderModule,
+    MatTableModule
+  ],
   templateUrl: './estado-emocional-component.html',
   styleUrls: ['./estado-emocional-component.css']
 })
@@ -18,7 +31,10 @@ export class EstadoEmocionalComponent implements OnInit {
   nivel = 5;
   comentario = '';
   historial: RegistroEmocional[] = [];
-  usuarioId = 2; // ← ID fijo del estudiante (reemplaza con auth cuando lo tengas)
+  usuarioId = 2;// ← ID fijo del estudiante (reemplaza con auth cuando lo tengas)
+
+  // Columnas de la tabla
+  displayedColumns: string[] = ['fecha', 'emocion', 'nivel', 'descripcion'];
 
   constructor(private registroService: RegistroEmocionalService) {}
 
@@ -29,10 +45,7 @@ export class EstadoEmocionalComponent implements OnInit {
   cargarHistorial(): void {
     this.registroService.listarPorUsuario(this.usuarioId).subscribe({
       next: (data) => this.historial = data,
-      error: (err) => {
-        console.error('Error al cargar historial:', err);
-        //alert('No se pudo cargar el historial');
-      }
+      error: (err) => console.error('Error al cargar historial:', err)
     });
   }
 
@@ -56,7 +69,7 @@ export class EstadoEmocionalComponent implements OnInit {
     this.registroService.registrar(nuevoRegistro).subscribe({
       next: () => {
         this.resetForm();
-        this.cargarHistorial(); // Refresca la lista
+        this.cargarHistorial();
         alert('Emoción registrada correctamente');
       },
       error: (err) => {
@@ -76,9 +89,10 @@ export class EstadoEmocionalComponent implements OnInit {
     if (!fechaStr) return false;
     const fecha = new Date(fechaStr);
     const hoy = new Date();
-    return fecha.getDate() === hoy.getDate() &&
+    return (
+      fecha.getDate() === hoy.getDate() &&
       fecha.getMonth() === hoy.getMonth() &&
-      fecha.getFullYear() === hoy.getFullYear();
+      fecha.getFullYear() === hoy.getFullYear()
+    );
   }
-
 }
