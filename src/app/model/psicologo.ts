@@ -6,5 +6,5 @@ export interface Psicologo {
   telefono: string;
   especialidad: string;
   colegiatura: string;
-  añosExperiencia: number;
+  anosExperiencia: number;
 }

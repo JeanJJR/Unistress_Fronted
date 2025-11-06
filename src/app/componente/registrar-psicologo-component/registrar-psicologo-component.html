@@ -1,145 +1,124 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta charset="utf-8" />
-  <title>Registrarse - UniStress Psicólogo</title>
-</head>
-<body>
 <main class="registrarse">
   <div class="rectangle" role="presentation"></div>
   <header>
     <h1 class="crea-tu-cuenta-en">
-      Crea tu cuenta en UniStress<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      Psicologo
+      Crea tu cuenta en UniStress <span class="rol">Psicólogo</span>
     </h1>
+
   </header>
-  <form class="registration-form" novalidate>
-    <div class="form-row">
-      <div class="form-group">
-        <label for="nombres" class="text-wrapper-2">Nombres</label>
+
+  <mat-card class="form-card">
+    <form class="registration-form" (ngSubmit)="onSubmit()" novalidate>
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Nombres</mat-label>
+          <input
+            matInput
+            [(ngModel)]="psicologo.nombre"
+            name="nombres"
+            required
+          />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Apellido</mat-label>
+          <input
+            matInput
+            [(ngModel)]="psicologo.apellidos"
+            name="apellido"
+            required
+          />
+        </mat-form-field>
+      </div>
+
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Teléfono</mat-label>
         <input
-          type="text"
-          id="nombres"
-          name="nombres"
-          class="div"
-          placeholder="Tu nombre"
-          aria-label="Nombres"
+          matInput
+          type="tel"
+          [(ngModel)]="psicologo.telefono"
+          name="telefono"
           required
         />
-      </div>
-      <div class="form-group">
-        <label for="apellido" class="text-wrapper-5">Apellido</label>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Correo electrónico</mat-label>
         <input
-          type="text"
-          id="apellido"
-          name="apellido"
-          class="rectangle-2"
-          placeholder="Tu apellido"
-          aria-label="Apellido"
+          matInput
+          type="email"
+          [(ngModel)]="psicologo.correo"
+          name="correo"
           required
         />
+      </mat-form-field>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Contraseña</mat-label>
+          <input
+            matInput
+            type="password"
+            [(ngModel)]="psicologo.contrasena"
+            name="contrasena"
+            required
+          />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Confirmar contraseña</mat-label>
+          <input
+            matInput
+            type="password"
+            [(ngModel)]="contrasenaConfirmacion"
+            name="confirmar-contrasena"
+            required
+          />
+        </mat-form-field>
       </div>
-    </div>
-    <div class="form-group">
-      <label for="telefono" class="text-wrapper-6">Telefono</label>
-      <input
-        type="tel"
-        id="telefono"
-        name="telefono"
-        class="rectangle-4"
-        placeholder="tu numero"
-        aria-label="Telefono"
-        required
-      />
-    </div>
-    <div class="form-group">
-      <label for="correo" class="text-wrapper-8">Correo electrónico</label>
-      <input
-        type="email"
-        id="correo"
-        name="correo"
-        class="rectangle-5"
-        placeholder="correo@ejemplo.com"
-        aria-label="Correo electrónico"
-        required
-      />
-    </div>
-    <div class="form-row">
-      <div class="form-group">
-        <label for="contrasena" class="text-wrapper-10">Contraseña</label>
+
+      <img class="line" src="img/line-9.svg" alt="" role="presentation" />
+
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Especialidad</mat-label>
+          <input
+            matInput
+            [(ngModel)]="psicologo.especialidad"
+            name="especialidad"
+            required
+          />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Año de experiencia</mat-label>
+          <input
+            matInput
+            type="number"
+            [(ngModel)]="psicologo.anosExperiencia"
+            name="experiencia"
+            min="0"
+            required
+          />
+        </mat-form-field>
+      </div>
+
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Colegiatura</mat-label>
         <input
-          type="password"
-          id="contrasena"
-          name="contrasena"
-          class="rectangle-6"
-          placeholder="********"
-          aria-label="Contraseña"
+          matInput
+          [(ngModel)]="psicologo.colegiatura"
+          name="colegiatura"
           required
         />
-      </div>
-      <div class="form-group">
-        <label for="confirmar-contrasena" class="text-wrapper-14">Confirmar contraseña</label>
-        <input
-          type="password"
-          id="confirmar-contrasena"
-          name="confirmar-contrasena"
-          class="rectangle-7"
-          placeholder="********"
-          aria-label="Confirmar contraseña"
-          required
-        />
-      </div>
-    </div>
-    <img class="line" src="img/line-9.svg" alt="" role="presentation" />
-    <div class="form-row">
-      <div class="form-group">
-        <label for="especialidad" class="text-wrapper-15">Especialidad</label>
-        <input
-          type="text"
-          id="especialidad"
-          name="especialidad"
-          class="rectangle-9"
-          placeholder="Tu especialidad"
-          aria-label="Especialidad"
-          required
-        />
-      </div>
-      <div class="form-group">
-        <label for="experiencia" class="text-wrapper-17">Año de experiencia</label>
-        <input
-          type="text"
-          id="experiencia"
-          name="experiencia"
-          class="rectangle-8"
-          placeholder="Tu año de experiencias"
-          aria-label="Año de experiencia"
-          required
-        />
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="colegiatura" class="text-wrapper-19">Colegiatura</label>
-      <input
-        type="text"
-        id="colegiatura"
-        name="colegiatura"
-        class="rectangle-10"
-        placeholder=""
-        aria-label="Colegiatura"
-        required
-      />
-    </div>
-    <button type="submit" class="rectangle-3">
-      <span class="text-wrapper-11">Continuar</span>
-    </button>
-  </form>
+      </mat-form-field>
+
+      <button mat-raised-button type="submit" class="rectangle-3">
+        <span class="text-wrapper-11">Continuar</span>
+      </button>
+    </form>
+  </mat-card>
+
   <footer>
     <p class="p">
-      <a href="/iniciar-sesion">¿Ya tienes una cuenta? Inicia sesión</a>
+      <a routerLink="/iniciar-sesion">¿Ya tienes una cuenta? Inicia sesión</a>
     </p>
   </footer>
 </main>
-</body>
-</html>
-

@@ -1,113 +1,106 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta charset="utf-8" />
-  <title>Registrarse - UniStress</title>
-</head>
-<body>
 <main class="registrarse">
   <div class="rectangle" role="presentation"></div>
-  <h1 class="text-wrapper">Crea tu cuenta en UniStress</h1>
-  <form class="registration-form" novalidate>
-    <div class="form-row">
-      <div class="form-group">
-        <label for="nombre" class="text-wrapper-2">Nombre</label>
-        <input
-          type="text"
-          id="nombre"
-          name="nombre"
-          class="rectangle-2"
-          placeholder="Tu nombre"
-          aria-required="true"
-          required
-        />
-      </div>
-      <div class="form-group">
-        <label for="apellidos" class="text-wrapper-5">Apellidos</label>
-        <input
-          type="text"
-          id="apellidos"
-          name="apellidos"
-          class="rectangle-3"
-          placeholder="Tu apellido"
-          aria-required="true"
-          required
-        />
-      </div>
-    </div>
-    <div class="form-row">
-      <div class="form-group">
-        <label for="correo" class="text-wrapper-8">Correo electrónico</label>
-        <input
-          type="email"
-          id="correo"
-          name="correo"
-          class="rectangle-6"
-          placeholder="correo@ejemplo.com"
-          aria-required="true"
-          required
-        />
-      </div>
-      <div class="form-group">
-        <label for="contrasena" class="text-wrapper-10">Contraseña</label>
-        <input
-          type="password"
-          id="contrasena"
-          name="contrasena"
-          class="rectangle-7"
-          placeholder="********"
-          aria-required="true"
-          required
-        />
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="telefono" class="text-wrapper-6">Teléfono</label>
-      <input
-        type="tel"
-        id="telefono"
-        name="telefono"
-        class="rectangle-5"
-        placeholder="Tu numero de telefono"
-        aria-required="true"
-        required
-      />
-    </div>
-    <div class="form-group">
-      <label for="universidad" class="text-wrapper-13">Universidad</label>
-      <select id="universidad" name="universidad" class="rectangle-8" aria-required="true" required>
-        <option value="" disabled selected></option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label for="carrera" class="text-wrapper-16">Carrera</label>
-      <select id="carrera" name="carrera" class="rectangle-9" aria-required="true" required>
-        <option value="" disabled selected></option>
-      </select>
-    </div>
-    <div class="form-row">
-      <div class="form-group">
-        <label for="ciclo" class="text-wrapper-14">Ciclo</label>
-        <select id="ciclo" name="ciclo" class="rectangle-10" aria-required="true" required>
-          <option value="" disabled selected></option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="estado-academico" class="text-wrapper-15">Estado Academico</label>
-        <select id="estado-academico" name="estado-academico" class="rectangle-11" aria-required="true" required>
-          <option value="" disabled selected></option>
-        </select>
-      </div>
-    </div>
-    <button type="submit" class="rectangle-4">
-      <span class="text-wrapper-11">Registrarse</span>
-    </button>
-  </form>
-  <p class="p">
-    <a routerLink="/iniciar-sesion" class="login-link">¿Ya tienes una cuenta? Inicia sesión</a>
-  </p>
-</main>
-</body>
-</html>
+  <header>
+    <h1 class="crea-tu-cuenta-en">
+      Crea tu cuenta en UniStress <span class="rol">Estudiante</span>
+    </h1>
+  </header>
 
+  <mat-card class="form-card">
+    <form class="registration-form" (ngSubmit)="onSubmit()" novalidate>
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Nombre</mat-label>
+          <input
+            matInput
+            [(ngModel)]="estudiante.nombre"
+            name="nombre"
+            required
+          />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Apellidos</mat-label>
+          <input
+            matInput
+            [(ngModel)]="estudiante.apellidos"
+            name="apellidos"
+            required
+          />
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Correo electrónico</mat-label>
+          <input
+            matInput
+            type="email"
+            [(ngModel)]="estudiante.correo"
+            name="correo"
+            required
+          />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Contraseña</mat-label>
+          <input
+            matInput
+            type="password"
+            [(ngModel)]="estudiante.contrasena"
+            name="contrasena"
+            required
+          />
+        </mat-form-field>
+      </div>
+
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Teléfono</mat-label>
+        <input
+          matInput
+          type="tel"
+          [(ngModel)]="estudiante.telefono"
+          name="telefono"
+          required
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Universidad</mat-label>
+        <mat-select [(ngModel)]="estudiante.universidad" name="universidad" required>
+          <mat-option *ngFor="let u of universidades" [value]="u">{{ u }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Carrera</mat-label>
+        <mat-select [(ngModel)]="estudiante.carrera" name="carrera" required>
+          <mat-option *ngFor="let c of carreras" [value]="c">{{ c }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Ciclo</mat-label>
+          <mat-select [(ngModel)]="estudiante.ciclo" name="ciclo" required>
+            <mat-option *ngFor="let c of ciclos" [value]="c">{{ c }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Estado Académico</mat-label>
+          <mat-select [(ngModel)]="estudiante.estadoAcademico" name="estadoAcademico" required>
+            <mat-option *ngFor="let e of estados" [value]="e">{{ e }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <button mat-raised-button type="submit" class="rectangle-3">
+        <span class="text-wrapper-11">Registrarse</span>
+      </button>
+    </form>
+  </mat-card>
+
+  <footer>
+    <p class="p">
+      <a routerLink="/iniciar-sesion">¿Ya tienes una cuenta? Inicia sesión</a>
+    </p>
+  </footer>
+</main>

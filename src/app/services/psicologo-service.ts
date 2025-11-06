@@ -8,14 +8,11 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class PsicologoService {
-  private url = `${environment.apiURL}/usuario/psicologo`;
+  private url = `${environment.apiURL}/usuario`;
   private http = inject(HttpClient);
 
   registrar(psicologo: Psicologo): Observable<any> {
-    return this.http.post(this.url, psicologo, { responseType: 'text' });
+    return this.http.post(`${this.url}/psicologo`, psicologo, { responseType: 'text' });
   }
 
-  listar(): Observable<Psicologo[]> {
-    return this.http.get<Psicologo[]>(this.url);
-  }
 }

@@ -14,8 +14,4 @@ export class EstudianteService {
   registrar(estudiante: Estudiante): Observable<any> {
     return this.http.post(this.url, estudiante, { responseType: 'text' });
   }
-
-  listar(): Observable<Estudiante[]> {
-    return this.http.get<Estudiante[]>(this.url);
-  }
 }
