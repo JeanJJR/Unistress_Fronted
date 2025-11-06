@@ -7,7 +7,7 @@ export interface PerfilDetalle {
   correo: string;
   telefono: string;
   tipoPerfil: string; // "ESTUDIANTE" o "PSICOLOGO"
-
+  contrasena: string;
   // Campos solo para estudiante
   universidad?: string;
   carrera?: string;

@@ -16,8 +16,11 @@ export class PerfilEditarPsicologoComponent {
   @Input() perfil!: PerfilDetalle;
   @Output() save = new EventEmitter<PerfilDetalle>();
   @Output() cancel = new EventEmitter<void>();
-
+  nuevaContrasena: string = '';
   onSave() {
+    if (this.nuevaContrasena.trim()) {
+      this.perfil.contrasena = this.nuevaContrasena;
+    }
     this.save.emit(this.perfil);
   }
 
