@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, inject, NgModule, ViewChild} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject, NgModule, OnInit, ViewChild} from '@angular/core';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatCardModule} from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -24,31 +24,35 @@ import {Router} from '@angular/router';
   styleUrl: './sesiones-component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SesionesComponent {
+export class SesionesComponent{
+  //Historial de sesiones
   listahistorialsesiones: Sesion[]
-  displayedColumnsHistory: string[] = ['id', 'fecha', 'hora', 'observaciones', 'mensaje', 'estado']
+  displayedColumnsHistory: string[] = ['id', 'fecha', 'hora', 'psicologo', 'mensaje', 'estado']
   dataSourceHistory: MatTableDataSource<Sesion>=new MatTableDataSource<Sesion>();
-
   @ViewChild(MatSort) sort: MatSort;
   sesionService: SessionService = inject(SessionService);
   route : Router = inject(Router);
-  estudianteId: number = 2;
   constructor() {}
+
+  estudianteId: number = 2;
+
   ngAfterViewInit() {
     this.dataSourceHistory.sort = this.sort;
   }
+
   ngOnInit() {
-    console.log('Component ngOnInit llamando al API Get');
-    this.cargarHistorialSesiones (this.estudianteId);
+    this.cargarHistorialSesiones();
   }
-  cargarHistorialSesiones(id: number) {
-    this.sesionService.listhistorialporestudiante(id).subscribe({
+
+  cargarHistorialSesiones() {
+    this.sesionService.listhistorialporestudiante(this.estudianteId).subscribe({
       next: (data: Sesion[]) => {
         this.dataSourceHistory.data = data.filter(sesion => {
           const SesionDateTime = new Date(sesion.fecha);
           return SesionDateTime < new Date();
         });
         console.log("API Historial trae:", this.dataSourceHistory.data);
+        this.dataSourceHistory._updateChangeSubscription()
       },
       error: (err) => {
         console.error('Error al cargar el historial de sesiones:', err);
