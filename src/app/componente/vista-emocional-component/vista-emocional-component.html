@@ -1,23 +1,79 @@
-<div class="main-content">
-  <h2>Vista emocional de mis pacientes</h2>
+<div class="vista-emocional">
+  <h2 class="text-wrapper-2">Vista Emocional de mis pacientes</h2>
 
-  <mat-label class="select-patient-label">Selecciona paciente:</mat-label>
+  <!-- Selección de paciente con Material -->
+  <mat-card class="seleccion-paciente">
+    <mat-card-header>
+      <mat-card-title>Selecciona paciente</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="fila-busqueda">
+        <mat-form-field appearance="outline" class="buscador-ajustado">
+          <mat-label>Buscar por nombre</mat-label>
+          <input
+            matInput
+            [formControl]="terminoControl"
+            [matAutocomplete]="auto"
+            (keyup.enter)="buscarManualmente()"
+          />
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let est of (filteredEstudiantes$ | async)" [value]="est.nombre + ' ' + est.apellidos">
+              {{ est.nombre }} {{ est.apellidos }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
 
-  <mat-card class="patient-highlight-card">
-    <div class="card-content">
-      Mis pacientes
-    </div>
+        <button mat-raised-button color="primary" class="boton-pequeno" (click)="buscarManualmente()">
+          Buscar historial
+        </button>
+      </div>
+    </mat-card-content>
   </mat-card>
 
-  <div class="search-bar-row">
-    <mat-label class="search-label">Buscar por nombre:</mat-label>
+  <!-- Historial de emociones -->
+  <mat-card class="historial-emociones">
+    <mat-card-header>
+      <mat-card-title>Historial de emociones</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <table mat-table [dataSource]="registros" class="emociones-table">
 
-    <mat-form-field appearance="outline" class="search-input-field">
-      <input matInput placeholder="Escribir nombre del paciente">
-    </mat-form-field>
+        <!-- Fecha Column -->
+        <ng-container matColumnDef="fecha">
+          <th mat-header-cell *matHeaderCellDef>Fecha</th>
+          <td mat-cell *matCellDef="let reg">
+            {{ esHoy(reg.fechaRegistro) ? 'Hoy' : (reg.fechaRegistro | date:'dd/MM/yyyy') }}
+          </td>
+        </ng-container>
 
-    <button mat-flat-button class="search-button">
-      Buscar
-    </button>
-  </div>
+        <!-- Emoción Column -->
+        <ng-container matColumnDef="emocion">
+          <th mat-header-cell *matHeaderCellDef>Emoción</th>
+          <td mat-cell *matCellDef="let reg">
+            <span *ngIf="reg.emocion === 'feliz'">😊</span>
+            <span *ngIf="reg.emocion === 'triste'">😢</span>
+            <span *ngIf="reg.emocion === 'enojado'">😠</span>
+            <span *ngIf="reg.emocion === 'ansioso'">😟</span>
+            <span *ngIf="reg.emocion === 'neutral'">😐</span>
+          </td>
+        </ng-container>
+
+        <!-- Comentario Column -->
+        <ng-container matColumnDef="descripcion">
+          <th mat-header-cell *matHeaderCellDef>Comentario</th>
+          <td mat-cell *matCellDef="let reg">{{ reg.descripcion }}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        <!-- Sin resultados -->
+        <tr *ngIf="registros.length === 0">
+          <td colspan="3" style="text-align: center; padding: 20px;">
+            {{ estudianteSeleccionado ? 'Sin registros' : 'Selecciona un paciente' }}
+          </td>
+        </tr>
+      </table>
+    </mat-card-content>
+  </mat-card>
 </div>

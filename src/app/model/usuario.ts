@@ -1,14 +1,12 @@
-import {PerfilDetalle} from './perfil-detalle';
-import {Rol} from './rol';
-
-export class Usuario {
+// src/app/model/usuario.model.ts
+export interface Usuario {
   id: number;
   nombre: string;
   apellidos: string;
-  correo: string;
-  contrasena: string;
+  correo : string;
+  contraseña: string;
   telefono: string;
-  perfil:PerfilDetalle;
-  rol:Rol;
-
+  rol : number;
+  perfil: number;
+  // otros campos si los necesitas
 }

@@ -1,4 +1,4 @@
-export class Rol {
-  id:number;
-  tiporol: string;
+export interface Rol {
+  id: number;
+  tipoRol: 'ADMIN' | 'ESTUDIANTE' | 'PSICOLOGO';
 }

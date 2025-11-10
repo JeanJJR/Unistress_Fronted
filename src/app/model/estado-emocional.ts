@@ -5,5 +5,5 @@ export interface RegistroEmocional {
   emocion: string;      // 'feliz', 'triste', 'enojado', 'ansioso', 'neutral'
   nivel: number;        // 1 a 10
   descripcion: string;
-  fecha?: string;       // opcional, si el backend lo incluye
+  fechaRegistro?: string;       // opcional, si el backend lo incluye
 }
