@@ -1,0 +1,20 @@
+.resumen-card {
+  box-shadow: none;
+}
+
+.resumen-card p {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.resumen-card hr {
+  margin: 15px 0;
+  border: 0;
+  border-top: 1px solid #eee;
+}
+
+h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}

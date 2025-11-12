@@ -13,4 +13,8 @@ export class UsuarioService {
   listarEstudiantes(): Observable<Usuario[]> {
     return this.http.get<Usuario[]>(`${this.url}/estudiantes`);
   }
+  listarpsicologos() :Observable<any>{
+    console.log(this.url + '/psicologos')
+    return this.http.get<Usuario[]>(this.url + '/psicologos');
+  }
 }

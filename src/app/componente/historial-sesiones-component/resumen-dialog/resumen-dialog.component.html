@@ -1,0 +1,30 @@
+<h2 mat-dialog-title>Resumen de la Sesión (S{{ data.id }})</h2>
+
+<mat-dialog-content class="mat-typography">
+
+  <mat-card class="resumen-card">
+    <mat-card-header>
+      <mat-card-title>Detalles de la Cita</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p><strong>Fecha:</strong> {{ data.fecha | date: 'dd/MM/yyyy' }}</p>
+      <p><strong>Hora:</strong> {{ data.hora }}</p>
+      <p><strong>Estado:</strong> {{ data.estado }}</p>
+      <p><strong>ID Estudiante:</strong> {{ data.estudianteid }}</p>
+      <p><strong>ID Psicólogo:</strong> {{ data.psicologoid }}</p>
+
+      <hr>
+
+      <h3>Mensaje/Notas</h3>
+      <p>
+        {{ data.mensaje || 'No hay notas para esta sesión.' }}
+      </p>
+
+    </mat-card-content>
+  </mat-card>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-flat-button color="primary" (click)="cerrar()">Cerrar</button>
+</mat-dialog-actions>

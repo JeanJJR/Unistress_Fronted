@@ -1,12 +1,12 @@
 import {Time} from '@angular/common';
 import {Usuario} from './usuario';
 
-export interface Sesion{
+export class Sesion{
   id:number;
   fecha:Date;
-  hora: Time;
+  hora: string;
   mensaje:string;
   estado:string;
-  estudiante:Usuario;
-  psicologo:Usuario;
+  estudianteid:number;
+  psicologoid:number;
 }
