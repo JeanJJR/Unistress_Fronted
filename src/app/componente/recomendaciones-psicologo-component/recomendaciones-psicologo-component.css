@@ -1,4 +1,4 @@
-/* Contenedor principal (a la derecha del sidebar) */
+/* LAYOUT PRINCIPAL */
 .main-content {
   margin-left: 280px;
   padding: 60px 40px;
@@ -9,7 +9,6 @@
   align-items: flex-start;
 }
 
-/* Título de la página */
 .page-title {
   font-family: "Poppins-Medium", Helvetica;
   font-weight: 500;
@@ -20,89 +19,107 @@
   width: 100%;
 }
 
-/* Contenedor del formulario */
 .form-container {
   width: 100%;
   max-width: 800px;
   margin-bottom: 48px;
 }
 
-/* Estilo base común para los grupos de formulario */
-.form-group,
-.form-group-horizontal {
+/* GRID */
+.form-row {
   display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  width: 100%;
   margin-bottom: 24px;
 }
 
-.form-group {
-  flex-direction: column;
-}
-
-.form-group label {
-  font-family: "Poppins-Medium", Helvetica;
-  font-weight: 500;
-  font-size: 16px;
-  color: #333;
-  margin-bottom: 8px;
-}
-
-/* Estilo para grupos HORIZONTALES */
-.form-group-horizontal {
-  flex-direction: row;
-  align-items: center;
-  gap: 16px;
-}
-
-.form-group-horizontal label {
-  font-family: "Poppins-Medium", Helvetica;
-  font-weight: 500;
-  font-size: 16px;
-  color: #333;
-  flex-shrink: 0;
-  width: 180px;
-}
-
-
-/* Estilo para los Combobox (Select) */
-.custom-select {
-  background-color: #B6E2D3;
-  border: 1px solid #b2c9c1;
-  border-radius: 8px;
-  padding: 14px;
-  font-size: 16px;
-  font-family: "Poppins-Regular", Helvetica;
-  width: auto;
+.form-field-half {
+  flex: 1;
   min-width: 250px;
-  flex-grow: 1;
-  max-width: 400px;
-
+  display: block;
 }
 
-/* Estilo para el Textbox */
-#text-recomendacion {
-  background: #ffffff;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 12px;
-  font-size: 16px;
-  font-family: "Poppins-Regular", Helvetica;
-  line-height: 1.6;
+.form-field-full {
+  width: 100%;
+  display: block;
+  margin-bottom: 24px;
+}
+
+/* Forzar ancho completo en componentes Material */
+.form-field-half mat-form-field,
+.form-field-full mat-form-field {
   width: 100%;
 }
 
-/* --- Estilos para los Checkboxes --- */
-.tipo-options-group {
-  display: flex;
-  gap: 30px;
+/* ESTILOS INPUTS */
+/* Selects: Fondo Verde */
+.form-field-half .mat-mdc-form-field-flex {
+  background-color: #B6E2D3;
+  border: 1px solid #b2c9c1;
+  border-radius: 8px;
+  padding: 8px 14px 0 14px;
 }
 
-/* Oculta el checkbox real */
-.tipo-option-label input[type="checkbox"] {
+/* Textarea: Fondo Blanco */
+.form-field-full .mat-mdc-form-field-flex {
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 8px 12px 0 12px;
+}
+
+/* Ocultar línea inferior */
+.mat-mdc-form-field-underline {
   display: none;
 }
 
+/* Tipografía */
+.mat-mdc-form-field-input-control.mat-mdc-form-field-input-control {
+  font-family: "Poppins-Regular", Helvetica;
+  font-size: 16px;
+}
 
-.tipo-box {
+.form-field-full textarea.mat-mdc-input-element {
+  background-color: transparent;
+}
+
+/* RADIO BUTTONS PERSONALIZADOS */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 24px;
+  width: 100%;
+}
+
+.form-group > .mat-label,
+.form-group > label {
+  font-family: "Poppins-Medium", Helvetica;
+  font-weight: 500;
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.tipo-options-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+/* Ocultar radio nativo */
+.tipo-options-group mat-radio-button .mdc-radio,
+.tipo-options-group mat-radio-button .mat-ripple {
+  display: none !important;
+  width: 0;
+  height: 0;
+  padding: 0;
+  margin: 0;
+}
+
+/* Estilo caja etiqueta */
+.tipo-options-group mat-radio-button .mdc-label {
   display: inline-block;
   padding: 12px 18px;
   background-color: #e0e8e5;
@@ -113,47 +130,59 @@
   font-weight: 500;
   color: #333;
   transition: all 0.2s ease;
+  padding-left: 18px !important;
 }
 
-
-.tipo-box:after {
-  content: '[ ]';
+/* [ ] Pseudo elemento */
+.tipo-options-group mat-radio-button .mdc-label::after {
+  content: ' [ ]';
   margin-left: 8px;
   font-weight: normal;
   color: #555;
 }
 
-
-.tipo-option-label input[type="checkbox"]:checked + .tipo-box {
+/* Seleccionado */
+.tipo-options-group mat-radio-button.mat-mdc-radio-checked .mdc-label {
   background-color: #B6E2D3;
   border-color: #8da9a1;
   box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
-
-.tipo-option-label input[type="checkbox"]:checked + .tipo-box:after {
-  content: '[x]';
+.tipo-options-group mat-radio-button.mat-mdc-radio-checked .mdc-label::after {
+  content: ' [x]';
   color: #111;
 }
 
-/* --- Botón Guardar --- */
+.tipo-options-group mat-radio-button {
+  margin-right: 0;
+}
+
+.form-group mat-error {
+  font-size: 12px;
+  color: #f44336;
+  margin-top: 6px;
+}
+
+/* BOTÓN GUARDAR */
 .btn-guardar {
-  background-color: #a0d9c8;
+  background-color: #a0d9c8 !important;
+  color: black !important;
   border: none;
   border-radius: 8px;
-  padding: 14px 28px;
+  padding: 10px 28px !important;
   font-size: 16px;
   font-weight: bold;
-  color: black;
   cursor: pointer;
   transition: background-color 0.2s ease;
+  box-shadow: none !important;
+  height: auto !important;
 }
 
 .btn-guardar:hover {
-  background-color: #8cc9b6;
+  background-color: #8cc9b6 !important;
 }
 
-/* --- Estilos para el Historial --- */
+/* TABLA HISTORIAL */
 .history-container {
   width: 100%;
   max-width: 800px;
@@ -169,7 +198,6 @@
   padding-bottom: 8px;
 }
 
-/* Contenedor de la tabla */
 .history-table-wrapper {
   background: #ffffff;
   border-radius: 8px;
@@ -182,23 +210,32 @@
   border-collapse: collapse;
 }
 
-.history-table th,
-.history-table td {
+.history-table .mat-mdc-header-cell,
+.history-table .mat-mdc-cell {
   padding: 16px;
   text-align: left;
   border-bottom: 1px solid #f0f0f0;
   font-family: "Poppins-Regular", Helvetica;
+  font-size: 14px;
+  color: #333;
 }
 
-/* Cabecera de la tabla */
-.history-table th {
+.history-table .mat-mdc-header-cell {
   background-color: #f9f9f9;
   font-weight: 600;
   color: #555;
   font-family: "Poppins-Medium", Helvetica;
 }
 
-/* Quita la última línea de borde en la tabla */
-.history-table tr:last-child td {
+.history-table tr:last-child .mat-mdc-cell {
   border-bottom: none;
 }
+
+.no-data-cell {
+  padding: 24px;
+  text-align: center;
+  color: #666;
+  font-style: italic;
+  background: white;
+}
+

@@ -1,7 +1,10 @@
 export interface Recomendacion {
-  id: number;
+  id?: number;
   mensaje: string;
   tipo: string;
   registroEmocionalId: number;
   usuarioId: number;
+  psicologo?: {
+    id: number;
+  };
 }
