@@ -24,6 +24,9 @@ import { BancoPreguntasComponent } from './componente/banco-preguntas-component/
 import {
   NotificacionesPsicologoComponent
 } from './componente/notificaciones-psicologo-component/notificaciones-psicologo-component';
+import {Layout3} from './layout3/layout3';
+import {AdminPerfilesComponent} from './componente/admin-perfiles/admin-perfiles';
+import {AuthGuard} from './guard/auth-guard';
 export const routes: Routes = [
   { path: '', component: InicioComponent },
   { path: 'iniciar-sesion', component: IniciarSesionComponent },
@@ -34,8 +37,10 @@ export const routes: Routes = [
   {
     path: '',
     component: LayoutComponent,
+    canActivate: [AuthGuard],
+    data: { role: 'ROLE_ESTUDIANTE' },
     children: [
-      { path: 'perfil', component: PerfilEstudianteComponent },
+      { path: 'perfil', component: PerfilEstudianteComponent,canActivate: [AuthGuard]  },
       { path: 'test-emocional', component: TestEmocionalComponent },
       { path: 'estado-emocional', component: EstadoEmocionalComponent },
       { path: 'sesiones', component: SesionesComponent },
@@ -52,8 +57,10 @@ export const routes: Routes = [
   {
     path: '',
     component: Layout2,
+    canActivate: [AuthGuard],
+    data: { role: 'ROLE_PSICOLOGO' },
     children: [
-      { path: 'perfil-psicologo', component: PerfilPsicologoComponent },
+      { path: 'perfil-psicologo', component: PerfilPsicologoComponent,canActivate: [AuthGuard] },
       { path: 'vista-emocional', component: VistaEmocionalComponent },
       { path: 'historial-de-sesiones', component: HistorialSesionesComponent },
       { path: 'recomendaciones-psicologo', component: RecomendacionesPsicologoComponent },
@@ -61,6 +68,17 @@ export const routes: Routes = [
       { path: 'tendencias-emocionales', component: TendenciasEmocionalesComponent },
       { path: 'notificaciones-psicologo', component: NotificacionesPsicologoComponent },
       { path: 'configuraciones-psicologo', component: ConfiguracionesComponent }
+    ]
+  },
+  //layout para admin
+  {
+    path: '',
+    component: Layout3,
+    canActivate: [AuthGuard],
+    data: { role: 'ROLE_ADMIN' },
+    children: [
+      {path: 'admin-perfiles', component: AdminPerfilesComponent,canActivate: [AuthGuard] },
+
     ]
   },
 

@@ -28,7 +28,7 @@ export class PerfilEstudianteComponent implements OnInit {
   subiendoFoto = false;
 
   ngOnInit(): void {
-    const usuarioId = 2;
+    const usuarioId = Number(localStorage.getItem('userId'));
     this.perfilService.obtenerPerfilPorId(usuarioId).subscribe({
       next: (data) => {
         this.perfil = data;
@@ -63,7 +63,7 @@ export class PerfilEstudianteComponent implements OnInit {
   }
 
   guardarPerfil(perfilEditado: PerfilDetalle) {
-    const usuarioId = 2;
+    const usuarioId = Number(localStorage.getItem('userId'));
     this.perfilService.actualizarPerfil(usuarioId, perfilEditado).subscribe({
       next: (respuesta) => {
         console.log('Respuesta del backend:', respuesta);
@@ -81,7 +81,7 @@ export class PerfilEstudianteComponent implements OnInit {
     if (!input.files?.length) return;
 
     const archivo = input.files[0];
-    const usuarioId = 2;
+    const usuarioId = Number(localStorage.getItem('userId'));
 
     this.perfilService.actualizarFoto(usuarioId, archivo).subscribe({
       next: () => {

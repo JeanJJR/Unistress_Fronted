@@ -1,0 +1,28 @@
+<div class="usuario">
+  <div class="rectangle"></div>
+
+  <aside class="sidebar">
+    <header class="sidebar-header">
+      <h1 class="app-title">UniStress</h1>
+    </header>
+    <nav class="sidebar-nav" aria-label="Navegación principal">
+      <ul class="nav-list">
+        <li class="nav-item">
+          <a routerLink="#" class="nav-link" routerLinkActive="nav-link-active">Perfil</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/admin-perfiles" class="nav-link" routerLinkActive="nav-link-active">Perfiles</a>
+        </li>
+
+        <li class="nav-item">
+          <button type="button" class="nav-link nav-link-logout" (click)="cerrarSesion()">Cerrar sesión</button>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <router-outlet></router-outlet>
+  </main>
+</div>
+

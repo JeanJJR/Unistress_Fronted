@@ -30,7 +30,7 @@ export class PerfilPsicologoComponent implements OnInit {
   subiendoFoto = false;
 
   ngOnInit(): void {
-    const usuarioId = 3;
+    const usuarioId = Number(localStorage.getItem('userId'));
     this.perfilService.obtenerPerfilPorId(usuarioId).subscribe({
       next: (data) => {
         this.perfil = data;
@@ -52,7 +52,7 @@ export class PerfilPsicologoComponent implements OnInit {
   }
 
   guardarPerfil(perfilEditado: PerfilDetalle) {
-    const usuarioId = 3;
+    const usuarioId = Number(localStorage.getItem('userId'));
     this.perfilService.actualizarPerfil(usuarioId, perfilEditado).subscribe({
       next: (respuesta) => {
         console.log('Respuesta del backend:', respuesta);
@@ -70,7 +70,7 @@ export class PerfilPsicologoComponent implements OnInit {
     if (!input.files?.length) return;
 
     const archivo = input.files[0];
-    const usuarioId = 3;
+    const usuarioId = Number(localStorage.getItem('userId'));
 
     this.perfilService.actualizarFoto(usuarioId, archivo).subscribe({
       next: () => {

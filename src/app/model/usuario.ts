@@ -4,9 +4,12 @@ export interface Usuario {
   nombre: string;
   apellidos: string;
   correo : string;
-  contraseña: string;
+  contrasena: string;
   telefono: string;
-  rol : number;
+  rol: {
+    id: number;
+    tipoRol: string; // "ROLE_ESTUDIANTE", "ROLE_PSICOLOGO", etc.
+  };
   perfil: number;
   // otros campos si los necesitas
 }
