@@ -2,3 +2,109 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* === MODO OSCURO GLOBAL === */
+
+body.tema-oscuro {
+  background-color: #121212 !important;
+  color: #f0f0f0;
+}
+
+body.tema-oscuro .configuracion-solo {
+  background-color: #121212;
+}
+
+body.tema-oscuro .configuracion-solo .text-wrapper-2,
+body.tema-oscuro .configuracion-solo .recordatorio-de-test,
+body.tema-oscuro .configuracion-solo .span {
+  color: #f0f0f0;
+}
+
+body.tema-oscuro .configuracion-solo .button {
+  background-color: #333;
+  color: #f0f0f0;
+}
+
+body.tema-oscuro .configuracion-solo .button.active {
+  background-color: #4a90e2;
+  color: white;
+}
+
+body.tema-oscuro .configuracion-solo .config-link {
+  color: #4a90e2;
+}
+
+body.tema-oscuro .main-content {
+  background-color: #121212;
+}
+
+body.tema-oscuro .page-title {
+  color: #f0f0f0;
+}
+
+body.tema-oscuro .recommendation-card {
+  background: #1e1e1e;
+  border: 1px solid #333;
+}
+
+body.tema-oscuro .card-title {
+  color: #f0f0f0;
+}
+
+body.tema-oscuro .card-content p {
+  color: #ccc;
+}
+
+body.tema-oscuro .card-content p strong {
+  color: #f0f0f0;
+}
+
+body.tema-oscuro .empty-card {
+  background-color: #1e1e1e;
+  border-color: #444;
+}
+body.tema-oscuro .empty-card p {
+  color: #888;
+}
+
+body.tema-oscuro .mat-mdc-form-field-flex {
+  background-color: #333 !important;
+  border-color: #555 !important;
+}
+
+body.tema-oscuro .mat-mdc-select-value,
+body.tema-oscuro .mat-input-element,
+body.tema-oscuro .mat-mdc-select-arrow svg {
+  color: #f0f0f0 !important;
+}
+
+body.tema-oscuro .mat-mdc-option {
+  background-color: #333;
+  color: #f0f0f0;
+}
+
+body.tema-oscuro .tipo-options-group mat-radio-button .mdc-label {
+  background-color: #444;
+  border-color: #555;
+  color: #f0f0f0;
+}
+
+body.tema-oscuro .tipo-options-group mat-radio-button .mdc-label::after {
+  color: #888;
+}
+
+body.tema-oscuro .history-table-wrapper {
+  background: #1e1e1e;
+}
+body.tema-oscuro .history-table .mat-mdc-header-cell {
+  background-color: #333;
+  color: #f0f0f0;
+}
+body.tema-oscuro .history-table .mat-mdc-cell {
+  color: #ccc;
+  border-bottom-color: #333;
+}
+body.tema-oscuro .no-data-cell {
+  background: #1e1e1e;
+  color: #888;
+}

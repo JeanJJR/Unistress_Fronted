@@ -1,25 +1,31 @@
 <div class="main-content">
-
   <h2 class="page-title">Recomendaciones</h2>
 
   <div class="recommendation-list">
 
-    <div class="recommendation-card">
-
-      <h3 class="card-title">Recomendaciones 1</h3>
-
-      <div class="card-content">
-        <p><strong>Fecha:</strong></p>
-        <p>
-          Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.
-        </p>
-        <p>
-          Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus.
-        </p>
-        <p>
-          Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.
-        </p>
-      </div>
+    <div *ngIf="isLoading" class="spinner-container">
+      <mat-spinner></mat-spinner>
     </div>
+
+    <div *ngIf="!isLoading && recomendaciones.length === 0" class="empty-state">
+      <mat-card class="recommendation-card empty-card">
+        <mat-card-content>
+          <p>Aún no tienes recomendaciones asignadas por tu psicólogo.</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <mat-card class="recommendation-card" *ngFor="let rec of recomendaciones; let i = index">
+
+      <mat-card-title class="card-title">Recomendación {{ i + 1 }}</mat-card-title>
+
+      <mat-card-content class="card-content">
+        <p><strong>Tipo:</strong> {{ rec.tipo }}</p>
+
+        <p>{{ rec.mensaje }}</p>
+      </mat-card-content>
+
+    </mat-card>
+
   </div>
 </div>

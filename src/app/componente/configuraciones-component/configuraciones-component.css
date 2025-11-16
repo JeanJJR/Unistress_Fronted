@@ -73,6 +73,19 @@
   flex: 0 0 auto;
 }
 
+:root {
+  --m3-label-large-font-family: "Poppins-Regular", Helvetica;
+  --m3-label-large-font-weight: 500;
+  --m3-label-large-font-size: 16px;
+  --m3-label-large-letter-spacing: 0.2px;
+  --m3-label-large-line-height: 20px;
+  --m3-label-large-font-style: normal;
+
+  /* Corregimos esta que estaba mal */
+  --m-3black: #000;
+}
+
+
 .label {
   position: relative;
   display: flex;
@@ -100,69 +113,4 @@
   text-align: center;
   font-weight: 500;
   color: #4a90e2;
-}
-
-/* Tema oscuro */
-body.tema-oscuro {
-  background-color: #121212;
-  color: #f0f0f0;
-}
-
-body.tema-oscuro .configuracion-solo {
-  background-color: #121212;
-}
-
-body.tema-oscuro .text-wrapper-2,
-body.tema-oscuro .recordatorio-de-test,
-body.tema-oscuro .span {
-  color: #f0f0f0;
-}
-
-body.tema-oscuro .button {
-  background-color: #444;
-  color: #f0f0f0;
-}
-
-body.tema-oscuro .button.active {
-  background-color: #4a90e2;
-  color: white;
-}
-
-body.tema-oscuro .config-link {
-  color: #4a90e2;
-}
-/* Modo oscuro global */
-body.tema-oscuro {
-  background-color: #121212;
-  color: #f0f0f0;
-}
-
-/* Fondo principal */
-body.tema-oscuro .configuracin {
-  background-color: #121212;
-}
-
-/* Fondo del área de contenido */
-body.tema-oscuro .configuracin .rectangle {
-  background-color: #1e1e1e;
-}
-
-/* Textos */
-body.tema-oscuro .configuracin .text-wrapper,
-body.tema-oscuro .configuracin .text-wrapper-2,
-body.tema-oscuro .configuracin .recordatorio-de-test,
-body.tema-oscuro .configuracin .span,
-body.tema-oscuro .configuracin .label {
-  color: #f0f0f0;
-}
-
-/* Botones */
-body.tema-oscuro .configuracin .button {
-  background-color: #444;
-  color: #f0f0f0;
-}
-
-body.tema-oscuro .configuracin .button.active {
-  background-color: #4a90e2;
-  color: white;
 }
