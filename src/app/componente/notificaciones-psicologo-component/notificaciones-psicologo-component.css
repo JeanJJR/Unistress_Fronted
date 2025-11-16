@@ -2,71 +2,87 @@
   margin-left: 280px;
   padding: 40px;
 }
-.main-content h2 {
-  font-size: 2.2rem;
-  font-weight: 500;
-  margin-bottom: 30px;
-  color: #1a1a1a;
-  }
 
-.notificaciones-estado-header{
+.notificaciones-estado-header {
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid #eee;
-  font-size: 20px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 16px;
 }
-.estado-label{
-    font-size: 1rem;
-    color: #555;
-    margin-right: 8px;
-  }
 
-.toggle-button {
-  background-color: #e0f2f1;
-  color: #00796b;
+.estado-label {
   font-weight: 500;
-    padding: 0 16px;
-    height: 32px;
-    line-height: 32px;
-    min-width: 80px;
-    border-radius: 4px;
-  box-shadow: none;
-
+  font-size: 16px;
 }
 
-.list-title {
-  color: #555;
-  margin-bottom: 20px;
-  gap:10px
+.toggle-button mat-icon {
+  margin-right: 8px;
+}
+
+
+.list-tittle {
+  margin-bottom: 16px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 8px;
 }
 
 .tabla-container {
-border: 1px solid #ddd;
-  border-radius: 0;
+  width: 100%;
+  overflow-x: auto;
 }
 
 .full-width-table {
   width: 100%;
 }
 
-.mat-header-cell {
-  color: #333;
-font-weight: 600;
-padding: 0 16px;
+.notificacion-leida {
+  background-color: #f9f9f9;
 }
 
-.mat-cell {
-  color: #555;
-  padding: 0 16px;
+.notificacion-leida .mat-cell {
+  color: #757575;
 }
 
-.mat-row, .mat-header-row {
-  height: 48px;
+
+.estado-chip {
+  padding: 4px 10px;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #fff;
+  background-color: #f44336;
 }
 
-  .empty-table-placeholder {
-     min-height: 300px; /* Altura que ocupa la tabla vacía en la imagen */
-     width: 100%;
-  }
+.estado-chip.leida {
+  background-color: #4CAF50;
+}
+
+.mat-column-accion, .mat-column-estado {
+  width: 100px;
+  text-align: center;
+}
+
+.mensaje-apagado {
+  text-align: center;
+  padding: 40px;
+  color: #616161;
+  margin-top: 32px;
+  border: 1px dashed #bdbdbd;
+  border-radius: 8px;
+  background-color: #fafafa;
+}
+
+.mensaje-apagado .icon-grande {
+  font-size: 64px;
+  height: 64px;
+  width: 64px;
+  margin-bottom: 16px;
+  color: #9e9e9e;
+}
+
+.mensaje-apagado p {
+  font-size: 1.1em;
+  margin: 0;
+}
+
