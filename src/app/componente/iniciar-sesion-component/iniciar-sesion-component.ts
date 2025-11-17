@@ -35,7 +35,7 @@ export class IniciarSesionComponent {
 
     this.authService.login(credentials).subscribe({
       next: (res) => {
-        // 🔧 Ya se limpia en el servicio, aquí solo guardas el rol adicional
+        //
         localStorage.setItem('role', res.roles[0]);
         this.redirigirPorRol(res.roles[0]);
       },

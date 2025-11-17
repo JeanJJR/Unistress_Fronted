@@ -1,46 +1,50 @@
-<!-- src/app/componente/perfil-estudiante-component/perfil-editar2/perfil-editar2.component.html -->
-<div class="modal-overlay" (click)="onCancel()">
-  <div class="modal-content" (click)="$event.stopPropagation()">
-    <h3>Editar Perfil</h3>
-    <form (ngSubmit)="onSave()" class="edit-form">
-      <div class="form-group">
-        <label>Nombre:</label>
-        <input [(ngModel)]="perfil.nombre" name="nombre" required />
-      </div>
-      <div class="form-group">
-        <label>Apellidos:</label>
-        <input [(ngModel)]="perfil.apellidos" name="apellidos" required />
-      </div>
-      <div class="form-group">
-        <label>Correo:</label>
-        <input [(ngModel)]="perfil.correo" name="correo" type="email" required />
-      </div>
-      <div class="form-group">
-        <label>Teléfono:</label>
-        <input [(ngModel)]="perfil.telefono" name="telefono" />
-      </div>
-      <div class="form-group">
-        <label>Universidad:</label>
-        <input [(ngModel)]="perfil.especialidad" name="especialidad" />
-      </div>
-      <div class="form-group">
-        <label>Carrera:</label>
-        <input [(ngModel)]="perfil.colegiatura" name="colegiatura" />
-      </div>
-      <div class="form-group">
-        <label>Años de Experiencia:</label>
-        <input [(ngModel)]="perfil.anosExperiencia" name="Años de experiencia" />
-      </div>
-      <div class="form-group">
-        <label>Nueva Contraseña:</label>
-        <input [(ngModel)]="nuevaContrasena" name="nuevaContrasena" type="password" />
-      </div>
+<h2 mat-dialog-title>Editar Perfil</h2>
 
-      <div class="modal-actions">
-        <button type="button" class="btn-secondary" (click)="onCancel()">Cancelar</button>
-        <button type="submit" class="btn-primary">Guardar</button>
-      </div>
-    </form>
-  </div>
-</div>
+<mat-dialog-content>
+  <form class="edit-form">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Nombre</mat-label>
+      <input matInput [(ngModel)]="perfil.nombre" name="nombre" required />
+    </mat-form-field>
 
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Apellidos</mat-label>
+      <input matInput [(ngModel)]="perfil.apellidos" name="apellidos" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Correo</mat-label>
+      <input matInput [(ngModel)]="perfil.correo" name="correo" type="email" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Teléfono</mat-label>
+      <input matInput [(ngModel)]="perfil.telefono" name="telefono" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Especialidad</mat-label>
+      <input matInput [(ngModel)]="perfil.especialidad" name="especialidad" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Colegiatura</mat-label>
+      <input matInput [(ngModel)]="perfil.colegiatura" name="colegiatura" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Años de Experiencia</mat-label>
+      <input matInput [(ngModel)]="perfil.anosExperiencia" name="anosExperiencia" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Nueva Contraseña</mat-label>
+      <input matInput [(ngModel)]="nuevaContrasena" name="nuevaContrasena" type="password" />
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button class="btn-secondary" (click)="onCancel()">Cancelar</button>
+  <button mat-raised-button class="btn-primary" (click)="onSave()">Guardar</button>
+</mat-dialog-actions>

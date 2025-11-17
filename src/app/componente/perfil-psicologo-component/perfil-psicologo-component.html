@@ -58,18 +58,12 @@
     <!-- Botón Editar Perfil -->
     <!-- Dentro del contenido principal, donde está "Editar Perfil" -->
     <div class="edit-button">
-      <button class="btn-gradient" (click)="abrirModal()">Editar Perfil</button>
+      <button class="btn-gradient" mat-raised-button color="accent" (click)="abrirDialogoEditar()">
+        Editar Perfil
+      </button>
     </div>
 
-    <!-- Modal (solo si está abierto y hay perfil) -->
-    @if (mostrarModal && perfil) {
-      <app-perfil-editar-psicologo
-        [perfil]="perfil"
-        (save)="guardarPerfil($event)"
-        (cancel)="cerrarModal()">
-      </app-perfil-editar-psicologo>
 
-    }
   </div>
 </div>
 

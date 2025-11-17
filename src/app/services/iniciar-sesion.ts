@@ -19,7 +19,7 @@ export class AuthService {
         const roles = response.roles;
         const id = response.id;
 
-        // 🔧 Limpia cualquier token anterior
+        //  Limpia cualquier token anterior
         localStorage.removeItem('token');
         localStorage.removeItem('roles');
         localStorage.removeItem('userId');

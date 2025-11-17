@@ -1,54 +1,61 @@
 <div class="main-content">
-  <h2>Historial de Sesiones de mis pacientes</h2>
+  <h2 class="page-title">Historial de Sesiones de mis pacientes</h2>
 
-  <mat-label class="select-patient-label">Selecciona paciente:</mat-label>
+  <!-- Selección de paciente para Historial de Sesiones -->
+  <mat-card class="search-card">
+    <mat-card-header>
+      <mat-card-title>Selecciona paciente</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="fila-busqueda">
+        <mat-form-field appearance="outline" class="buscador-ajustado">
+          <mat-label>Buscar por nombre</mat-label>
+          <input
+            matInput
+            placeholder="Escribir nombre del paciente"
+            [formControl]="terminoControl"
+            [matAutocomplete]="auto"
+            (keyup.enter)="buscarManualmente()" />
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let est of (filteredEstudiantes$ | async)" [value]="est.nombre + ' ' + est.apellidos">
+              {{ est.nombre }} {{ est.apellidos }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
 
-  <mat-card class="patient-highlight-card">
-    <div class="card-content">
-      Mis pacientes
-    </div>
+        <button mat-raised-button class="btn-gradient boton-pequeno" (click)="buscarManualmente()">
+          Buscar historial
+        </button>
+      </div>
+    </mat-card-content>
   </mat-card>
 
-  <div class="search-bar-row">
-    <mat-label class="search-label">Buscar por nombre:</mat-label>
 
-    <mat-form-field appearance="outline" class="search-input-field">
-      <input matInput placeholder="Escribir nombre del paciente" [(ngModel)]="terminoBusqueda" (input)="buscarPorNombre()">
-    </mat-form-field>
-
-    <button mat-flat-button class="search-button" (click)="buscarPorNombre()">Buscar</button>
-  </div>
-
-  <mat-list class="patient-list">
-    <mat-list-item *ngFor="let est of estudiantesFiltrados">
-      <span matListItemTitle>{{ est.nombre }} {{ est.apellidos }}</span>
-      <span matListItemLine>ID: {{ est.id }}</span>
-      <button mat-button class="select-button" (click)="seleccionarEstudiante(est)">Seleccionar</button>
-    </mat-list-item>
-  </mat-list>
-
-  <hr class="section-divider" *ngIf="selectedEstudiante">
-
-  <div class="session-table-container" *ngIf="selectedEstudiante">
+  <!-- Tabla de sesiones -->
+  <div *ngIf="selectedEstudiante" class="session-table-container">
     <h3>Historial de: {{ selectedEstudiante.nombre }} {{ selectedEstudiante.apellidos }}</h3>
 
-    <table mat-table [dataSource]="sesiones" class="mat-elevation-z2 session-table">
+    <table mat-table [dataSource]="sesiones" class="session-table mat-elevation-z2">
 
+      <!-- Columna ID -->
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef> ID Sesión </th>
         <td mat-cell *matCellDef="let sesion"> S{{ sesion.id }} </td>
       </ng-container>
 
+      <!-- Columna Fecha -->
       <ng-container matColumnDef="fecha">
         <th mat-header-cell *matHeaderCellDef> Fecha </th>
         <td mat-cell *matCellDef="let sesion"> {{ sesion.fecha | date: 'dd/MM/yyyy' }} </td>
       </ng-container>
 
+      <!-- Columna Hora -->
       <ng-container matColumnDef="hora">
         <th mat-header-cell *matHeaderCellDef> Hora </th>
         <td mat-cell *matCellDef="let sesion"> {{ sesion.hora }} </td>
       </ng-container>
 
+      <!-- Columna Estado -->
       <ng-container matColumnDef="estado">
         <th mat-header-cell *matHeaderCellDef> Estado </th>
         <td mat-cell *matCellDef="let sesion">
@@ -61,10 +68,10 @@
         </td>
       </ng-container>
 
+      <!-- Columna Acciones -->
       <ng-container matColumnDef="acciones">
         <th mat-header-cell *matHeaderCellDef> Acciones </th>
         <td mat-cell *matCellDef="let sesion">
-
           <button *ngIf="sesion.estado === 'PENDIENTE'"
                   mat-flat-button
                   class="action-button accept-button"
@@ -83,8 +90,17 @@
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
 
+      <tr *ngIf="sesiones.length === 0">
+        <td [attr.colspan]="displayedColumns.length" style="text-align: center; padding: 20px;">
+          Sin sesiones registradas para este paciente.
+        </td>
+      </tr>
+    </table>
   </div>
 
+  <!-- Mensaje si no hay selección -->
+  <div *ngIf="!selectedEstudiante" style="text-align: center; padding: 20px; color: grey;">
+    Por favor, busca y selecciona un paciente para ver su historial.
+  </div>
 </div>

@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import {PerfilDetalle} from '../../model/perfil-detalle';
 import {Suscripcion} from '../../model/suscripcion';
 import {PerfilEditarPsicologoComponent} from './perfil-editar-psicologo/perfil-editar-psicologo';
+import {MatDialog} from '@angular/material/dialog';
 
 
 @Component({
@@ -20,50 +21,47 @@ export class PerfilPsicologoComponent implements OnInit {
   private perfilService = inject(PerfilDetalleService);
   private suscripcionService = inject(SuscripcionService);
   private router = inject(Router);
+  private dialog = inject(MatDialog);
 
   perfil: PerfilDetalle | null = null;
   suscripcion: Suscripcion | null = null;
   loading = true;
   error: string | null = null;
-  mostrarModal = false;
-  timestamp = Date.now(); // fuerza recarga de imagen
-  subiendoFoto = false;
+  timestamp = Date.now();
 
   ngOnInit(): void {
     const usuarioId = Number(localStorage.getItem('userId'));
     this.perfilService.obtenerPerfilPorId(usuarioId).subscribe({
-      next: (data) => {
-        this.perfil = data;
-      },
+      next: (data) => (this.perfil = data),
       error: () => {
         this.error = 'No se pudo cargar el perfil';
         this.loading = false;
-      }
-    });
-  }
-
-
-  abrirModal() {
-    this.mostrarModal = true;
-  }
-
-  cerrarModal() {
-    this.mostrarModal = false;
-  }
-
-  guardarPerfil(perfilEditado: PerfilDetalle) {
-    const usuarioId = Number(localStorage.getItem('userId'));
-    this.perfilService.actualizarPerfil(usuarioId, perfilEditado).subscribe({
-      next: (respuesta) => {
-        console.log('Respuesta del backend:', respuesta);
-        this.perfil = { ...perfilEditado };
-        this.cerrarModal();
       },
-      error: (err) => {
-        console.error('Error real:', err);
+    });
+  }
+
+  abrirDialogoEditar() {
+    if (!this.perfil) return;
+
+    const dialogRef = this.dialog.open(PerfilEditarPsicologoComponent, {
+      data: { perfil: this.perfil },
+      width: '500px',
+    });
+
+    dialogRef.afterClosed().subscribe((perfilEditado: PerfilDetalle | undefined) => {
+      if (perfilEditado) {
+        const usuarioId = Number(localStorage.getItem('userId'));
+        this.perfilService.actualizarPerfil(usuarioId, perfilEditado).subscribe({
+          next: (respuesta) => {
+            console.log('Respuesta del backend:', respuesta);
+            this.perfil = { ...perfilEditado };
+          },
+          error: (err) => console.error('Error real:', err),
+        });
       }
     });
   }
+
 
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;

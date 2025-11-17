@@ -19,6 +19,19 @@
 .toggle-button mat-icon {
   margin-right: 8px;
 }
+/* Botón toggle con degradado */
+.toggle-button {
+  background: linear-gradient(to left, #74ADCD, #A1D1D1) !important;
+  color: #000 !important;   /* texto negro */
+  font-weight: 400;
+  border-radius: 6px;
+  padding: 8px 16px;
+  transition: opacity 0.3s ease;
+}
+
+.toggle-button:hover {
+  opacity: 0.85;
+}
 
 
 .list-tittle {

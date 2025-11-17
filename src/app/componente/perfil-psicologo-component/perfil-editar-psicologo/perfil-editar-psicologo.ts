@@ -1,30 +1,46 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {FormsModule} from '@angular/forms';
-import {PerfilDetalle} from '../../../model/perfil-detalle';
-import {PerfilEditarComponent} from '../../perfil-estudiante-component/perfil-editar/perfil-editar';
+import { Component, Inject } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { PerfilDetalle } from '../../../model/perfil-detalle';
+
+// Angular Material
+import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-perfil-editar-psicologo',
   standalone: true,
   imports: [
-    FormsModule
+    FormsModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule
   ],
   templateUrl: './perfil-editar-psicologo.html',
-  styleUrl: './perfil-editar-psicologo.css',
+  styleUrls: ['./perfil-editar-psicologo.css'],
 })
 export class PerfilEditarPsicologoComponent {
-  @Input() perfil!: PerfilDetalle;
-  @Output() save = new EventEmitter<PerfilDetalle>();
-  @Output() cancel = new EventEmitter<void>();
+  perfil: PerfilDetalle;
   nuevaContrasena: string = '';
+
+  constructor(
+    public dialogRef: MatDialogRef<PerfilEditarPsicologoComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: { perfil: PerfilDetalle }
+  ) {
+    // Copia para edición segura
+    this.perfil = { ...data.perfil };
+  }
+
   onSave() {
     if (this.nuevaContrasena.trim()) {
       this.perfil.contrasena = this.nuevaContrasena;
     }
-    this.save.emit(this.perfil);
+    this.dialogRef.close(this.perfil);
   }
 
   onCancel() {
-    this.cancel.emit();
+    this.dialogRef.close();
   }
 }

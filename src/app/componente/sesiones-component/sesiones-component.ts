@@ -33,7 +33,7 @@ export class SesionesComponent {
   sesionService = inject(SessionService);
   route: Router = inject(Router);
 
-  estudianteId: number = 2;
+  estudianteId: number = Number(localStorage.getItem('userId'));
 
   //Historial de sesiones
   listhistorialporestudiante: Sesion[]=[];

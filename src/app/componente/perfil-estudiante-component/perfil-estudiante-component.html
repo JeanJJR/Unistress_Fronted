@@ -72,14 +72,8 @@
       <button class="btn-gradient" (click)="abrirModal()">Editar Perfil</button>
     </div>
 
-    <!-- Modal (solo si está abierto y hay perfil) -->
-    @if (mostrarModal && perfil) {
-      <app-perfil-editar
-        [perfil]="perfil"
-        (save)="guardarPerfil($event)"
-        (cancel)="cerrarModal()">
-      </app-perfil-editar>
-    }
+    <!-- Ya no necesitas @if ni <app-perfil-editar> -->
+
 
     <!-- Test Emocional -->
     <section class="test-emocional-section">

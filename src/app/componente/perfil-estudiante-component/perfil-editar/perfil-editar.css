@@ -1,75 +1,93 @@
-/* src/app/componente/perfil-estudiante-component/perfil-editar2/perfil-editar2.component.css */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-}
-
+/* Contenedor principal del formulario */
 .modal-content {
-  background: white;
-  padding: 24px;
+  width: 100%;
+  max-width: 800px; /* más ancho en pantallas grandes */
+  padding: 32px;
   border-radius: 12px;
-  width: 90%;
-  max-width: 600px;
+  background: #fff;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  overflow-y: auto;
+  max-height: 90vh;
 }
 
-.edit-form h3 {
-  margin-top: 0;
-  margin-bottom: 20px;
-  font-size: 24px;
-  color: #000;
+/* Formulario */
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
+/* Campos */
 .form-group {
-  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
 }
 
 .form-group label {
-  display: block;
+  font-weight: 600;
   margin-bottom: 6px;
-  font-weight: 500;
   color: #333;
 }
 
 .form-group input {
-  width: 100%;
   padding: 10px;
+  font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 6px;
-  font-size: 16px;
+  width: 100%;
   box-sizing: border-box;
 }
 
+/* Botones */
+/* Botones dentro del diálogo */
 .modal-actions {
   display: flex;
   justify-content: flex-end;
   gap: 12px;
   margin-top: 24px;
+  flex-wrap: wrap;
 }
 
 .btn-primary, .btn-secondary {
   padding: 10px 20px;
-  border: none;
-  border-radius: 6px;
-  font-weight: 500;
-  cursor: pointer;
   font-size: 16px;
+  font-weight: 500;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
 }
 
+/* Botón Guardar con degradado */
 .btn-primary {
-  background: #007BFF;
+  background: linear-gradient(to left, #74ADCD, #A1D1D1);
   color: white;
 }
 
+.btn-primary:hover {
+  opacity: 0.85;
+}
+
+/* Botón Cancelar rojo */
 .btn-secondary {
-  background: #e0e0e0;
-  color: #333;
+  background-color: #d9534f;
+  color: white;
+}
+
+.btn-secondary:hover {
+  background-color: #c9302c;
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+  .modal-content {
+    max-width: 95%;
+    padding: 24px;
+  }
+
+  .btn-primary, .btn-secondary {
+    flex: 1;
+    text-align: center;
+  }
 }

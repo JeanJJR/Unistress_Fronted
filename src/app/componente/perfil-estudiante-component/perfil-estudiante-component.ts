@@ -6,6 +6,7 @@ import { SuscripcionService } from '../../services/suscripcion-service';
 import { PerfilDetalle } from '../../model/perfil-detalle';
 import { Suscripcion } from '../../model/suscripcion';
 import { PerfilEditarComponent } from './perfil-editar/perfil-editar';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-perfil-estudiante-component',
@@ -18,6 +19,7 @@ export class PerfilEstudianteComponent implements OnInit {
   private perfilService = inject(PerfilDetalleService);
   private suscripcionService = inject(SuscripcionService);
   private router = inject(Router);
+  private dialog = inject(MatDialog);
 
   perfil: PerfilDetalle | null = null;
   suscripcion: Suscripcion | null = null;
@@ -55,7 +57,18 @@ export class PerfilEstudianteComponent implements OnInit {
   }
 
   abrirModal() {
-    this.mostrarModal = true;
+    if (!this.perfil) return;
+
+    const dialogRef = this.dialog.open(PerfilEditarComponent, {
+      data: { perfil: this.perfil },
+      width: '600px'
+    });
+
+    dialogRef.afterClosed().subscribe((perfilEditado: PerfilDetalle | undefined) => {
+      if (perfilEditado) {
+        this.guardarPerfil(perfilEditado);
+      }
+    });
   }
 
   cerrarModal() {

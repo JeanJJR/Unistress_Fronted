@@ -1,34 +1,68 @@
-<div class="wrapper">
-  <section class="notificaciones-container">
-    <h2>Notificaciones</h2>
+<div class="main-content">
+  <h2>Notificaciones</h2>
 
-    <div class="notificaciones-estado-header">
-      <span class="estado-label">Estado de las notificaciones: {{ estadoActivado ? 'Activado' : 'Desactivado' }}</span>
-      <button (click)="toggleEstado()" class="toggle-button">
-        {{ estadoActivado ? 'Apagar' : 'Encender' }}
-      </button>
+  <div class="notificaciones-estado-header">
+    <mat-label class="estado-label">Estado de las notificaciones:</mat-label>
+
+    <button mat-flat-button [color]="notificacionesEncendidas ? 'warn' : 'primary'" class="toggle-button" (click)="estadodenotificaciones()">
+      <mat-icon>{{ notificacionesEncendidas ? 'toggle_on' : 'toggle_off' }}</mat-icon>
+      {{ notificacionesEncendidas ? 'Apagar' : 'Encender' }}
+    </button>
+  </div>
+
+  <ng-container *ngIf="notificacionesEncendidas; else notificacionesApagadas">
+
+    <div class="list-tittle">
+      <h3>Listado de notificaciones</h3>
     </div>
 
-    <div class="tabla-container">
-      <div class="list-title">Listado de notificaciones</div>
-      <table>
-        <thead>
-        <tr>
-          <th>Fecha</th>
-          <th>Emisor</th>
-          <th>Tipo</th>
-          <th>Mensaje</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let noti of notificaciones">
-          <td data-label="Fecha">{{ noti.fecha }}</td>
-          <td data-label="Emisor">{{ noti.emisor }}</td>
-          <td data-label="Tipo">{{ noti.tipo }}</td>
-          <td data-label="Mensaje">{{ noti.mensaje }}</td>
-        </tr>
-        </tbody>
+    <div class="mat-elevation-z1 tabla-container">
+      <table mat-table class="full-width-table" [dataSource]="NotificacionesDataSource" matSort>
+
+        <ng-container matColumnDef="fecha">
+          <th mat-header-cell *matHeaderCellDef> Fecha </th>
+          <td mat-cell *matCellDef="let element"> {{element.fechaEnvio | date:'dd/MM/yyyy'}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="tipo">
+          <th mat-header-cell *matHeaderCellDef> Tipo </th>
+          <td mat-cell *matCellDef="let element"> {{element.tipo}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="mensaje">
+          <th mat-header-cell *matHeaderCellDef> Mensaje </th>
+          <td mat-cell *matCellDef="let element"> {{element.mensaje}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="estado">
+          <th mat-header-cell *matHeaderCellDef> Estado </th>
+          <td mat-cell *matCellDef="let element">
+                <span class="estado-chip" [class.leida]="element.estado === 'LEIDA'">
+                    {{ element.estado === 'LEIDA' ? 'Leída' : 'Pendiente' }}
+                </span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="accion">
+          <th mat-header-cell *matHeaderCellDef> Marcar </th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-icon-button color="primary" (click)="marcarComoLeida(element)" [disabled]="element.estado === 'LEIDA'"
+                    matTooltip="{{ element.estado === 'LEIDA' ? 'Ya leída' : 'Marcar como leída' }}" aria-label="Marcar como leída">
+              <mat-icon>{{ element.estado === 'LEIDA' ? 'mark_email_read' : 'mark_email_unread' }}</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
     </div>
-  </section>
+
+  </ng-container> <ng-template #notificacionesApagadas>
+  <div class="mensaje-apagado">
+    <mat-icon class="icon-grande">notifications_off</mat-icon>
+    <p>Las notificaciones están actualmente <strong>apagadas</strong>.</p>
+  </div>
+</ng-template>
+
 </div>
