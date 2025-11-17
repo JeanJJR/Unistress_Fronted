@@ -100,6 +100,7 @@ export class SesionesComponent {
         this.allSesion = data;
         console.log("API Sesiones trae:", this.allSesion);
         this.actualizarTablas(); // Distribuir datos a las dos tablas
+
       },
       error: (err) => {
         console.error('Error al cargar sesiones:', err);
@@ -115,13 +116,13 @@ export class SesionesComponent {
     // Historial (sesiones pasadas)
     this.dataSourceHistory.data = this.allSesion.filter(sesion => {
       const sesionDate = new Date(sesion.fecha);
-      return sesionDate < now;
+      return sesionDate < now || sesion.estado === 'CANCELADA';
     });
 
     // Próximas (sesiones de hoy en adelante)
     let upcoming = this.allSesion.filter(sesion => {
       const sesionDate = new Date(sesion.fecha);
-      return sesionDate >= now;
+      return sesionDate >= now && (sesion.estado === 'PENDIENTE' || sesion.estado === 'ACEPTADA');
     });
 
     // Aplicar filtros de fechas que si existen
@@ -181,11 +182,24 @@ export class SesionesComponent {
     }
   }
 
-
-
   getPsicologoNombre(id: number): string {
     const psicologo = this.listarpsicologos.find(p => p.id === id);
     return psicologo ? `${psicologo.nombre} ${psicologo.apellidos}` : 'No encontrado';
+  }
+
+  onCancel(sesion: Sesion) {
+    if (confirm(`¿Estás seguro de que deseas cancelar la sesión #${sesion.id}?`)) {
+      this.sesionService.cancelarSesion(sesion.id, this.estudianteId).subscribe({
+        next: (response) => {
+          alert(response); // Muestra "Sesión cancelada correctamente"
+          this.cargarSesiones(); // Recarga los datos
+        },
+        error: (err) => {
+          console.error("Error al cancelar sesión:", err);
+          alert("Error al cancelar: " + (err.error?.message || err.message));
+        }
+      });
+    }
   }
 
 }
