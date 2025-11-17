@@ -108,3 +108,6 @@ body.tema-oscuro .no-data-cell {
   background: #1e1e1e;
   color: #888;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
