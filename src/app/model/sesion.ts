@@ -1,12 +1,10 @@
-import {Time} from '@angular/common';
-import {Usuario} from './usuario';
 
 export class Sesion{
   id:number;
-  fecha:Date;
+  fecha:Date = new Date();
   hora: string;
   mensaje:string;
   estado:string;
-  estudianteid:number;
-  psicologoid:number;
+  estudianteId:number;
+  psicologoId:number;
 }

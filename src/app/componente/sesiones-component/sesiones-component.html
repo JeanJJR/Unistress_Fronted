@@ -9,40 +9,47 @@
       </mat-card-header>
 
       <mat-card-content class="session-form">
+        <form [formGroup]="sesionForm" (ngSubmit)="onSubmit()">
+
           <div class="form-group-single">
-          <mat-form-field appearance="outline" subscriptSizing="dynamic">
-            <mat-label>Psicólogos</mat-label>
-            <mat-select class="green-btn" value="0">
-              <mat-option value="0">Seleccionar un psicólogo</mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
+            <mat-form-field appearance="outline" subscriptSizing="dynamic">
+              <mat-label>Psicólogos</mat-label>
+              <mat-select class="green-btn" formControlName="psicologo" required>
+                <mat-option [value]="null">Seleccionar un psicólogo</mat-option>
+                @for (a of listarpsicologos; track a.id){
+                  <mat-option [value]="a.id">
+                    {{a.nombre}} {{a.apellidos}}
+                  </mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+          </div>
 
           <div class="form-group-double">
-          <mat-form-field appearance="outline" subscriptSizing="dynamic">
-            <mat-label>Fecha</mat-label>
-            <input matInput [matDatepicker]="picker" class="green-btn">
-            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
+            <mat-form-field appearance="outline" subscriptSizing="dynamic">
+              <mat-label>Fecha</mat-label>
+              <input matInput [matDatepicker]="picker" formControlName="fecha" class="green-btn" required>
+              <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
 
-          <mat-form-field appearance="outline" subscriptSizing="dynamic">
-            <mat-label>Hora</mat-label>
-            <input matInput type="time" class="green-btn">
-          </mat-form-field>
-        </div>
+            <mat-form-field appearance="outline" subscriptSizing="dynamic">
+              <mat-label>Hora</mat-label>
+              <input matInput type="time" formControlName="hora" class="green-btn" required>
+            </mat-form-field>
+          </div>
 
-        <div class="form-group message-group">
-          <mat-form-field appearance="outline" class="full-width-input">
-            <mat-label>Mensaje</mat-label>
-            <textarea matInput class="textarea-field"></textarea>
-          </mat-form-field>
-        </div>
+          <div class="form-group message-group">
+            <mat-form-field appearance="outline" class="full-width-input">
+              <mat-label>Mensaje</mat-label>
+              <textarea matInput class="textarea-field" formControlName="mensaje" required></textarea>
+            </mat-form-field>
+          </div>
+          <mat-card-actions>
+            <button mat-flat-button type="submit" class="register-button" [disabled]="sesionForm.invalid">Registrar sesión</button>
+          </mat-card-actions>
+        </form>
       </mat-card-content>
-
-      <mat-card-actions>
-        <button mat-flat-button class="register-button">Registrar sesión</button>
-      </mat-card-actions>
     </mat-card>
 
     <mat-card class="upcoming-session-card">
@@ -55,66 +62,72 @@
           <label class="filter-label">Filtro:</label>
           <mat-form-field appearance="outline" subscriptSizing="dynamic" class="filter-input-field">
             <mat-label>Fecha inicio</mat-label>
-            <input matInput [matDatepicker]="picker2">
+            <input matInput [matDatepicker]="picker2" (dateChange)="onFilterDateChange('start', $event)">
             <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
             <mat-datepicker #picker2></mat-datepicker>
           </mat-form-field>
 
           <mat-form-field appearance="outline" subscriptSizing="dynamic" class="filter-input-field">
             <mat-label>Fecha fin</mat-label>
-            <input matInput [matDatepicker]="picker3">
+            <input matInput [matDatepicker]="picker3" (dateChange)="onFilterDateChange('end', $event)">
             <mat-datepicker-toggle matIconSuffix [for]="picker3"></mat-datepicker-toggle>
             <mat-datepicker #picker3></mat-datepicker>
           </mat-form-field>
         </div>
 
         <div class="sessions-table-container">
-          <table mat-table class="sessions-table">
+          <table mat-table [dataSource]="dataSourceUpcoming" matSort  class="sessions-table">
 
             <ng-container matColumnDef="id">
-              <th mat-header-cell *matHeaderCellDef> ID Sesión </th>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> ID Sesión </th>
               <td mat-cell *matCellDef="let element"> {{element.id}} </td>
             </ng-container>
 
             <ng-container matColumnDef="fecha">
-              <th mat-header-cell *matHeaderCellDef> Fecha </th>
-              <td mat-cell *matCellDef="let element"> {{element.fecha}} </td>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </th>
+              <td mat-cell *matCellDef="let element"> {{element.fecha | date:'dd/MM/yyyy'}} </td>
             </ng-container>
 
             <ng-container matColumnDef="hora">
-              <th mat-header-cell *matHeaderCellDef> Hora </th>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Hora </th>
               <td mat-cell *matCellDef="let element"> {{element.hora}} </td>
             </ng-container>
 
-            <ng-container matColumnDef="observaciones">
-              <th mat-header-cell *matHeaderCellDef> Observaciones </th>
-              <td mat-cell *matCellDef="let element"> {{element.observaciones}} </td>
+            <!-- Asegúrate de usar 'psicologoId' aquí -->
+            <ng-container matColumnDef="psicologo">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Psicólogo </th>
+              <td mat-cell *matCellDef="let element"> {{getPsicologoNombre(element.psicologoId)}} </td>
             </ng-container>
 
             <ng-container matColumnDef="mensaje">
-              <th mat-header-cell *matHeaderCellDef> Mensaje </th>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Mensaje </th>
               <td mat-cell *matCellDef="let element"> {{element.mensaje}} </td>
             </ng-container>
 
             <ng-container matColumnDef="estado">
-              <th mat-header-cell *matHeaderCellDef> Estado </th>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Estado </th>
               <td mat-cell *matCellDef="let element"> {{element.estado}} </td>
             </ng-container>
 
             <ng-container matColumnDef="acciones">
               <th mat-header-cell *matHeaderCellDef> Acciones </th>
               <td mat-cell *matCellDef="let element" class="actions-cell">
-                <button mat-icon-button class="edit-btn">
-                  <mat-icon>edit</mat-icon>
+                <button mat-icon-button class="edit-btn" aria-label="Editar" disabled> <mat-icon>edit</mat-icon>
                 </button>
-                <button mat-icon-button class="cancel-btn">
+                <button mat-icon-button class="cancel-btn" aria-label="Cancelar" disabled>
                   <mat-icon>delete</mat-icon>
                 </button>
               </td>
             </ng-container>
 
-            <tr mat-header-row *matHeaderRowDef="['id', 'fecha', 'hora', 'observaciones', 'mensaje', 'estado', 'acciones']"></tr>
-            <tr mat-row *matRowDef="let row; columns: ['id', 'fecha', 'hora', 'observaciones', 'mensaje', 'estado', 'acciones'];"></tr>
+            <tr mat-header-row *matHeaderRowDef="displayedColumnsUpcoming"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumnsUpcoming;"></tr>
+
+            <tr class="mat-row" *matNoDataRow>
+              <td class="mat-cell" [attr.colspan]="displayedColumnsUpcoming.length">
+                No hay próximas sesiones disponibles
+              </td>
+            </tr>
           </table>
         </div>
       </mat-card-content>
@@ -127,7 +140,8 @@
     </mat-card-header>
 
     <mat-card-content class="sessions-table-container">
-      <table mat-table [dataSource]="dataSourceHistory" matSort class="sessions-table history-table">
+      <table mat-table [dataSource]="dataSourceHistory" matSort  class="sessions-table history-table">
+
         <ng-container matColumnDef="id">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> ID Sesión </th>
           <td mat-cell *matCellDef="let element"> {{element.id}} </td>
@@ -135,7 +149,7 @@
 
         <ng-container matColumnDef="fecha">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </th>
-          <td mat-cell *matCellDef="let element"> {{element.fecha | date}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.fecha|date:'dd/MM/yyyy'}} </td>
         </ng-container>
 
         <ng-container matColumnDef="hora">
@@ -143,9 +157,10 @@
           <td mat-cell *matCellDef="let element"> {{element.hora}} </td>
         </ng-container>
 
+        <!-- Asegúrate de usar 'psicologoId' aquí -->
         <ng-container matColumnDef="psicologo">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Psicólogo </th>
-          <td mat-cell *matCellDef="let element"> {{element.psicologoNombreCompleto}} </td>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header > Psicólogo </th>
+          <td mat-cell *matCellDef="let element"> {{getPsicologoNombre(element.psicologoId)}} </td>
         </ng-container>
 
         <ng-container matColumnDef="mensaje">
@@ -161,13 +176,11 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumnsHistory"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumnsHistory"></tr>
 
-        <!-- Fila vacía cuando no hay registros -->
         <tr class="mat-row" *matNoDataRow>
           <td class="mat-cell" [attr.colspan]="displayedColumnsHistory.length">
             No hay registros disponibles
           </td>
         </tr>
-
       </table>
     </mat-card-content>
   </mat-card>
