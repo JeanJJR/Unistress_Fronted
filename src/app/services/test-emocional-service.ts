@@ -31,4 +31,7 @@ export class TestEmocionalService {
       withCredentials: true
     });
   }
+  obtenerPromedio(usuarioId: number): Observable<number> {
+    return this.http.get<number>(`${this.url}/promedio/${usuarioId}`);
+  }
 }

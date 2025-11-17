@@ -67,12 +67,12 @@
     </div>
 
     <!-- Botón Editar Perfil -->
-    <!-- Dentro del contenido principal, donde está "Editar Perfil" -->
+
     <div class="edit-button">
       <button class="btn-gradient" (click)="abrirModal()">Editar Perfil</button>
     </div>
 
-    <!-- Ya no necesitas @if ni <app-perfil-editar> -->
+
 
 
     <!-- Test Emocional -->
@@ -82,10 +82,13 @@
       <div class="test-actions">
         <button class="btn-gradient" onclick="window.location.href='/test-emocional'">Realizar test</button>
         <div class="emotional-average">
-          <div class="bar"></div>
+          <div class="bar">
+            <div class="fill" [ngStyle]="getFillStyle()"></div>
+          </div>
           <div class="label">Promedio emocional</div>
-          <div class="value">0.0</div>
+          <div class="value">{{ promedioEmocional }}</div>
         </div>
+
       </div>
     </section>
   </div>

@@ -7,22 +7,26 @@ import { PerfilDetalle } from '../../model/perfil-detalle';
 import { Suscripcion } from '../../model/suscripcion';
 import { PerfilEditarComponent } from './perfil-editar/perfil-editar';
 import {MatDialog} from '@angular/material/dialog';
+import {TestEmocionalService} from '../../services/test-emocional-service';
+import {NgStyle} from '@angular/common';
 
 @Component({
   selector: 'app-perfil-estudiante-component',
   standalone: true,
-  imports: [PerfilEditarComponent],
+  imports: [PerfilEditarComponent, NgStyle],
   templateUrl: './perfil-estudiante-component.html',
   styleUrls: ['./perfil-estudiante-component.css']
 })
 export class PerfilEstudianteComponent implements OnInit {
   private perfilService = inject(PerfilDetalleService);
   private suscripcionService = inject(SuscripcionService);
+  private testService = inject(TestEmocionalService);
   private router = inject(Router);
   private dialog = inject(MatDialog);
 
   perfil: PerfilDetalle | null = null;
   suscripcion: Suscripcion | null = null;
+  promedioEmocional: number = 0.0;
   loading = true;
   error: string | null = null;
   mostrarModal = false;
@@ -35,6 +39,7 @@ export class PerfilEstudianteComponent implements OnInit {
       next: (data) => {
         this.perfil = data;
         this.cargarSuscripcion(usuarioId);
+        this.cargarPromedioEmocional(usuarioId);
       },
       error: () => {
         this.error = 'No se pudo cargar el perfil';
@@ -42,6 +47,36 @@ export class PerfilEstudianteComponent implements OnInit {
       }
     });
   }
+  cargarPromedioEmocional(usuarioId: number): void {
+    this.testService.obtenerPromedio(usuarioId).subscribe({
+      next: (promedio) => {
+        this.promedioEmocional = parseFloat(promedio.toFixed(1));
+      },
+      error: () => {
+        this.promedioEmocional = 0.0;
+        console.warn('No se pudo obtener el promedio emocional');
+      }
+    });
+  }
+  getFillStyle(): { [key: string]: string } {
+    const max = 25;
+    const height = Math.min(100, (this.promedioEmocional / max) * 100); // escala 0–100px
+
+    let color = '#ddd'; // por defecto
+    if (this.promedioEmocional <= 10) {
+      color = '#4CAF50'; // verde: bajo estrés
+    } else if (this.promedioEmocional <= 20) {
+      color = '#FFC107'; // amarillo: moderado
+    } else {
+      color = '#F44336'; // rojo: alto estrés
+    }
+
+    return {
+      height: `${height}px`,
+      backgroundColor: color
+    };
+  }
+
 
 
   cargarSuscripcion(usuarioId: number): void {
