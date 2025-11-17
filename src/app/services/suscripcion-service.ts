@@ -1,21 +1,33 @@
-import { Injectable, inject } from '@angular/core';
+// src/app/services/suscripcion-service.ts
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, map } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Suscripcion } from '../model/suscripcion';
-import { environment } from '../../environments/environment';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class SuscripcionService {
-  private url = environment.apiURL;
-  private http = inject(HttpClient);
 
-  obtenerSuscripcionPorUsuarioId(usuarioId: number): Observable<Suscripcion | null> {
-    return this.http.get<Suscripcion[]>(`${this.url}/suscripcion/usuario/${usuarioId}`).pipe(
-      map(suscripciones => suscripciones.length > 0 ? suscripciones[0] : null)
-    );
+  private apiUrl = 'http://localhost:8080/api/suscripcion';
+
+  constructor(private http: HttpClient) {}
+
+  // ✅ lista de suscripciones de un usuario
+  getPorUsuario(usuarioId: number): Observable<Suscripcion[]> {
+    return this.http.get<Suscripcion[]>(`${this.apiUrl}/usuario/${usuarioId}`);
+  }
+
+  // ✅ alias para que funcione lo que usas en PerfilEstudianteComponent
+  obtenerSuscripcionPorUsuarioId(usuarioId: number): Observable<Suscripcion[]> {
+    return this.getPorUsuario(usuarioId);
+  }
+
+  // Actualizar (renovar / cancelar)
+  actualizar(s: Suscripcion): Observable<string> {
+    return this.http.put(`${this.apiUrl}`, s, { responseType: 'text' });
+  }
+
+  // Eliminar (si alguna vez lo usas)
+  eliminar(id: number): Observable<string> {
+    return this.http.delete(`${this.apiUrl}/${id}`, { responseType: 'text' });
   }
 }
-
-
