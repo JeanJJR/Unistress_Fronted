@@ -85,29 +85,5 @@
       </mat-card-content>
     </mat-card>
 
-    <!-- Detalle con Material -->
-    <mat-card class="detail-card" *ngIf="selectedQuestion as sq">
-      <mat-card-header>
-        <mat-card-title>Detalle de la Pregunta</mat-card-title>
-        <button
-          mat-icon-button
-          (click)="clearSelection()"
-          class="close-button"
-        >
-          <mat-icon>close</mat-icon>
-        </button>
-      </mat-card-header>
-      <mat-card-content>
-        <div class="detail-section">
-          <h4><mat-icon>help</mat-icon> Pregunta:</h4>
-          <p class="detail-text">{{ sq.enunciado }}</p>
-        </div>
-        <mat-divider></mat-divider>
-        <div class="detail-section" *ngIf="sq.id">
-          <h4><mat-icon>info</mat-icon> ID:</h4>
-          <p class="detail-text">{{ sq.id }}</p>
-        </div>
-      </mat-card-content>
-    </mat-card>
   </div>
 </div>
