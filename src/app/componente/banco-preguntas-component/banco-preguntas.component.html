@@ -2,6 +2,11 @@
   <div class="banco-container">
     <h2>Banco de Preguntas</h2>
 
+    <!-- Loading Spinner -->
+    <div class="loading-container" *ngIf="loading">
+      <mat-spinner diameter="50"></mat-spinner>
+    </div>
+
     <!-- Crear Pregunta con Material -->
     <mat-card class="crear-pregunta-card">
       <mat-card-header>
@@ -15,6 +20,7 @@
             [(ngModel)]="nuevaPregunta"
             rows="4"
             placeholder="¿Cuál es tu pregunta?"
+            [disabled]="loading"
           ></textarea>
         </mat-form-field>
       </mat-card-content>
@@ -23,10 +29,10 @@
           mat-raised-button
           color="primary"
           (click)="crearPregunta()"
-          [disabled]="!nuevaPregunta || nuevaPregunta.trim().length === 0"
+          [disabled]="!nuevaPregunta || nuevaPregunta.trim().length === 0 || loading"
         >
           <mat-icon>add</mat-icon>
-          Crear Pregunta
+          {{ loading ? 'Creando...' : 'Crear Pregunta' }}
         </button>
       </mat-card-actions>
     </mat-card>
@@ -51,7 +57,7 @@
                 <mat-icon>help_outline</mat-icon>
               </div>
               <div matListItemTitle class="pregunta-text">
-                {{ pregunta.title }}
+                {{ pregunta.enunciado }}
               </div>
               <button
                 mat-icon-button
@@ -59,6 +65,7 @@
                 color="warn"
                 (click)="deletePregunta(i, $event)"
                 aria-label="Eliminar pregunta"
+                [disabled]="loading"
               >
                 <mat-icon>delete</mat-icon>
               </button>
@@ -70,11 +77,36 @@
     </mat-card>
 
     <!-- Estado vacío -->
-    <mat-card class="empty-state-card" *ngIf="preguntas.length === 0">
+    <mat-card class="empty-state-card" *ngIf="preguntas.length === 0 && !loading">
       <mat-card-content>
         <mat-icon class="empty-icon">question_answer</mat-icon>
         <h3>Aún no has creado ninguna pregunta</h3>
         <p>¡Comienza escribiendo tu primera pregunta arriba!</p>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Detalle con Material -->
+    <mat-card class="detail-card" *ngIf="selectedQuestion as sq">
+      <mat-card-header>
+        <mat-card-title>Detalle de la Pregunta</mat-card-title>
+        <button
+          mat-icon-button
+          (click)="clearSelection()"
+          class="close-button"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="detail-section">
+          <h4><mat-icon>help</mat-icon> Pregunta:</h4>
+          <p class="detail-text">{{ sq.enunciado }}</p>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="detail-section" *ngIf="sq.id">
+          <h4><mat-icon>info</mat-icon> ID:</h4>
+          <p class="detail-text">{{ sq.id }}</p>
+        </div>
       </mat-card-content>
     </mat-card>
   </div>
