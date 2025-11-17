@@ -1,0 +1,219 @@
+<div class="admin-container">
+  <h2 class="page-title">Gestión de Perfiles</h2>
+
+  <mat-card class="form-section">
+    <mat-card-title>{{ modoEdicion ? 'Editar Perfil' : 'Crear Nuevo Perfil' }}</mat-card-title>
+    <form (ngSubmit)="guardarPerfil()">
+
+      <mat-form-field *ngIf="modoEdicion" appearance="outline" class="full-width">
+        <mat-label>Tipo de Perfil</mat-label>
+        <mat-select [(ngModel)]="perfilEdicion!.tipoPerfil" name="tipoPerfilEdicion" required [disabled]="modoEdicion">
+          <mat-option value="ESTUDIANTE">Estudiante</mat-option>
+          <mat-option value="PSICOLOGO">Psicólogo</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field *ngIf="!modoEdicion" appearance="outline" class="full-width">
+        <mat-label>Tipo de Perfil</mat-label>
+        <mat-select [(ngModel)]="nuevoPerfil.tipoPerfil" name="tipoPerfilNuevo" required>
+          <mat-option value="ESTUDIANTE">Estudiante</mat-option>
+          <mat-option value="PSICOLOGO">Psicólogo</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div class="form-row">
+        <mat-form-field *ngIf="modoEdicion" appearance="outline" class="form-field">
+          <mat-label>Nombre</mat-label>
+          <input matInput [(ngModel)]="perfilEdicion!.nombre" name="nombreEdicion" required />
+        </mat-form-field>
+        <mat-form-field *ngIf="!modoEdicion" appearance="outline" class="form-field">
+          <mat-label>Nombre</mat-label>
+          <input matInput [(ngModel)]="nuevoPerfil.nombre" name="nombreNuevo" required />
+        </mat-form-field>
+
+        <mat-form-field *ngIf="modoEdicion" appearance="outline" class="form-field">
+          <mat-label>Apellidos</mat-label>
+          <input matInput [(ngModel)]="perfilEdicion!.apellidos" name="apellidosEdicion" required />
+        </mat-form-field>
+        <mat-form-field *ngIf="!modoEdicion" appearance="outline" class="form-field">
+          <mat-label>Apellidos</mat-label>
+          <input matInput [(ngModel)]="nuevoPerfil.apellidos" name="apellidosNuevo" required />
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field *ngIf="modoEdicion" appearance="outline" class="form-field">
+          <mat-label>Correo</mat-label>
+          <input matInput type="email" [(ngModel)]="perfilEdicion!.correo" name="correoEdicion" required />
+        </mat-form-field>
+        <mat-form-field *ngIf="!modoEdicion" appearance="outline" class="form-field">
+          <mat-label>Correo</mat-label>
+          <input matInput type="email" [(ngModel)]="nuevoPerfil.correo" name="correoNuevo" required />
+        </mat-form-field>
+
+        <mat-form-field *ngIf="modoEdicion" appearance="outline" class="form-field">
+          <mat-label>Teléfono</mat-label>
+          <input matInput [(ngModel)]="perfilEdicion!.telefono" name="telefonoEdicion" required />
+        </mat-form-field>
+        <mat-form-field *ngIf="!modoEdicion" appearance="outline" class="form-field">
+          <mat-label>Teléfono</mat-label>
+          <input matInput [(ngModel)]="nuevoPerfil.telefono" name="telefonoNuevo" required />
+        </mat-form-field>
+      </div>
+
+      <mat-form-field *ngIf="modoEdicion" appearance="outline" class="full-width">
+        <mat-label>Nueva Contraseña (opcional)</mat-label>
+        <input matInput [type]="verContrasena ? 'text' : 'password'" [(ngModel)]="nuevaContrasena" name="nuevaContrasena" />
+        <button mat-icon-button matSuffix type="button" (click)="toggleContrasena()">
+          <mat-icon>{{ verContrasena ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+      </mat-form-field>
+
+
+      <mat-form-field *ngIf="!modoEdicion" appearance="outline" class="full-width">
+        <mat-label>Contraseña</mat-label>
+        <input matInput [type]="verContrasena ? 'text' : 'password'" [(ngModel)]="nuevoPerfil.contrasena" name="contrasenaNuevo" required />
+        <button mat-icon-button matSuffix type="button" (click)="toggleContrasena()">
+          <mat-icon>{{ verContrasena ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+      </mat-form-field>
+
+
+      <ng-container *ngIf="(modoEdicion && perfilEdicion && esEstudiante(perfilEdicion)) || (!modoEdicion && nuevoPerfil.tipoPerfil === 'ESTUDIANTE')">
+        <div class="form-row">
+          <mat-form-field *ngIf="modoEdicion" appearance="outline" class="form-field">
+            <mat-label>Universidad</mat-label>
+            <mat-select [(ngModel)]="perfilEdicion!.universidad" name="universidadEdicion">
+              <mat-option *ngFor="let u of universidades" [value]="u">{{ u }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field *ngIf="!modoEdicion" appearance="outline" class="form-field">
+            <mat-label>Universidad</mat-label>
+            <mat-select [(ngModel)]="nuevoPerfil.universidad" name="universidadNuevo">
+              <mat-option *ngFor="let u of universidades" [value]="u">{{ u }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field *ngIf="modoEdicion" appearance="outline" class="form-field">
+            <mat-label>Carrera</mat-label>
+            <mat-select [(ngModel)]="perfilEdicion!.carrera" name="carreraEdicion">
+              <mat-option *ngFor="let c of carreras" [value]="c">{{ c }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field *ngIf="!modoEdicion" appearance="outline" class="form-field">
+            <mat-label>Carrera</mat-label>
+            <mat-select [(ngModel)]="nuevoPerfil.carrera" name="carreraNuevo">
+              <mat-option *ngFor="let c of carreras" [value]="c">{{ c }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="form-row">
+          <mat-form-field *ngIf="modoEdicion" appearance="outline" class="form-field">
+            <mat-label>Ciclo</mat-label>
+            <mat-select [(ngModel)]="perfilEdicion!.ciclo" name="cicloEdicion">
+              <mat-option *ngFor="let ciclo of ciclos" [value]="ciclo">{{ ciclo }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field *ngIf="!modoEdicion" appearance="outline" class="form-field">
+            <mat-label>Ciclo</mat-label>
+            <mat-select [(ngModel)]="nuevoPerfil.ciclo" name="cicloNuevo">
+              <mat-option *ngFor="let ciclo of ciclos" [value]="ciclo">{{ ciclo }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field *ngIf="modoEdicion" appearance="outline" class="form-field">
+            <mat-label>Estado Académico</mat-label>
+            <mat-select [(ngModel)]="perfilEdicion!.estadoAcademico" name="estadoEdicion">
+              <mat-option *ngFor="let estado of estados" [value]="estado">{{ estado }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field *ngIf="!modoEdicion" appearance="outline" class="form-field">
+            <mat-label>Estado Académico</mat-label>
+            <mat-select [(ngModel)]="nuevoPerfil.estadoAcademico" name="estadoNuevo">
+              <mat-option *ngFor="let estado of estados" [value]="estado">{{ estado }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </ng-container>
+
+
+      <ng-container *ngIf="(modoEdicion && perfilEdicion && !esEstudiante(perfilEdicion)) || (!modoEdicion && nuevoPerfil.tipoPerfil === 'PSICOLOGO')">
+        <div class="form-row">
+          <mat-form-field *ngIf="modoEdicion" appearance="outline" class="form-field">
+            <mat-label>Especialidad</mat-label>
+            <input matInput [(ngModel)]="perfilEdicion!.especialidad" name="especialidadEdicion" />
+          </mat-form-field>
+          <mat-form-field *ngIf="!modoEdicion" appearance="outline" class="form-field">
+            <mat-label>Especialidad</mat-label>
+            <input matInput [(ngModel)]="nuevoPerfil.especialidad" name="especialidadNuevo" />
+          </mat-form-field>
+
+          <mat-form-field *ngIf="modoEdicion" appearance="outline" class="form-field">
+            <mat-label>Colegiatura</mat-label>
+            <input matInput [(ngModel)]="perfilEdicion!.colegiatura" name="colegiaturaEdicion" />
+          </mat-form-field>
+          <mat-form-field *ngIf="!modoEdicion" appearance="outline" class="form-field">
+            <mat-label>Colegiatura</mat-label>
+            <input matInput [(ngModel)]="nuevoPerfil.colegiatura" name="colegiaturaNuevo" />
+          </mat-form-field>
+        </div>
+        <mat-form-field *ngIf="modoEdicion" appearance="outline" class="full-width">
+          <mat-label>Años de experiencia</mat-label>
+          <input matInput type="number" [(ngModel)]="perfilEdicion!.anosExperiencia" name="experienciaEdicion" />
+        </mat-form-field>
+        <mat-form-field *ngIf="!modoEdicion" appearance="outline" class="full-width">
+          <mat-label>Años de experiencia</mat-label>
+          <input matInput type="number" [(ngModel)]="nuevoPerfil.anosExperiencia" name="experienciaNuevo" />
+        </mat-form-field>
+      </ng-container>
+
+      <div class="form-actions">
+        <button type="submit" class="btn-primary">
+          {{ modoEdicion ? 'Actualizar' : 'Crear' }}
+        </button>
+        <button type="button" class="btn-secondary" (click)="cancelarEdicion()">
+          Cancelar
+        </button>
+      </div>
+
+    </form>
+  </mat-card>
+
+  <mat-card class="tabla-perfiles">
+    <mat-card-title>Lista de Perfiles</mat-card-title>
+    <table mat-table [dataSource]="perfiles" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>ID</th>
+        <td mat-cell *matCellDef="let perfil">{{ perfil.id }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef>Nombre</th>
+        <td mat-cell *matCellDef="let perfil">{{ perfil.nombre }} {{ perfil.apellidos }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="correo">
+        <th mat-header-cell *matHeaderCellDef>Correo</th>
+        <td mat-cell *matCellDef="let perfil">{{ perfil.correo }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="tipo">
+        <th mat-header-cell *matHeaderCellDef>Tipo</th>
+        <td mat-cell *matCellDef="let perfil">{{ perfil.tipoPerfil }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="acciones">
+        <th mat-header-cell *matHeaderCellDef>Acciones</th>
+        <td mat-cell *matCellDef="let perfil">
+          <button class="btn-edit" (click)="iniciarEdicion(perfil)">Editar</button>
+          <button class="btn-delete" (click)="eliminarPerfil(perfil.id)">Eliminar</button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </mat-card>
+
+</div>

@@ -1,0 +1,72 @@
+.admin-container {
+  padding: 40px;
+  background-color: #f4f6f8;
+  min-height: 100vh;
+  margin-left: 280px; /* Ajusta este valor según el ancho de tu sidebar/layout */
+}
+
+.page-title {
+  font-family: "Poppins-Medium", Helvetica;
+  font-size: 32px;
+  color: #000;
+  margin-bottom: 24px;
+}
+
+.form-section,
+.tabla-perfiles {
+  background: white;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  margin-bottom: 32px;
+}
+
+.form-row {
+  display: flex;
+  gap: 16px;
+  margin: 12px 0;
+}
+
+.form-row input,
+.form-row select {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.form-actions {
+  margin-top: 20px;
+  display: flex;
+  gap: 12px;
+}
+
+.btn-primary, .btn-secondary, .btn-edit, .btn-delete {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.btn-primary { background: #4a90e2; color: white; }
+.btn-secondary { background: #e0e0e0; color: #333; }
+.btn-edit { background: #b6e2d3; color: #000; }
+.btn-delete { background: #d32f2f; color: white; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+th {
+  background: #f5f5f5;
+  font-weight: 600;
+}

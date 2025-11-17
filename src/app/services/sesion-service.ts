@@ -7,28 +7,24 @@ import {Sesion} from '../model/sesion';
   providedIn: 'root'
 })
 
-
-
-
 export class SessionService {
   private url = environment.apiURL;
   private httpClient = inject(HttpClient);
 
-  listhistorialporestudiante(id:number) {
+  listhistorialporestudiante(id:number):Observable<Sesion[]> {
     console.log(this.url + '/sesion/historial/estudiante/'+ id)
     return this.httpClient.get<Sesion[]>(this.url + '/sesion/historial/estudiante/'+ id);
   }
 
-  crearsesion(sesion: any) {
-    console.log(this.url + '/sesion/', sesion);
-    return this.httpClient.post(this.url + '/sesion/', sesion);
+  crearsesion(sesion: any): Observable<Object> {
+    console.log(this.url + '/sesion', sesion);
+    return this.httpClient.post(this.url + '/sesion', sesion);
   }
 
   aceptarSesion(id: number): Observable<any> {
     console.log(this.url + '/sesion/aceptar/' + id,{});
     return this.httpClient.put(this.url + '/sesion/aceptar/' + id,{});
   }
-
 
 
 }

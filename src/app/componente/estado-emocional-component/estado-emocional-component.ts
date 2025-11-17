@@ -31,7 +31,7 @@ export class EstadoEmocionalComponent implements OnInit {
   nivel = 5;
   comentario = '';
   historial: RegistroEmocional[] = [];
-  usuarioId = 2;// ← ID fijo del estudiante (reemplaza con auth cuando lo tengas)
+  usuarioId = Number(localStorage.getItem('userId'));
 
   // Columnas de la tabla
   displayedColumns: string[] = ['fecha', 'emocion', 'nivel', 'descripcion'];
