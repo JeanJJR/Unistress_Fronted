@@ -43,10 +43,13 @@ export class PerfilEstudianteComponent implements OnInit {
     });
   }
 
+
   cargarSuscripcion(usuarioId: number): void {
     this.suscripcionService.obtenerSuscripcionPorUsuarioId(usuarioId).subscribe({
-      next: (data) => {
-        this.suscripcion = data;
+      next: (data: Suscripcion[]) => {
+        // buscamos la activa, si no hay, usamos la primera, si tampoco hay, null
+        const activa = data.find(s => s.estado === 'ACTIVA');
+        this.suscripcion = activa ?? (data.length > 0 ? data[0] : null);
         this.loading = false;
       },
       error: () => {

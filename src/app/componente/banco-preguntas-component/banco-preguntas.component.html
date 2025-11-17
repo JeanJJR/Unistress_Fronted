@@ -1,28 +1,89 @@
-<!-- src/app/componente/banco-preguntas-component/banco-preguntas.component.html -->
-<section class="banco-container">
-  <h2>Banco de Preguntas</h2>
+<div class="wrapper">
+  <div class="banco-container">
+    <h2>Banco de Preguntas</h2>
 
-  <!-- Crear Pregunta -->
-  <div class="crear-pregunta">
-    <label for="nuevaPregunta">Mis Preguntas</label>
-    <textarea id="nuevaPregunta" placeholder="Escribe tu pregunta" [(ngModel)]="nuevaPregunta"></textarea>
-    <button (click)="crearPregunta()">Crear</button>
-  </div>
+    <!-- Loading Spinner -->
+    <div class="loading-container" *ngIf="loading">
+      <mat-spinner diameter="50"></mat-spinner>
+    </div>
 
-  <!-- Historial de Preguntas -->
-  <div class="historial" *ngIf="preguntas.length > 0">
-    <div class="historial-header">Historial de preguntas</div>
-    <ul>
-      <li *ngFor="let pregunta of preguntas; let i = index" (click)="selectQuestion(i)" [class.selected]="selectedIndex === i">
-        <div class="pregunta-text">{{ pregunta.title }}</div>
-      </li>
-    </ul>
-  </div>
+    <!-- Crear Pregunta con Material -->
+    <mat-card class="crear-pregunta-card">
+      <mat-card-header>
+        <mat-card-title>Mis Preguntas</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Escribe tu pregunta</mat-label>
+          <textarea
+            matInput
+            [(ngModel)]="nuevaPregunta"
+            rows="4"
+            placeholder="¿Cuál es tu pregunta?"
+            [disabled]="loading"
+          ></textarea>
+        </mat-form-field>
+      </mat-card-content>
+      <mat-card-actions>
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="crearPregunta()"
+          [disabled]="!nuevaPregunta || nuevaPregunta.trim().length === 0 || loading"
+        >
+          <mat-icon>add</mat-icon>
+          {{ loading ? 'Creando...' : 'Crear Pregunta' }}
+        </button>
+      </mat-card-actions>
+    </mat-card>
 
-  <!-- Detalle Pregunta -->
-  <div class="detail" *ngIf="selectedQuestion as sq">
-    <h3>Detalle</h3>
-    <p>{{ sq.title }}</p>
-    <p><strong>Respuesta ejemplo:</strong> {{ sq.exampleAnswer }}</p>
+    <!-- Historial con Material -->
+    <mat-card class="historial-card" *ngIf="preguntas.length > 0">
+      <mat-card-header>
+        <mat-card-title>
+          Historial de preguntas
+          <mat-chip class="contador-chip">{{ preguntas.length }}</mat-chip>
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-list>
+          <ng-container *ngFor="let pregunta of preguntas; let i = index">
+            <mat-list-item
+              (click)="selectQuestion(i)"
+              [class.selected]="selectedIndex === i"
+              class="pregunta-item"
+            >
+              <div matListItemIcon class="pregunta-avatar">
+                <mat-icon>help_outline</mat-icon>
+              </div>
+              <div matListItemTitle class="pregunta-text">
+                {{ pregunta.enunciado }}
+              </div>
+              <button
+                mat-icon-button
+                matListItemMeta
+                color="warn"
+                (click)="deletePregunta(i, $event)"
+                aria-label="Eliminar pregunta"
+                [disabled]="loading"
+              >
+                <mat-icon>delete</mat-icon>
+              </button>
+            </mat-list-item>
+            <mat-divider *ngIf="i < preguntas.length - 1"></mat-divider>
+          </ng-container>
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Estado vacío -->
+    <mat-card class="empty-state-card" *ngIf="preguntas.length === 0 && !loading">
+      <mat-card-content>
+        <mat-icon class="empty-icon">question_answer</mat-icon>
+        <h3>Aún no has creado ninguna pregunta</h3>
+        <p>¡Comienza escribiendo tu primera pregunta arriba!</p>
+      </mat-card-content>
+    </mat-card>
+
   </div>
-</section>
+</div>

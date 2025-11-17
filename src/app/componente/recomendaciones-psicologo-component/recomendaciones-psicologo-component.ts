@@ -45,7 +45,7 @@ import { RegistroEmocionalService } from '../../services/estado-emocional-servic
 export class RecomendacionesPsicologoComponent {
 
   // 1. CONSTANTE PARA EL ID DEL PSICÓLOGO
-  private readonly PSICOLOGO_ID: number = 3;
+  PSICOLOGO_ID = Number(localStorage.getItem('userId'));
 
   recomendacionForm: FormGroup;
   fb = inject(FormBuilder);
