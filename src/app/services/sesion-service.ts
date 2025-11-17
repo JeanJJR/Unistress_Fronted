@@ -23,7 +23,7 @@ export class SessionService {
 
   aceptarSesion(id: number): Observable<any> {
     console.log(this.url + '/sesion/aceptar/' + id,{});
-    return this.httpClient.put(this.url + '/sesion/aceptar/' + id,{});
+    return this.httpClient.put(this.url + '/sesion/aceptar/' + id, {},{ responseType: 'text' });
   }
 
   editarSesion(id: number, sesion: any): Observable<Sesion> {

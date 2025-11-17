@@ -15,8 +15,8 @@ export class NotificacionService {
   }
 
   marcarLeida(id: number): Observable<any> {
-    return this.http.put(`${this.url}/leer/${id}`, {});
-  }
+    return this.http.put(`${this.url}/leer/${id}`, {},{ responseType: 'text' });
+    }
 
   eliminar(id: number): Observable<any> {
     return this.http.delete(`${this.url}/${id}`);
