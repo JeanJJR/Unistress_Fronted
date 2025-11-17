@@ -1,151 +1,41 @@
 <div class="main-content">
-
   <h2 class="page-title">Test Emocional</h2>
 
-  <form class="test-form">
+  <div *ngIf="isLoading" class="spinner-container">
+    <mat-progress-spinner mode="indeterminate" diameter="50"></mat-progress-spinner>
+    <p>Cargando preguntas...</p>
+  </div>
 
-    <div class="question-block">
-      <p class="question-text">
-        Pregunta 1:
-      </p>
-      <div class="options-group">
-        <label class="radio-circle-label">
-          <input type="radio" name="pregunta1" value="1">
-          <span class="radio-circle-custom"></span>
-        </label>
-        <label class="radio-circle-label">
-          <input type="radio" name="pregunta1" value="2">
-          <span class="radio-circle-custom"></span>
-        </label>
-        <label class="radio-circle-label">
-          <input type="radio" name="pregunta1" value="3">
-          <span class="radio-circle-custom"></span>
-        </label>
-        <label class="radio-circle-label">
-          <input type="radio" name="pregunta1" value="4">
-          <span class="radio-circle-custom"></span>
-        </label>
-        <label class="radio-circle-label">
-          <input type="radio" name="pregunta1" value="5">
-          <span class="radio-circle-custom"></span>
-        </label>
+  <form [formGroup]="testForm" (ngSubmit)="onSubmit()" *ngIf="!isLoading">
+
+    <mat-card class="instructions-card">
+      <mat-card-content>
+        <p>Responde a las siguientes preguntas según cómo te has sentido últimamente.
+          <br>
+          <strong>1</strong> = Completamente en desacuerdo, <strong>5</strong> = Completamente de acuerdo.
+        </p>
+      </mat-card-content>
+    </mat-card>
+
+    <div formArrayName="respuestas">
+
+      <div *ngFor="let pregunta of preguntasTest; let i = index" class="question-block">
+
+        <p class="question-text">{{ i + 1 }}. {{ pregunta.enunciado }}</p>
+
+        <mat-radio-group [formControlName]="i" class="options-group">
+
+          <mat-radio-button *ngFor="let opcion of opcionesRespuesta" [value]="opcion.value">
+            <span class="radio-label-text">{{ opcion.label }}</span>
+          </mat-radio-button>
+
+        </mat-radio-group>
       </div>
     </div>
 
-    <div class="question-block">
-      <p class="question-text">
-        Pregunta 2:
-      </p>
-      <div class="options-group">
-        <label class="radio-circle-label">
-          <input type="radio" name="pregunta2" value="1">
-          <span class="radio-circle-custom"></span>
-        </label>
-        <label class="radio-circle-label">
-          <input type="radio" name="pregunta2" value="2">
-          <span class="radio-circle-custom"></span>
-        </label>
-        <label class="radio-circle-label">
-          <input type="radio" name="pregunta2" value="3">
-          <span class="radio-circle-custom"></span>
-        </label>
-        <label class="radio-circle-label">
-          <input type="radio" name="pregunta2" value="4">
-          <span class="radio-circle-custom"></span>
-        </label>
-        <label class="radio-circle-label">
-          <input type="radio" name="pregunta2" value="5">
-          <span class="radio-circle-custom"></span>
-        </label>
-      </div>
-    </div>
-
-    <div class="question-block">
-      <p class="question-text">
-        Pregunta 3:
-      </p>
-      <div class="options-group">
-        <label class="radio-circle-label">
-          <input type="radio" name="pregunta3" value="1">
-          <span class="radio-circle-custom"></span>
-        </label>
-        <label class="radio-circle-label">
-          <input type="radio" name="pregunta3" value="2">
-          <span class="radio-circle-custom"></span>
-        </label>
-        <label class="radio-circle-label">
-          <input type="radio" name="pregunta3" value="3">
-          <span class="radio-circle-custom"></span>
-        </label>
-        <label class="radio-circle-label">
-          <input type="radio" name="pregunta3" value="4">
-          <span class="radio-circle-custom"></span>
-        </label>
-        <label class="radio-circle-label">
-          <input type="radio" name="pregunta3" value="5">
-          <span class="radio-circle-custom"></span>
-        </label>
-      </div>
-    </div>
-
-    <div class="question-block">
-      <p class="question-text">
-        Pregunta 4:
-      </p>
-      <div class="options-group">
-        <label class="radio-circle-label">
-          <input type="radio" name="pregunta4" value="1">
-          <span class="radio-circle-custom"></span>
-        </label>
-        <label class="radio-circle-label">
-          <input type="radio" name="pregunta4" value="2">
-          <span class="radio-circle-custom"></span>
-        </label>
-        <label class="radio-circle-label">
-          <input type="radio" name="pregunta4" value="3">
-          <span class="radio-circle-custom"></span>
-        </label>
-        <label class="radio-circle-label">
-          <input type="radio" name="pregunta4" value="4">
-          <span class="radio-circle-custom"></span>
-        </label>
-        <label class="radio-circle-label">
-          <input type="radio" name="pregunta4" value="5">
-          <span class="radio-circle-custom"></span>
-        </label>
-      </div>
-    </div>
-
-    <div class="question-block">
-      <p class="question-text">
-        Pregunta 5:
-      </p>
-      <div class="options-group">
-        <label class="radio-circle-label">
-          <input type="radio" name="pregunta5" value="1">
-          <span class="radio-circle-custom"></span>
-        </label>
-        <label class="radio-circle-label">
-          <input type="radio" name="pregunta5" value="2">
-          <span class="radio-circle-custom"></span>
-        </label>
-        <label class="radio-circle-label">
-          <input type="radio" name="pregunta5" value="3">
-          <span class="radio-circle-custom"></span>
-        </label>
-        <label class="radio-circle-label">
-          <input type="radio" name="pregunta5" value="4">
-          <span class="radio-circle-custom"></span>
-        </label>
-        <label class="radio-circle-label">
-          <input type="radio" name="pregunta5" value="5">
-          <span class="radio-circle-custom"></span>
-        </label>
-      </div>
-    </div>
-
-    <button type="submit" class="btn-enviar">Enviar</button>
-
+    <button type="submit" mat-raised-button color="primary" class="btn-enviar"
+            [disabled]="testForm.invalid || isSubmitting">
+      {{ isSubmitting ? 'Enviando...' : 'Enviar' }}
+    </button>
   </form>
-
 </div>

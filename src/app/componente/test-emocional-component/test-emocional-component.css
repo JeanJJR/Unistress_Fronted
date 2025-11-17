@@ -1,4 +1,3 @@
-
 /* Contenedor principal (a la derecha del sidebar) */
 .main-content {
   margin-left: 280px;
@@ -16,91 +15,167 @@
   font-weight: 500;
   font-size: 32px;
   color: #000;
-  margin-bottom: 48px;
+  margin-bottom: 32px;
   text-align: left;
   width: 100%;
 }
 
-/* Contenedor del formulario */
-.test-form {
+/* Contenedor del Spinner de carga */
+.spinner-container {
+  width: 100%;
   display: flex;
   flex-direction: column;
-  width: 100%;
-
+  justify-content: center;
+  align-items: center;
+  padding: 100px 0;
+  gap: 16px;
+  color: #555;
+  font-family: "Poppins-Regular", Helvetica;
 }
 
-/* (Texto + Círculos) vertical*/
+/* Tarjeta de instrucciones */
+.instructions-card {
+  width: 100%;
+  max-width: 900px;
+  margin-bottom: 40px;
+  background-color: #e8f5e9;
+  border-left: 5px solid #4CAF50;
+  font-family: "Poppins-Regular", Helvetica;
+  line-height: 1.6;
+  color: #333;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+  border-radius: 8px;
+}
+.instructions-card mat-card-content p {
+  margin: 0;
+  padding: 10px 0;
+}
+
+/* Formulario */
+form {
+  width: 100%;
+  max-width: 900px;
+}
+
+/* Bloque de cada pregunta (Texto + Opciones) */
 .question-block {
   display: flex;
   flex-direction: column;
-  margin-bottom: 32px;
+  margin-bottom: 30px;
   width: 100%;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+  border: 1px solid #e0e0e0;
 }
 
-/* texto de la pregunta */
+/* Texto de la pregunta */
 .question-text {
   font-family: "Poppins-Medium", Helvetica;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 500;
   color: #333;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   line-height: 1.5;
+  text-align: left;
 }
 
-/* Contenedor de los 5 círculos de opción */
+/* Contenedor de los 5 círculos (mat-radio-group) */
 .options-group {
   display: flex;
   width: 100%;
-  justify-content: space-around;
-  padding: 0 30px;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0 10px;
   box-sizing: border-box;
 }
 
-/* Label que envuelve el radio-button */
-.radio-circle-label {
-  display: block;
-  cursor: pointer;
-  position: relative;
+/* Estilos para los labels de los radio buttons */
+.radio-label-text {
+  font-family: "Poppins-Regular", Helvetica;
+  font-size: 14px;
+  font-weight: 500;
+  color: #555;
+  white-space: nowrap;
+  text-align: center;
+  margin-top: 10px;
+  width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-/* Oculta el radio button real */
-.radio-circle-label input[type="radio"] {
-  display: none;
+/* Estilos para el radio button de Material */
+::ng-deep .mat-mdc-radio-button {
+  --mdc-radio-selected-icon-color: #7EC8E3 !important;
+  --mdc-radio-selected-focus-icon-color: #7EC8E3;
+  --mdc-radio-selected-hover-icon-color: #7EC8E3;
+
+  --mat-mdc-radio-ripple-color: #B6E2D3;
+
+  --mdc-radio-unselected-icon-color: #ccc;
+  --mdc-radio-unselected-hover-icon-color: #B6E2D3;
+
+  /* Tamaño del radio button */
+  --mdc-radio-state-layer-size: 40px;
+  --mdc-radio-state-layer-shape: 50%;
+  --mdc-radio-state-layer-opacity: 0.1;
+  --mdc-radio-focus-state-layer-opacity: 0.1;
 }
 
-/* círculo */
-.radio-circle-custom {
-  display: block;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background-color: #c9c5c2;
-  transition: all 0.2s ease-in-out;
+::ng-deep .options-group .mat-mdc-radio-button .mdc-form-field {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 5px;
 }
 
-/* radio button*/
-.radio-circle-label input[type="radio"]:checked + .radio-circle-custom {
-  background-color: #B6E2D3;
-  box-shadow: 0 0 10px rgba(160, 217, 200, 0.8);
-  transform: scale(1.1);
+::ng-deep .options-group .mat-mdc-radio-button:nth-child(2) .radio-label-text,
+::ng-deep .options-group .mat-mdc-radio-button:nth-child(4) .radio-label-text {
+  visibility: hidden;
+  height: 0;
+  margin: 0;
+  padding: 0;
 }
 
 /* Botón de Enviar */
 .btn-enviar {
   align-self: center;
-  margin-top: 32px;
+  margin-top: 40px;
   border: none;
   border-radius: 8px;
-  padding: 14px 48px;
-  font-size: 16px;
+  padding: 16px 56px;
+  font-size: 18px;
   font-weight: bold;
   color: white;
-  background: linear-gradient(90deg, #74a8d0 0%, #a0d9c8 100%);
+  background: linear-gradient(90deg, #5AB1BB 0%, #458B8F 100%);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-.btn-enviar:hover {
-  opacity: 0.9;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+.btn-enviar:not([disabled]):hover {
+  opacity: 0.95;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+  transform: translateY(-2px);
+}
+
+.btn-enviar:disabled {
+  background: #c9c5c2;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+::ng-deep .snackbar-success {
+  background-color: #4CAF50 !important;
+  color: white !important;
+  font-family: "Poppins-Regular", Helvetica;
+}
+
+::ng-deep .snackbar-error {
+  background-color: #f44336 !important;
+  color: white !important;
+  font-family: "Poppins-Regular", Helvetica;
 }

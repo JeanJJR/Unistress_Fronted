@@ -1,7 +1,6 @@
 export interface PreguntaTest {
-  id: number;
-  testId: number;
+  id?: number;
   pregunta: string;
-  respuesta: string;
+  respuesta?: string;
   puntaje: number;
 }
