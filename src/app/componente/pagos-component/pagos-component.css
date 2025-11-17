@@ -18,7 +18,7 @@
 
 }
 
-/* Tarjeta */
+
 .card {
   background: #fff;
   border: 1px solid #000;
@@ -32,7 +32,7 @@
 .card-head {
   background: #cfeadf;
   padding: 10px 12px;
-  border-bottom: 2px solid #bdbdbd;       /* línea negra como tu imagen */
+  border-bottom: 2px solid #bdbdbd;       s
   display: flex;
   justify-content: space-between;
   align-items: baseline;
@@ -41,28 +41,28 @@
 .sub { font-weight: 400; font-size: 14px; color: #555; margin-left: 6px; }
 .monto { font-weight: 700; }
 
-/* Cuerpo*/
+
 .card-body {
   background: #ffffff;
   padding: 14px;
   transition: background-color .15s ease;
 }
 
-/* Solo el CUERPO en celeste cuando está seleccionado */
+
 .card.selected .card-body {
   background: #e8f5ff;                 /* celeste */
 }
 
-/* El no seleccionado queda blanco; si quieres, un leve “dim” */
+
 .card.dimmed .card-body {
   background: #ffffff;
   opacity: 0.95;
 }
 
-/* Features */
+
 .features { margin: 8px 0 12px; padding-left: 16px; color: #4d4d4d; }
 
-/* Resumen */
+
 .resumen {
   border: 1px solid #dfe5ea;
   border-radius: 8px;
@@ -73,17 +73,17 @@
 .row { display: flex; justify-content: space-between; margin-bottom: 6px; }
 .row.total { font-weight: 700; }
 
-/* Métodos de pago */
+
 .metodos .label { margin: 0 0 6px; font-weight: 600; }
 .radio {
   display: flex;
   align-items: center;
-  gap: 10px;               /* espacio entre input, texto e imagen */
+  gap: 10px;
   margin-bottom: 8px;
 }
 .radio input { accent-color: #2f80ed; }
 .brand-strip {
-  height: 20px;            /* tamaño uniforme de las tiras */
+  height: 20px;
   object-fit: contain;
   display: inline-block;
   vertical-align: middle;
@@ -91,10 +91,8 @@
 }
 
 .card-logos { height: 20px; }
-.yape-logos { height: 22px; }  /* un pelín más alta si lo necesitas */
+.yape-logos { height: 22px; }
 
-/* Cuando el plan NO es el seleccionado, los controles quedan deshabilitados.
-   Esto hace que texto e imagen se vean "apagados". */
 .radio input:disabled ~ span,
 .features{
   list-style-type: none;
@@ -104,7 +102,7 @@
   filter: grayscale(25%);
   pointer-events: none;
 }
-/* Botón */
+
 .btn {
   padding: 10px 14px;
   border: none;
