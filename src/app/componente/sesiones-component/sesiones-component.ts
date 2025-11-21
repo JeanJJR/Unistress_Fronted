@@ -18,6 +18,7 @@ import {Router} from '@angular/router';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {UsuarioService} from '../../services/usuario-servicio';
 import {Usuario} from '../../model/usuario';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-sesiones-component',
@@ -59,7 +60,7 @@ export class SesionesComponent {
 
   //psciologo: Usuario = new Usuario();
 
-  constructor() {
+  constructor(private snackBar: MatSnackBar) {
     this.sesionForm = this.fb.group({
       mensaje: ['', Validators.required],
       fecha: ['', Validators.required],
@@ -154,7 +155,6 @@ export class SesionesComponent {
 
   onSubmit() {
     if (this.sesionForm.valid) {
-
       const sesion = {
         fecha: this.sesionForm.value.fecha,
         hora: this.sesionForm.value.hora,
@@ -164,23 +164,37 @@ export class SesionesComponent {
         estudianteId: this.estudianteId
       };
 
-      console.log("Datos a enviar (DTO):", sesion);
-
       this.sesionService.crearsesion(sesion).subscribe({
-        next: (data: Object) => {
-          alert("Sesión registrada exitosamente");
+        next: () => {
+          this.snackBar.open(' Sesión registrada exitosamente', 'Cerrar', {
+            duration: 3000,
+            horizontalPosition: 'center',
+            verticalPosition: 'top'
+          });
           this.cargarSesiones();
-          this.sesionForm.reset(); // Limpiar formulario
+          this.sesionForm.reset();
         },
         error: (err) => {
-          console.error("Error al registrar sesión:", err);
-          alert("Error al registrar: " + (err.error?.message || err.message));
+          this.snackBar.open(
+            ' Ingrese la fecha que sea a partir del 3 dia que se esta registrando: ',
+            'Cerrar',
+            {
+              duration: 4000,
+              horizontalPosition: 'center',
+              verticalPosition: 'top'
+            }
+          );
         }
       });
     } else {
-      alert("Por favor, complete todos los campos requeridos.");
+      this.snackBar.open(' Por favor, complete todos los campos requeridos.', 'Cerrar', {
+        duration: 3000,
+        horizontalPosition: 'center',
+        verticalPosition: 'top'
+      });
     }
   }
+
 
   getPsicologoNombre(id: number): string {
     const psicologo = this.listarpsicologos.find(p => p.id === id);

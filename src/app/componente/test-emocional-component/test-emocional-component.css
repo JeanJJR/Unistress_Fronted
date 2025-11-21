@@ -34,9 +34,10 @@
 }
 
 /* Tarjeta de instrucciones */
+/* Tarjeta de instrucciones */
 .instructions-card {
-  width: 100%;
-  max-width: 900px;
+  width: 100%;              /* ocupa todo el ancho disponible */
+  max-width: 900px;         /* límite en pantallas grandes */
   margin-bottom: 40px;
   background-color: #e8f5e9;
   border-left: 5px solid #4CAF50;
@@ -45,11 +46,35 @@
   color: #333;
   box-shadow: 0 4px 8px rgba(0,0,0,0.08);
   border-radius: 8px;
+  box-sizing: border-box;   /* asegura que padding no rompa el ancho */
 }
-.instructions-card mat-card-content p {
-  margin: 0;
-  padding: 10px 0;
+
+/* Bloque de cada pregunta (Texto + Opciones) */
+.question-block {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+  width: 100%;              /* ocupa todo el ancho disponible */
+  max-width: 900px;         /* límite en pantallas grandes */
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+  border: 1px solid #e0e0e0;
+  box-sizing: border-box;   /* asegura que padding no rompa el ancho */
+  margin-left: auto;        /* centra horizontalmente */
+  margin-right: auto;
 }
+
+/* Responsividad para pantallas pequeñas */
+@media (max-width: 600px) {
+  .instructions-card,
+  .question-block {
+    padding: 16px;          /* reduce padding en móvil */
+    margin-bottom: 20px;
+  }
+}
+
 
 /* Formulario */
 form {
@@ -141,7 +166,8 @@ form {
 /* Botón de Enviar */
 .btn-enviar {
   align-self: center;
-  margin-top: 40px;
+  margin: 40px auto 0 auto;
+  display: block;
   border: none;
   border-radius: 8px;
   padding: 16px 56px;
@@ -178,4 +204,35 @@ form {
   background-color: #f44336 !important;
   color: white !important;
   font-family: "Poppins-Regular", Helvetica;
+}
+/* Botón con gradiente estándar */
+.btn-gradient {
+  background: linear-gradient(to left, #74ADCD, #A1D1D1) !important;
+  color: #000 !important;
+  border: none;
+  padding: 12px 32px;
+  border-radius: 8px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+  white-space: nowrap;
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+}
+
+/* Hover */
+.btn-gradient:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+  box-shadow: 3px 3px 8px rgba(0,0,0,0.25);
+}
+
+/* Disabled */
+.btn-gradient:disabled {
+  background: #c9c5c2 !important;
+  color: #666 !important;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
 }

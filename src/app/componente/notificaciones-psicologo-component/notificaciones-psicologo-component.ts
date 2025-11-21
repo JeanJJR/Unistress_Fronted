@@ -26,7 +26,7 @@ export class NotificacionesPsicologoComponent {
   notificacionesService: NotificacionService = inject(NotificacionService)
   route: Router = inject(Router);
 
-  psicologoid: number = 3;
+  psicologoid: number =Number(localStorage.getItem('userId'));
   public notificacionesEncendidas: boolean = false;
 
   constructor() {

@@ -4,6 +4,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { RecomendacionService } from '../../services/recoemendacion-service';
 import { Recomendacion } from '../../model/recomendacion';
+import {MatDialog} from '@angular/material/dialog';
+import {Resumen} from './Resumen/Resumen';
 
 @Component({
   selector: 'app-recomendaciones-component',
@@ -43,4 +45,13 @@ export class RecomendacionesComponent implements OnInit {
       }
     });
   }
+  constructor(private dialog: MatDialog) {}
+
+  verResumen(rec: Recomendacion): void {
+    this.dialog.open(Resumen, {
+      data: rec,
+      width: '500px'
+    });
+  }
+
 }

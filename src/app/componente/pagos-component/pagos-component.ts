@@ -18,6 +18,7 @@ interface Plan {
 import { SuscripcionService } from '../../services/suscripcion-service';
 import { PagoService } from '../../services/pago-service';
 import { Suscripcion } from '../../model/suscripcion';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-pagos-component',
@@ -68,7 +69,8 @@ export class PagosComponent implements OnInit {
 
   constructor(
     private suscripcionService: SuscripcionService,
-    private pagoService: PagoService
+    private pagoService: PagoService,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -125,7 +127,6 @@ export class PagosComponent implements OnInit {
       return;
     }
 
-    // ✅ Solo actualizamos el campo "tipo"
     const suscripcionActualizada: Suscripcion = {
       ...this.suscripcionActiva,
       tipo: planId === 'basic' ? 'BASICA' : 'PREMIUM',
@@ -152,11 +153,21 @@ export class PagosComponent implements OnInit {
             this.mensajeOk = 'Suscripción y pago actualizados.';
             this.loading = false;
             this.cargarSuscripcionActiva();
+            this.snackBar.open(' Suscripción y pago actualizados correctamente', 'Cerrar', {
+              duration: 3000,
+              horizontalPosition: 'center',
+              verticalPosition: 'top'
+            });
           },
           error: (err) => {
             console.error('Error en pago:', err);
             this.error = 'Suscripción actualizada, pero el pago falló.';
             this.loading = false;
+            this.snackBar.open(' Suscripción actualizada, pero el pago falló', 'Cerrar', {
+              duration: 4000,
+              horizontalPosition: 'center',
+              verticalPosition: 'top'
+            });
           }
         });
       },

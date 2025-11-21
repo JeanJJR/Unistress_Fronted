@@ -13,22 +13,12 @@ export class TestEmocionalService {
 
   private http = inject(HttpClient);
 
-  private getHeaders(): HttpHeaders {
-    const token = localStorage.getItem('token');
-    let headers = new HttpHeaders({
-      'Content-Type': 'application/json'
-    });
 
-    if (token) {
-      headers = headers.set('Authorization', `Bearer ${token}`);
-    }
-    return headers;
-  }
 
   resolver(test: TestEmocional): Observable<TestEmocional> {
     return this.http.post<TestEmocional>(`${this.url}/resolver`, test, {
-      headers: this.getHeaders(),
-      withCredentials: true
+      //headers: this.getHeaders(),
+      //withCredentials: true
     });
   }
   obtenerPromedio(usuarioId: number): Observable<number> {

@@ -5,12 +5,15 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialog, MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Inject } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BancoPregunta } from '../../model/banco-pregunta';
 import { BancoPreguntaService } from '../../services/banco-pregunta.service';
 import { TestEmocionalService } from '../../services/test-emocional-service';
 import { TestEmocional } from '../../model/test-emocional';
+import {TestResultadoDialog} from './TestResultadoDialog/TestResultadoDialog-component';
 
 @Component({
   selector: 'app-test-emocional-component',
@@ -22,7 +25,8 @@ import { TestEmocional } from '../../model/test-emocional';
     MatButtonModule,
     MatCardModule,
     MatProgressSpinnerModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatDialogModule
   ],
   templateUrl: './test-emocional-component.html',
   styleUrls: ['./test-emocional-component.css'],
@@ -36,12 +40,14 @@ export class TestEmocionalComponent implements OnInit {
   private testEmocionalService = inject(TestEmocionalService);
   private fb = inject(FormBuilder);
   private snackBar = inject(MatSnackBar);
+  private dialog = inject(MatDialog);
   private router = inject(Router);
 
   preguntasTest: BancoPregunta[] = [];
   testForm: FormGroup;
-  isLoading = true;
+  isLoading = false;
   isSubmitting = false;
+  mostrarFormulario = false;
 
   opcionesRespuesta = [
     { label: 'En desacuerdo', value: 1 },
@@ -57,22 +63,24 @@ export class TestEmocionalComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    this.cargarPreguntasAleatorias();
-  }
+  ngOnInit(): void {}
 
   get respuestas(): FormArray {
     return this.testForm.get('respuestas') as FormArray;
   }
 
+  iniciarTest(): void {
+    this.mostrarFormulario = true;
+    this.cargarPreguntasAleatorias();
+  }
+
   cargarPreguntasAleatorias(): void {
     this.isLoading = true;
+    this.respuestas.clear();
 
     this.bancoPreguntaService.listar().subscribe({
       next: (todasLasPreguntas) => {
-
         const preguntasBarajadas = todasLasPreguntas.sort(() => 0.5 - Math.random());
-
         this.preguntasTest = preguntasBarajadas.slice(0, this.NUM_PREGUNTAS);
 
         this.preguntasTest.forEach(() => {
@@ -116,11 +124,18 @@ export class TestEmocionalComponent implements OnInit {
     this.testEmocionalService.resolver(testPayload).subscribe({
       next: (testResuelto) => {
         this.isSubmitting = false;
-        this.showMessage(`Test enviado. Tu puntaje es: ${testResuelto.puntajeTotal} (${testResuelto.nivelEstres})`, 'success');
 
-        this.testForm.reset();
-        this.respuestas.clear();
-        this.cargarPreguntasAleatorias();
+        // Mostrar resultado en un dialog emergente
+        this.dialog.open(TestResultadoDialog, {
+          data: {
+            mensaje: `Tu puntaje es: ${testResuelto.puntajeTotal} (${testResuelto.nivelEstres})`
+          }
+        }).afterClosed().subscribe(() => {
+          // Reiniciar flujo: ocultar formulario y mostrar botón inicial
+          this.testForm.reset();
+          this.respuestas.clear();
+          this.mostrarFormulario = false;
+        });
       },
       error: (err) => {
         this.isSubmitting = false;
@@ -137,3 +152,5 @@ export class TestEmocionalComponent implements OnInit {
     });
   }
 }
+
+

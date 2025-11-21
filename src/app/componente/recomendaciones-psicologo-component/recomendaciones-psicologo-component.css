@@ -1,241 +1,152 @@
-/* LAYOUT PRINCIPAL */
+/* LAYOUT PRINCIPAL - RECOMENDACIONES */
 .main-content {
-  margin-left: 280px;
-  padding: 60px 40px;
+  position: relative;
   min-height: 100vh;
   background-color: #f4f6f8;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  /* igual que vista-emocional: padding: 40px 0 0 280px */
+  padding: 10px 0 0px 150px; /* top | right | bottom | left (sidebar reservado) */
+  box-sizing: border-box;
+  display: block;            /* evita re-centrado por flex */
 }
 
+/* TÍTULO */
 .page-title {
   font-family: "Poppins-Medium", Helvetica;
   font-weight: 500;
   font-size: 32px;
   color: #000;
-  margin-bottom: 32px;
+  margin-bottom: 40px;
+  margin-left: 40px;         /* como en vista-emocional */
   text-align: left;
   width: 100%;
 }
 
-.form-container {
+/* CONTENEDOR PRINCIPAL (centrado como en vista-emocional) */
+.recommendation-list,
+.form-container,
+.history-container {
   width: 100%;
-  max-width: 800px;
-  margin-bottom: 48px;
+  max-width: 1200px;         /* usa 1200 como en vista-emocional */
+  margin: 0 auto 40px auto;  /* centrado horizontal + separación inferior */
 }
 
-/* GRID */
-.form-row {
+/* TARJETAS */
+.recommendation-card {
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  border-radius: 8px;
+  margin-bottom: 24px;
+}
+.card-title {
+  font-family: "Poppins-Medium", Helvetica;
+  font-size: 20px;
+  color: #000;
+}
+
+/* BOTÓN RESUMEN ARRIBA DERECHA */
+.card-header {
   display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  width: 100%;
-  margin-bottom: 24px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px 12px 24px;
 }
-
-.form-field-half {
-  flex: 1;
-  min-width: 250px;
-  display: block;
+.resumen-btn {
+  background: linear-gradient(to left, #74ADCD, #A1D1D1) !important;
+  color: #000 !important;
+  font-weight: 400;
+  border-radius: 6px;
+  padding: 8px 16px;
+  transition: opacity 0.3s ease;
 }
+.resumen-btn:hover { opacity: 0.85; }
 
-.form-field-full {
-  width: 100%;
-  display: block;
-  margin-bottom: 24px;
-}
+/* FORM GRID (mantengo tu configuración) */
+.form-row { display: flex; flex-wrap: wrap; gap: 16px; width: 100%; margin-bottom: 24px; }
+.form-field-half { flex: 1; min-width: 250px; display: block; }
+.form-field-full { width: 100%; display: block; margin-bottom: 24px; }
+.form-field-half mat-form-field, .form-field-full mat-form-field { width: 100%; }
 
-/* Forzar ancho completo en componentes Material */
-.form-field-half mat-form-field,
-.form-field-full mat-form-field {
-  width: 100%;
-}
-
-/* ESTILOS INPUTS */
-/* Selects: Fondo Verde */
+/* INPUTS */
 .form-field-half .mat-mdc-form-field-flex {
-  background-color: #B6E2D3;
-  border: 1px solid #b2c9c1;
-  border-radius: 8px;
-  padding: 8px 14px 0 14px;
+  background-color: #B6E2D3; border: 1px solid #b2c9c1; border-radius: 8px; padding: 8px 14px 0 14px;
 }
-
-/* Textarea: Fondo Blanco */
 .form-field-full .mat-mdc-form-field-flex {
-  background-color: #ffffff;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 8px 12px 0 12px;
+  background-color: #ffffff; border: 1px solid #ccc; border-radius: 8px; padding: 8px 12px 0 12px;
 }
-
-/* Ocultar línea inferior */
-.mat-mdc-form-field-underline {
-  display: none;
-}
-
-/* Tipografía */
+.mat-mdc-form-field-underline { display: none; }
 .mat-mdc-form-field-input-control.mat-mdc-form-field-input-control {
-  font-family: "Poppins-Regular", Helvetica;
-  font-size: 16px;
+  font-family: "Poppins-Regular", Helvetica; font-size: 16px;
 }
+.form-field-full textarea.mat-mdc-input-element { background-color: transparent; }
 
-.form-field-full textarea.mat-mdc-input-element {
-  background-color: transparent;
+/* RADIO BUTTONS */
+.form-group { display: flex; flex-direction: column; margin-bottom: 24px; width: 100%; }
+.form-group > .mat-label, .form-group > label {
+  font-family: "Poppins-Medium", Helvetica; font-weight: 500; font-size: 16px; color: #333; margin-bottom: 12px; display: block;
 }
-
-/* RADIO BUTTONS PERSONALIZADOS */
-.form-group {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 24px;
-  width: 100%;
-}
-
-.form-group > .mat-label,
-.form-group > label {
-  font-family: "Poppins-Medium", Helvetica;
-  font-weight: 500;
-  font-size: 16px;
-  color: #333;
-  margin-bottom: 12px;
-  display: block;
-}
-
-.tipo-options-group {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-}
-
-/* Ocultar radio nativo */
-.tipo-options-group mat-radio-button .mdc-radio,
-.tipo-options-group mat-radio-button .mat-ripple {
-  display: none !important;
-  width: 0;
-  height: 0;
-  padding: 0;
-  margin: 0;
-}
-
-/* Estilo caja etiqueta */
+.tipo-options-group { display: flex; flex-wrap: wrap; gap: 30px; }
+.tipo-options-group mat-radio-button .mdc-radio, .tipo-options-group mat-radio-button .mat-ripple { display: none !important; }
 .tipo-options-group mat-radio-button .mdc-label {
-  display: inline-block;
-  padding: 12px 18px;
-  background-color: #e0e8e5;
-  border: 1px solid #b2c9c1;
-  border-radius: 8px;
-  cursor: pointer;
-  font-family: "Poppins-Medium", Helvetica;
-  font-weight: 500;
-  color: #333;
-  transition: all 0.2s ease;
-  padding-left: 18px !important;
+  display: inline-block; padding: 12px 18px; background-color: #e0e8e5; border: 1px solid #b2c9c1; border-radius: 8px; cursor: pointer;
+  font-family: "Poppins-Medium", Helvetica; font-weight: 500; color: #333; transition: all 0.2s;
 }
-
-/* [ ] Pseudo elemento */
-.tipo-options-group mat-radio-button .mdc-label::after {
-  content: ' [ ]';
-  margin-left: 8px;
-  font-weight: normal;
-  color: #555;
-}
-
-/* Seleccionado */
+.tipo-options-group mat-radio-button .mdc-label::after { content: ' [ ]'; margin-left: 8px; color: #555; }
 .tipo-options-group mat-radio-button.mat-mdc-radio-checked .mdc-label {
-  background-color: #B6E2D3;
-  border-color: #8da9a1;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  background-color: #B6E2D3; border-color: #8da9a1; box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
-
-.tipo-options-group mat-radio-button.mat-mdc-radio-checked .mdc-label::after {
-  content: ' [x]';
-  color: #111;
-}
-
-.tipo-options-group mat-radio-button {
-  margin-right: 0;
-}
-
-.form-group mat-error {
-  font-size: 12px;
-  color: #f44336;
-  margin-top: 6px;
-}
+.tipo-options-group mat-radio-button.mat-mdc-radio-checked .mdc-label::after { content: ' [x]'; color: #111; }
+.form-group mat-error { font-size: 12px; color: #f44336; margin-top: 6px; }
 
 /* BOTÓN GUARDAR */
 .btn-guardar {
-  background-color: #a0d9c8 !important;
-  color: black !important;
-  border: none;
-  border-radius: 8px;
-  padding: 10px 28px !important;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-  box-shadow: none !important;
-  height: auto !important;
+  background: linear-gradient(to left, #74ADCD, #A1D1D1) !important; color: #000 !important; border: none;
+  padding: 12px 32px; border-radius: 8px; font-family: "Poppins", sans-serif; font-weight: 500;
+  cursor: pointer; transition: all 0.2s; text-align: center; white-space: nowrap;
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.2); margin: 0 auto; display: block;
 }
-
-.btn-guardar:hover {
-  background-color: #8cc9b6 !important;
-}
+.btn-guardar:hover { opacity: 0.85; }
 
 /* TABLA HISTORIAL */
-.history-container {
-  width: 100%;
-  max-width: 800px;
-}
-
 .history-title {
-  font-family: "Poppins-Medium", Helvetica;
-  font-weight: 500;
-  font-size: 20px;
-  color: #000;
-  margin-bottom: 16px;
-  border-bottom: 2px solid #ddd;
-  padding-bottom: 8px;
+  font-family: "Poppins-Medium", Helvetica; font-weight: 500; font-size: 20px; color: #000;
+  margin-bottom: 16px; border-bottom: 2px solid #ddd; padding-bottom: 8px;
 }
-
 .history-table-wrapper {
-  background: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  overflow: hidden;
+  background: #ffffff; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); overflow: hidden;
 }
-
-.history-table {
-  width: 100%;
-  border-collapse: collapse;
+.history-table { width: 100%; border-collapse: collapse; }
+.history-table .mat-mdc-header-cell, .history-table .mat-mdc-cell {
+  padding: 16px; text-align: left; border-bottom: 1px solid #f0f0f0;
+  font-family: "Poppins-Regular", Helvetica; font-size: 14px; color: #333;
 }
-
-.history-table .mat-mdc-header-cell,
-.history-table .mat-mdc-cell {
-  padding: 16px;
-  text-align: left;
-  border-bottom: 1px solid #f0f0f0;
-  font-family: "Poppins-Regular", Helvetica;
-  font-size: 14px;
-  color: #333;
-}
-
 .history-table .mat-mdc-header-cell {
-  background-color: #f9f9f9;
-  font-weight: 600;
-  color: #555;
-  font-family: "Poppins-Medium", Helvetica;
+  background-color: #f9f9f9; font-weight: 600; color: #555; font-family: "Poppins-Medium", Helvetica;
 }
+.history-table tr:last-child .mat-mdc-cell { border-bottom: none; }
+.no-data-cell { padding: 24px; text-align: center; color: #666; font-style: italic; background: white; }
 
-.history-table tr:last-child .mat-mdc-cell {
-  border-bottom: none;
+/* RESPONSIVIDAD: solo se acomoda en pantallas pequeñas */
+@media (max-width: 1024px) {
+  .main-content {
+    padding: 24px 16px 40px 16px; /* elimina reserva del sidebar */
+  }
+  .page-title { margin-left: 0; text-align: center; }
+  .recommendation-list, .form-container, .history-container {
+    max-width: 100%; margin: 0;
+  }
 }
+@media (max-width: 600px) {
+  .main-content { padding: 16px 12px 32px 12px; }
+  .recommendation-list, .form-container, .history-container {
+    max-width: 100%; margin: 0; padding: 0;
+  }
+  .resumen-btn { font-size: 14px; padding: 6px 12px; }
 
-.no-data-cell {
-  padding: 24px;
-  text-align: center;
-  color: #666;
-  font-style: italic;
-  background: white;
 }
-
+.tooltip-scroll {
+  max-width: 900px;      /* ancho máximo del tooltip */
+  max-height: 900px;     /* alto máximo antes de mostrar scroll */
+  overflow-y: auto;      /* activa scroll vertical */
+  white-space: normal;   /* permite saltos de línea */
+  padding: 18px;          /* espacio interno */
+}

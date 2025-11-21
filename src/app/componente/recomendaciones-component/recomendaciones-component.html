@@ -16,16 +16,21 @@
     </div>
 
     <mat-card class="recommendation-card" *ngFor="let rec of recomendaciones; let i = index">
-
-      <mat-card-title class="card-title">Recomendación {{ i + 1 }}</mat-card-title>
+      <div class="card-header">
+        <mat-card-title class="card-title">Recomendación {{ i + 1 }}</mat-card-title>
+        <button mat-button class="boton-dialogo resumen-btn" (click)="verResumen(rec)">
+          Ver resumen completo
+        </button>
+      </div>
 
       <mat-card-content class="card-content">
         <p><strong>Tipo:</strong> {{ rec.tipo }}</p>
-
-        <p>{{ rec.mensaje }}</p>
+        <p>{{ rec.mensaje | slice:0:50 }}...</p>
       </mat-card-content>
-
     </mat-card>
+
+
+
 
   </div>
 </div>

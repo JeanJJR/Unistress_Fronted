@@ -21,6 +21,9 @@ import { RegistroEmocional } from '../../model/estado-emocional';
 import { RecomendacionService } from '../../services/recoemendacion-service';
 import { UsuarioService } from '../../services/usuario-servicio';
 import { RegistroEmocionalService } from '../../services/estado-emocional-service';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {MatTooltip} from '@angular/material/tooltip';
+
 
 @Component({
   selector: 'app-recomendaciones-psicologo-component',
@@ -36,7 +39,8 @@ import { RegistroEmocionalService } from '../../services/estado-emocional-servic
     MatTableModule,
     MatRadioGroup,
     MatRadioButton,
-    SlicePipe
+    SlicePipe,
+    MatTooltip
   ],
   templateUrl: './recomendaciones-psicologo-component.html',
   styleUrl: './recomendaciones-psicologo-component.css',
@@ -56,7 +60,7 @@ export class RecomendacionesPsicologoComponent {
   isLoadingRegistros = false;
 
   // Configuración de Tabla
-  displayedColumnsRecomendaciones: string[] = ['id', 'nombreEstudiante', 'registroEmocionalId', 'tipo', 'mensaje'];
+  displayedColumnsRecomendaciones: string[] = ['id',  'tipo', 'mensaje'];
   dataSourceHistorialRecomendaciones: MatTableDataSource<Recomendacion> = new MatTableDataSource<Recomendacion>();
   @ViewChild(MatSort) sort: MatSort;
 
@@ -66,7 +70,7 @@ export class RecomendacionesPsicologoComponent {
   usuarioService: UsuarioService = inject(UsuarioService);
   route: Router = inject(Router);
 
-  constructor() {
+  constructor(private snackBar: MatSnackBar) {
     this.recomendacionForm = this.fb.group({
       estudianteId: [null, Validators.required],
       // Inicia deshabilitado hasta que se elija estudiante
@@ -113,9 +117,18 @@ export class RecomendacionesPsicologoComponent {
 
   cargarRegistrosPorEstudiante(estudianteId: number) {
     this.isLoadingRegistros = true;
+
     this.registroEmocionalService.listarPorUsuario(estudianteId).subscribe({
-      next: (data) => {
-        this.registrosEmocionales = data;
+      next: (data: RegistroEmocional[]) => {
+        // Filtrar registros que ya tienen recomendación
+        const usados = this.dataSourceHistorialRecomendaciones.data
+          .map(r => r.registroEmocionalId)
+          .filter((id): id is number => id !== undefined);
+
+        this.registrosEmocionales = data.filter(
+          reg => reg.id !== undefined && !usados.includes(reg.id)
+        );
+
         this.isLoadingRegistros = false;
       },
       error: (err) => {
@@ -156,7 +169,13 @@ export class RecomendacionesPsicologoComponent {
     this.recomendacionService.crearRecomendacion(nuevaRecomendacion).subscribe({
       next: (res) => {
         console.log('Guardado exitoso', res);
-        alert('¡Recomendación guardada con éxito!');
+        //alert('¡Recomendación guardada con éxito!');
+        this.snackBar.open('Recomendación guardada con éxito', 'Cerrar', {
+          duration: 3000, // tiempo en ms
+          horizontalPosition: 'center',
+          verticalPosition: 'top'
+        });
+
 
         this.recomendacionForm.reset();
         // Limpieza de errores visuales

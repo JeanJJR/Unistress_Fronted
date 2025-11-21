@@ -3,11 +3,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Suscripcion } from '../model/suscripcion';
+import {environment} from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class SuscripcionService {
 
-  private apiUrl = 'http://localhost:8080/api/suscripcion';
+  //private apiUrl = 'http://localhost:8080/api/suscripcion';
+  private apiUrl = `${environment.apiURL}/suscripcion`;
 
   constructor(private http: HttpClient) {}
 

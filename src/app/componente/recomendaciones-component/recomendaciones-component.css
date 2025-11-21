@@ -80,3 +80,22 @@
   font-style: italic;
   font-size: 16px;
 }
+.card-header {
+  display: flex;
+  justify-content: space-between; /* título a la izquierda, botón a la derecha */
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.resumen-btn {
+  background: linear-gradient(to left, #74ADCD, #A1D1D1) !important;
+  color: #000 !important;
+  font-weight: 400;
+  border-radius: 6px;
+  padding: 6px 14px;
+  transition: opacity 0.3s ease;
+}
+
+.resumen-btn:hover {
+  opacity: 0.85;
+}

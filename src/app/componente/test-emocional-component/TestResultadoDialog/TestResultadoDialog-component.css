@@ -1,0 +1,28 @@
+.btn-gradient {
+  background: linear-gradient(to left, #74ADCD, #A1D1D1) !important;
+  color: #000 !important;
+  border: none;
+  padding: 12px 32px;
+  border-radius: 8px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+  white-space: nowrap;
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+}
+
+.btn-gradient:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+  box-shadow: 3px 3px 8px rgba(0,0,0,0.25);
+}
+
+.btn-gradient:disabled {
+  background: #c9c5c2 !important;
+  color: #666 !important;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}

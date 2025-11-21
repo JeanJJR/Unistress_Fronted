@@ -1,12 +1,25 @@
 <div class="main-content">
   <h2 class="page-title">Test Emocional</h2>
 
-  <div *ngIf="isLoading" class="spinner-container">
+  <!-- Botón inicial -->
+  <!-- Botón inicial -->
+  <button *ngIf="!mostrarFormulario"
+          mat-raised-button
+          class="btn-gradient"
+          (click)="iniciarTest()">
+    Iniciar Test
+  </button>
+
+  <!-- Spinner de carga -->
+  <div *ngIf="isLoading && mostrarFormulario" class="spinner-container">
     <mat-progress-spinner mode="indeterminate" diameter="50"></mat-progress-spinner>
     <p>Cargando preguntas...</p>
   </div>
 
-  <form [formGroup]="testForm" (ngSubmit)="onSubmit()" *ngIf="!isLoading">
+  <!-- Formulario del test -->
+  <form *ngIf="mostrarFormulario && !isLoading"
+        [formGroup]="testForm"
+        (ngSubmit)="onSubmit()">
 
     <mat-card class="instructions-card">
       <mat-card-content>
@@ -18,17 +31,13 @@
     </mat-card>
 
     <div formArrayName="respuestas">
-
       <div *ngFor="let pregunta of preguntasTest; let i = index" class="question-block">
-
         <p class="question-text">{{ i + 1 }}. {{ pregunta.enunciado }}</p>
 
         <mat-radio-group [formControlName]="i" class="options-group">
-
           <mat-radio-button *ngFor="let opcion of opcionesRespuesta" [value]="opcion.value">
             <span class="radio-label-text">{{ opcion.label }}</span>
           </mat-radio-button>
-
         </mat-radio-group>
       </div>
     </div>

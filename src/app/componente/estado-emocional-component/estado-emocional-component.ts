@@ -7,6 +7,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatTableModule } from '@angular/material/table';
+import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
 
 import { RegistroEmocionalService } from '../../services/estado-emocional-service';
 import { RegistroEmocional } from '../../model/estado-emocional';
@@ -21,7 +22,8 @@ import { RegistroEmocional } from '../../model/estado-emocional';
     MatCardModule,
     MatInputModule,
     MatSliderModule,
-    MatTableModule
+    MatTableModule,
+    MatSnackBarModule
   ],
   templateUrl: './estado-emocional-component.html',
   styleUrls: ['./estado-emocional-component.css']
@@ -36,7 +38,7 @@ export class EstadoEmocionalComponent implements OnInit {
   // Columnas de la tabla
   displayedColumns: string[] = ['fecha', 'emocion', 'nivel', 'descripcion'];
 
-  constructor(private registroService: RegistroEmocionalService) {}
+  constructor(private registroService: RegistroEmocionalService,private snackBar: MatSnackBar ) {}
 
   ngOnInit(): void {
     this.cargarHistorial();
@@ -51,7 +53,12 @@ export class EstadoEmocionalComponent implements OnInit {
 
   guardarEmocion(): void {
     if (!this.emocionSeleccionada) {
-      alert('Selecciona una emoción');
+      //alert('Selecciona una emoción');
+      this.snackBar.open('Selecciona una emocion', 'Cerrar', {
+        duration: 3000, // tiempo en ms
+        horizontalPosition: 'center',
+        verticalPosition: 'top'
+      });
       return;
     }
     if (this.nivel < 1 || this.nivel > 10) {
@@ -70,13 +77,22 @@ export class EstadoEmocionalComponent implements OnInit {
       next: () => {
         this.resetForm();
         this.cargarHistorial();
-        alert('Emoción registrada correctamente');
+        this.snackBar.open('Emoción registrada correctamente ', 'Cerrar', {
+          duration: 3000, // tiempo en ms
+          horizontalPosition: 'center',
+          verticalPosition: 'top'
+        });
       },
       error: (err) => {
         console.error('Error al registrar emoción:', err);
-        alert('No se pudo registrar la emoción');
+        this.snackBar.open('No se pudo registrar la emoción ', 'Cerrar', {
+          duration: 3000,
+          horizontalPosition: 'center',
+          verticalPosition: 'top'
+        });
       }
     });
+
   }
 
   resetForm(): void {
