@@ -13,9 +13,7 @@ import { PerfilDetalle } from '../../model/perfil-detalle';
 import { AdminService } from '../../services/admin-service';
 import { Estudiante } from '../../model/estudiante';
 import { Psicologo } from '../../model/psicologo';
-import {MatIcon, MatIconModule} from '@angular/material/icon';
-
-
+import { MatIcon, MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-admin-perfiles',
@@ -45,58 +43,44 @@ export class AdminPerfilesComponent implements OnInit {
   modoEdicion = false;
   nuevoPerfil: PerfilDetalle = this.inicializarPerfilVacio();
 
+  // Campo temporal para la contraseña en edición
+  nuevaContrasena = '';
+  verContrasena = false;
+
   constructor(private adminService: AdminService) {}
 
   ngOnInit(): void {
     this.cargarPerfiles();
   }
 
-
   cargarPerfiles(): void {
     this.adminService.listarEstudiantes().subscribe({
-      // ======================
-      // INICIO DE CORRECCIÓN
-      // ======================
-      next: (estudiantes: any[]) => { // <-- CORRECCIÓN 1: Aceptar 'any[]'
-
-        // Aplanamos la estructura anidada (e + e.perfil)
-        const estudiantesConTipo: PerfilDetalle[] = estudiantes.map((e: any) => { // <-- CORRECCIÓN 2: Usar '(e: any)'
+      next: (estudiantes: any[]) => {
+        const estudiantesConTipo: PerfilDetalle[] = estudiantes.map((e: any) => {
           const flatProfile = {
-            ...this.inicializarPerfilVacio(), // 1. Pone la base
-            ...e.perfil,                    // 2. Extiende los datos del perfil (universidad, carrera, etc.)
-            ...e,                           // 3. Extiende los datos del usuario (nombre, correo, etc.)
-            id: e.id                        // 4. Asegura que el ID principal sea el ID de usuario
+            ...this.inicializarPerfilVacio(),
+            ...e.perfil,
+            ...e,
+            id: e.id
           };
-          delete flatProfile.perfil; // Limpiamos el objeto anidado original
-          delete flatProfile.rol;    // Limpiamos el rol
+          delete flatProfile.perfil;
+          delete flatProfile.rol;
           return flatProfile as PerfilDetalle;
         });
-        // ======================
-        // FIN DE CORRECCIÓN
-        // ======================
-
 
         this.adminService.listarPsicologos().subscribe({
-          // ======================
-          // INICIO DE CORRECCIÓN
-          // ======================
-          next: (psicologos: any[]) => { // <-- CORRECCIÓN 3: Aceptar 'any[]'
-
-            // Hacemos lo mismo para los psicólogos
-            const psicologosConTipo: PerfilDetalle[] = psicologos.map((p: any) => { // <-- CORRECCIÓN 4: Usar '(p: any)'
+          next: (psicologos: any[]) => {
+            const psicologosConTipo: PerfilDetalle[] = psicologos.map((p: any) => {
               const flatProfile = {
-                ...this.inicializarPerfilVacio(), // 1. Pone la base
-                ...p.perfil,                    // 2. Extiende los datos del perfil (especialidad, etc.)
-                ...p,                           // 3. Extiende los datos del usuario (nombre, correo, etc.)
-                id: p.id                        // 4. Asegura que el ID principal sea el ID de usuario
+                ...this.inicializarPerfilVacio(),
+                ...p.perfil,
+                ...p,
+                id: p.id
               };
-              delete flatProfile.perfil; // Limpiamos
-              delete flatProfile.rol;    // Limpiamos
+              delete flatProfile.perfil;
+              delete flatProfile.rol;
               return flatProfile as PerfilDetalle;
             });
-            // ======================
-            // FIN DE CORRECCIÓN
-            // ======================
 
             this.perfiles = [...estudiantesConTipo, ...psicologosConTipo];
           },
@@ -137,17 +121,34 @@ export class AdminPerfilesComponent implements OnInit {
   iniciarEdicion(perfil: PerfilDetalle): void {
     this.perfilEdicion = { ...perfil };
     this.modoEdicion = true;
+    this.nuevaContrasena = ''; // siempre vacío al iniciar
   }
 
   cancelarEdicion(): void {
     this.perfilEdicion = null;
     this.modoEdicion = false;
+    this.nuevaContrasena = '';
     this.nuevoPerfil = this.inicializarPerfilVacio();
   }
 
   guardarPerfil(): void {
     if (this.modoEdicion && this.perfilEdicion) {
-      this.adminService.actualizarPerfil(this.perfilEdicion.id, this.perfilEdicion).subscribe({
+
+      const { contrasena, ...rest } = this.perfilEdicion;
+      const payload: any = { ...rest };
+
+      const pwd = this.nuevaContrasena?.trim();
+      if (pwd) {
+        if (pwd.length < 6) {
+          alert('La contraseña debe tener al menos 6 caracteres');
+          return;
+        }
+        payload.contrasena = pwd;
+      }
+
+      console.log('Payload enviado:', payload);
+
+      this.adminService.actualizarPerfil(payload.id, payload).subscribe({
         next: () => {
           alert('Perfil actualizado correctamente');
           this.cargarPerfiles();
@@ -158,9 +159,11 @@ export class AdminPerfilesComponent implements OnInit {
           alert('Error al actualizar el perfil');
         }
       });
+
     } else {
-      if (this.nuevoPerfil.contrasena.length < 6) {
-        alert('La contraseña debe tener al menos 6 caracteres');
+      // === REGISTRO NUEVO ===
+      if (!this.nuevoPerfil.contrasena || this.nuevoPerfil.contrasena.length < 6) {
+        alert('La contraseña es obligatoria y debe tener al menos 6 caracteres');
         return;
       }
 
@@ -169,7 +172,7 @@ export class AdminPerfilesComponent implements OnInit {
           nombre: this.nuevoPerfil.nombre ?? '',
           apellidos: this.nuevoPerfil.apellidos ?? '',
           correo: this.nuevoPerfil.correo ?? '',
-          contrasena: this.nuevoPerfil.contrasena ?? '',
+          contrasena: this.nuevoPerfil.contrasena,
           telefono: this.nuevoPerfil.telefono ?? '',
           universidad: this.nuevoPerfil.universidad ?? '',
           carrera: this.nuevoPerfil.carrera ?? '',
@@ -188,13 +191,12 @@ export class AdminPerfilesComponent implements OnInit {
             alert('Error al registrar el estudiante');
           }
         });
-
       } else {
         const psicologo: Psicologo = {
           nombre: this.nuevoPerfil.nombre ?? '',
           apellidos: this.nuevoPerfil.apellidos ?? '',
           correo: this.nuevoPerfil.correo ?? '',
-          contrasena: this.nuevoPerfil.contrasena ?? '',
+          contrasena: this.nuevoPerfil.contrasena,
           telefono: this.nuevoPerfil.telefono ?? '',
           especialidad: this.nuevoPerfil.especialidad ?? '',
           colegiatura: this.nuevoPerfil.colegiatura ?? '',
@@ -230,13 +232,10 @@ export class AdminPerfilesComponent implements OnInit {
       });
     }
   }
-  displayedColumns: string[] = ['id', 'nombre', 'correo', 'tipo', 'acciones'];
 
-  nuevaContrasena = '';
-  verContrasena = false;
+  displayedColumns: string[] = ['id', 'nombre', 'correo', 'tipo', 'acciones'];
 
   toggleContrasena(): void {
     this.verContrasena = !this.verContrasena;
   }
-
 }

@@ -1,31 +1,34 @@
 <section class="page">
   <h2 class="titulo">Mi Suscripción</h2>
 
-  <div class="card">
-    <div class="card-header">Suscripción</div>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Suscripción</mat-card-title>
+    </mat-card-header>
 
-    <div class="rows">
-      <div class="row">
-        <span>Plan: <b>{{ plan }}</b></span>
-        <span>Estado: <b>{{ estado }}</b></span>
+    <mat-card-content>
+      <div class="rows">
+        <div class="row">
+          <span>Plan: <b>{{ plan }}</b></span>
+          <span>Estado: <b>{{ estado }}</b></span>
+        </div>
+        <div class="row">
+          <span>Inicio: {{ inicio | date:'dd/MM/yyyy' }}</span>
+          <span>Fin: {{ fin | date:'dd/MM/yyyy' }}</span>
+        </div>
       </div>
 
-      <div class="row">
-        <span>Inicio: {{ inicio | date:'dd/MM/yyyy' }}</span>
-        <span>Fin: {{ fin | date:'dd/MM/yyyy' }}</span>
+      <div class="beneficios">
+        <p><b>Beneficios:</b></p>
+        <mat-list>
+          <mat-list-item *ngFor="let b of beneficios">{{ b }}</mat-list-item>
+        </mat-list>
       </div>
-    </div>
+    </mat-card-content>
 
-    <div class="beneficios">
-      <p><b>Beneficios:</b></p>
-      <ul>
-        <li *ngFor="let b of beneficios">{{ b }}</li>
-      </ul>
-    </div>
-
-    <div class="acciones">
-      <button class="btn btn-primary" (click)="renovar()">Renovar</button>
-      <button class="btn btn-danger" (click)="cancelar()">Cancelar</button>
-    </div>
-  </div>
+    <mat-card-actions>
+      <button mat-raised-button class="btn-gradient" (click)="renovar()">Renovar</button>
+      <button mat-raised-button class="btn-cancelar" (click)="cancelar()">Cancelar</button>
+    </mat-card-actions>
+  </mat-card>
 </section>

@@ -32,7 +32,6 @@ import { ResumenDialogComponent } from './resumen-dialog/resumen-dialog.componen
     MatTableModule,
     MatDialogModule,
     MatAutocompleteModule, // <-- AÑADIDO
-    ResumenDialogComponent
   ],
   templateUrl: './historial-sesiones-component.html',
   styleUrls: ['./historial-sesiones-component.css'],

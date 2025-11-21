@@ -12,7 +12,6 @@ import {MatDialog} from '@angular/material/dialog';
   selector: 'app-perfil-psicologo-component',
   standalone: true,
   imports: [
-    PerfilEditarPsicologoComponent,
   ],
   templateUrl: './perfil-psicologo-component.html',
   styleUrl: './perfil-psicologo-component.css',

@@ -13,7 +13,7 @@ import {NgStyle} from '@angular/common';
 @Component({
   selector: 'app-perfil-estudiante-component',
   standalone: true,
-  imports: [PerfilEditarComponent, NgStyle],
+  imports: [ NgStyle],
   templateUrl: './perfil-estudiante-component.html',
   styleUrls: ['./perfil-estudiante-component.css']
 })
@@ -113,19 +113,23 @@ export class PerfilEstudianteComponent implements OnInit {
     this.mostrarModal = false;
   }
 
-  guardarPerfil(perfilEditado: PerfilDetalle) {
+  guardarPerfil(perfilEditado: any) {
     const usuarioId = Number(localStorage.getItem('userId'));
+
+
+    if (!perfilEditado.contrasena) {
+      delete perfilEditado.contrasena;
+    }
+
     this.perfilService.actualizarPerfil(usuarioId, perfilEditado).subscribe({
       next: (respuesta) => {
-        console.log('Respuesta del backend:', respuesta);
-        this.perfil = { ...perfilEditado };
+        this.perfil = { ...this.perfil, ...perfilEditado };
         this.cerrarModal();
       },
-      error: (err) => {
-        console.error('Error real:', err);
-      }
+      error: (err) => console.error('Error real:', err)
     });
   }
+
 
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;

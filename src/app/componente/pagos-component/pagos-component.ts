@@ -53,7 +53,7 @@ export class PagosComponent implements OnInit {
 
   // suscripción activa del usuario
   suscripcionActiva: Suscripcion | null = null;
-  usuarioId: number = 0;
+  usuarioId: number =Number(localStorage.getItem('userId'));
 
   loading = false;
   error: string | null = null;
@@ -120,36 +120,50 @@ export class PagosComponent implements OnInit {
     const metodo = this.metodo();
 
     if (!(planId === plan.id && metodo)) return;
-
     if (!this.suscripcionActiva) {
-      this.error = 'No hay una suscripción activa para registrar el pago.';
+      this.error = 'No hay una suscripción activa.';
       return;
     }
 
-    const metodoPagoId = this.metodoPagoMap[metodo];
-    const hoy = new Date().toISOString().substring(0, 10); // "YYYY-MM-DD"
-
-    const body: Pago = {
-      suscripcionId: this.suscripcionActiva!.id!,
-      metodoPagoId: metodoPagoId,
-      monto: this.total(plan),
-      fechaPago: hoy,
-      estado: 'PAGADO',
+    // ✅ Solo actualizamos el campo "tipo"
+    const suscripcionActualizada: Suscripcion = {
+      ...this.suscripcionActiva,
+      tipo: planId === 'basic' ? 'BASICA' : 'PREMIUM',
+      estado: 'ACTIVA'
     };
 
-
     this.loading = true;
-    this.pagoService.registrar(body).subscribe({
-      next: (msg) => {
-        console.log('Pago registrado:', msg);
-        this.mensajeOk = 'Pago registrado correctamente.';
-        this.loading = false;
+
+    this.suscripcionService.actualizar(suscripcionActualizada).subscribe({
+      next: () => {
+        // Registrar pago
+        const metodoPagoId = this.metodoPagoMap[metodo];
+        const hoy = new Date().toISOString().substring(0, 10);
+        const body: Pago = {
+          suscripcionId: this.suscripcionActiva!.id!,
+          metodoPagoId: metodoPagoId,
+          monto: this.total(plan),
+          fechaPago: hoy,
+          estado: 'PAGADO',
+        };
+
+        this.pagoService.registrar(body).subscribe({
+          next: () => {
+            this.mensajeOk = 'Suscripción y pago actualizados.';
+            this.loading = false;
+            this.cargarSuscripcionActiva();
+          },
+          error: (err) => {
+            console.error('Error en pago:', err);
+            this.error = 'Suscripción actualizada, pero el pago falló.';
+            this.loading = false;
+          }
+        });
       },
       error: (err) => {
-        console.error('Error al registrar pago', err);
-        this.error = 'No se pudo registrar el pago.';
+        console.error('Error al actualizar suscripción:', err);
+        this.error = 'No se pudo actualizar la suscripción.';
         this.loading = false;
       }
     });
-  }
-}
+  }}

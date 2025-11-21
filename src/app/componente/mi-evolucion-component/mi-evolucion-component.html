@@ -1,40 +1,41 @@
-<main class="content-evolucion">
-  <section class="mi-evolucion-wrapper">
-    <h2 class="titulo-pagina">Mi Evolución Emocional</h2>
+<div class="mi-evolucion">
+  <h2>Mi Evolución Emocional</h2>
 
-    <div class="filtros-container">
-      <div class="filtro-label">Filtro:</div>
+  <div class="filtros">
+    <!-- Fecha inicial -->
+    <mat-form-field appearance="outline">
+      <mat-label>Fecha inicial</mat-label>
+      <input matInput [matDatepicker]="pickerInicio" [(ngModel)]="fechaInicial">
+      <mat-datepicker-toggle matSuffix [for]="pickerInicio"></mat-datepicker-toggle>
+      <mat-datepicker #pickerInicio></mat-datepicker>
+    </mat-form-field>
 
-      <div class="filtros">
-        <div class="filtro-input">
-          <input
-            type="date"
-            id="fecha-inicial"
-            placeholder="Fecha inicial"
-            class="input-fecha"
-            [(ngModel)]="fechaInicial"
-          />
-        </div>
-        <div class="filtro-input">
-          <input
-            type="date"
-            id="fecha-final"
-            placeholder="Fecha final"
-            class="input-fecha"
-            [(ngModel)]="fechaFinal"
-          />
-        </div>
-      </div>
+    <!-- Fecha final -->
+    <mat-form-field appearance="outline">
+      <mat-label>Fecha final</mat-label>
+      <input matInput [matDatepicker]="pickerFin" [(ngModel)]="fechaFinal">
+      <mat-datepicker-toggle matSuffix [for]="pickerFin"></mat-datepicker-toggle>
+      <mat-datepicker #pickerFin></mat-datepicker>
+    </mat-form-field>
 
-      <button class="btn-grafico">
-        <span class="icono-triangulo">▼</span> Gráfico de líneas
-      </button>
-    </div>
+    <!-- Tipo de gráfico -->
+    <mat-form-field appearance="outline">
+      <mat-label>Tipo de gráfico</mat-label>
+      <mat-select [(ngModel)]="tipoGrafico">
+        <mat-option value="bar">Gráfico de Barras</mat-option>
+        <mat-option value="pie">Gráfico Circular</mat-option>
+        <mat-option value="scatter">Gráfico de Dispersión</mat-option>
+      </mat-select>
+    </mat-form-field>
 
-    <span class="nota">Nota: Visualización de los últimos 25 días</span>
+    <!-- Botón con estilo gradient -->
+    <button mat-raised-button class="btn-gradient" (click)="cargarEvolucion()">
+      Generar
+    </button>
 
-    <div class="grafico-contenedor">
-      <canvas #chartEvolucion aria-label="Gráfico de evolución emocional" role="img"></canvas>
-    </div>
-  </section>
-</main>
+  </div>
+
+  <div class="grafico-container">
+    <canvas #chartEvolucion></canvas>
+  </div>
+</div>

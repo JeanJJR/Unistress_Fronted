@@ -1,110 +1,34 @@
-/* --- Estructura General --- */
-.content-evolucion {
-  min-height: 100vh;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  background-color: #f0f2f5;
-  font-family: Arial, sans-serif; /* Usamos Arial o similar para ser genéricos */
-  padding-top: 20px;
-}
-
-.mi-evolucion-wrapper {
+.mi-evolucion {
   max-width: 900px;
-  width: 90%;
-  background-color: #fff;
-  padding: 30px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-}
-
-.titulo-pagina {
-  font-size: 1.8rem;
-  font-weight: 400;
-  color: #333;
-  margin-bottom: 25px;
-}
-
-/* --- Filtros y Botón --- */
-.filtros-container {
-  display: flex;
-  align-items: flex-end;
-  gap: 15px;
-  margin-bottom: 20px;
-}
-
-.filtro-label {
-  font-size: 1rem;
-  color: #333;
-  font-weight: 400; /* No es negrita en la imagen */
-  margin-right: 5px;
+  margin: auto;
+  padding: 20px;
 }
 
 .filtros {
   display: flex;
-  gap: 10px;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 20px;
 }
 
-.input-fecha {
-  padding: 8px 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  /* El color de fondo verde/azulado de los inputs en la imagen */
-  background-color: #e3f2fd;
-  color: #333;
-  font-size: 0.95rem;
-  cursor: pointer;
-  width: 150px;
-  box-sizing: border-box;
-
-  /* Es crucial para que el input type="date" se vea limpio en varios navegadores */
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
+.grafico-container {
+  height: 400px;
 }
-
-/* --- Botón de Gráfico --- */
-.btn-grafico {
-  padding: 8px 15px;
+.btn-gradient {
+  background: linear-gradient(to left, #74ADCD, #A1D1D1) !important;
+  color: #000 !important;
   border: none;
-  border-radius: 4px;
-  /* Degradado exacto: rojo oscuro hacia un tono más claro/naranja */
-  background: linear-gradient(180deg, #ff5722, #f44336);
-  color: white;
-  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-family: "Poppins", sans-serif;
   font-weight: 500;
-  font-size: 0.9rem;
-  display: flex;
-  align-items: center;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
-  transition: background-color 0.2s;
-}
-
-.icono-triangulo {
-  /* Color del icono (el rojo oscuro del degradado) */
-  color: #c62828;
-  margin-right: 5px;
-  font-size: 0.8rem;
-}
-
-/* --- Gráfico y Nota --- */
-.nota {
-  display: block;
-  font-size: 0.75rem;
-  color: #555;
-  margin-top: 5px;
-  margin-bottom: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
   text-align: center;
+  white-space: nowrap;
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.2); /* opcional para efecto raised */
 }
 
-.grafico-contenedor {
-  width: 100%;
-  height: 380px;
-  position: relative;
-}
-
-canvas {
-  width: 100% !important;
-  height: 100% !important;
-  display: block;
+.btn-gradient:hover {
+  filter: brightness(1.1);
 }

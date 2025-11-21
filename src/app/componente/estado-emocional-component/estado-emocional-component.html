@@ -57,15 +57,28 @@
           <textarea
             matInput
             [(ngModel)]="comentario"
+            name="comentario"
             placeholder="Escribe cómo te sientes..."
             rows="3"
+            required
+            #descripcion="ngModel"
           ></textarea>
+          <mat-error *ngIf="descripcion.invalid && descripcion.touched">
+            La descripción es obligatoria
+          </mat-error>
         </mat-form-field>
+
       </div>
 
-      <button mat-raised-button color="primary" class="btn-primary" (click)="guardarEmocion()">
+      <button
+        mat-raised-button
+        color="primary"
+        class="btn-primary"
+        (click)="guardarEmocion()"
+        [disabled]="descripcion.invalid">
         Registrar emoción
       </button>
+
     </mat-card-content>
   </mat-card>
 

@@ -34,10 +34,27 @@ export class PerfilEditarPsicologoComponent {
   }
 
   onSave() {
-    if (this.nuevaContrasena.trim()) {
-      this.perfil.contrasena = this.nuevaContrasena;
+    const perfilEnviar: any = {
+      nombre: this.perfil.nombre,
+      apellidos: this.perfil.apellidos,
+      correo: this.perfil.correo,
+      telefono: this.perfil.telefono,
+      universidad: this.perfil.universidad,
+      carrera: this.perfil.carrera,
+      ciclo: this.perfil.ciclo,
+      estadoAcademico: this.perfil.estadoAcademico,
+      especialidad: this.perfil.especialidad,
+      colegiatura: this.perfil.colegiatura,
+      anosExperiencia: this.perfil.anosExperiencia,
+      fotoUrl: this.perfil.fotoUrl,
+      descripcion: this.perfil.descripcion
+    };
+
+    if (this.nuevaContrasena && this.nuevaContrasena.trim().length > 0) {
+      perfilEnviar.contrasena = this.nuevaContrasena.trim();
     }
-    this.dialogRef.close(this.perfil);
+
+    this.dialogRef.close(perfilEnviar);
   }
 
   onCancel() {

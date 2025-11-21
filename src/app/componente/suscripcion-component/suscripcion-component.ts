@@ -5,11 +5,13 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { SuscripcionService } from '../../services/suscripcion-service';
 
 import { Suscripcion } from '../../model/suscripcion';
+import {MatCard, MatCardActions, MatCardContent, MatCardHeader, MatCardTitle} from '@angular/material/card';
+import {MatList, MatListItem} from '@angular/material/list';
 
 @Component({
   selector: 'app-suscripcion-component',
   standalone: true,
-  imports: [CommonModule, DatePipe],
+  imports: [CommonModule, DatePipe, MatCardContent, MatCardTitle, MatCardHeader, MatCard, MatCardActions, MatList, MatListItem],
   templateUrl: './suscripcion-component.html',
   styleUrls: ['./suscripcion-component.css'],
 })
@@ -36,7 +38,7 @@ export class SuscripcionComponent implements OnInit {
   suscripcionActual: Suscripcion | null = null;
 
 
-  usuarioId = 2; // por ahora, de prueba
+  usuarioId = Number(localStorage.getItem('userId'));
 
   ngOnInit(): void {
     this.cargarSuscripcion();
@@ -87,19 +89,30 @@ export class SuscripcionComponent implements OnInit {
   cancelar(): void {
     if (!this.suscripcionActual) return;
 
+    // lo que va al backend
     const actualizada: Suscripcion = {
       ...this.suscripcionActual,
-      estado: 'INACTIVA',
+      estado: 'INACTIVA',          // backend
+      fechaInicio: null as any,    // el backend lo pondrá null
+      fechaFin: null as any,
+      tipo:'PENDIENTE',
     };
 
     this.suscripcionService.actualizar(actualizada).subscribe({
       next: () => {
+        // actualizar en el front
         this.suscripcionActual = actualizada;
+
+        // lo que ve la vista
         this.estado = 'Cancelado';
+        this.inicio = null;
+        this.fin = null;
+        this.plan = 'PENDIENTE';
       },
       error: (err) => console.error('Error al cancelar', err)
     });
   }
+
 
   renovar(): void {
     if (!this.suscripcionActual) return;

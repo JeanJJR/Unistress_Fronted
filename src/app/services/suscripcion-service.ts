@@ -11,12 +11,12 @@ export class SuscripcionService {
 
   constructor(private http: HttpClient) {}
 
-  // ✅ lista de suscripciones de un usuario
+
   getPorUsuario(usuarioId: number): Observable<Suscripcion[]> {
     return this.http.get<Suscripcion[]>(`${this.apiUrl}/usuario/${usuarioId}`);
   }
 
-  // ✅ alias para que funcione lo que usas en PerfilEstudianteComponent
+
   obtenerSuscripcionPorUsuarioId(usuarioId: number): Observable<Suscripcion[]> {
     return this.getPorUsuario(usuarioId);
   }
@@ -30,4 +30,8 @@ export class SuscripcionService {
   eliminar(id: number): Observable<string> {
     return this.http.delete(`${this.apiUrl}/${id}`, { responseType: 'text' });
   }
+  actualizar1(id: number, suscripcion: Suscripcion): Observable<Suscripcion> {
+    return this.http.put<Suscripcion>(`${this.apiUrl}/${id}`, suscripcion);
+  }
+
 }
