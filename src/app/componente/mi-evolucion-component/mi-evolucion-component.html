@@ -1,41 +1,42 @@
-<div class="mi-evolucion">
-  <h2>Mi Evolución Emocional</h2>
+<div class="vista-evolucion">
+  <div class="mi-evolucion">
+    <h2>Mi Evolución Emocional</h2>
 
-  <div class="filtros">
-    <!-- Fecha inicial -->
-    <mat-form-field appearance="outline">
-      <mat-label>Fecha inicial</mat-label>
-      <input matInput [matDatepicker]="pickerInicio" [(ngModel)]="fechaInicial">
-      <mat-datepicker-toggle matSuffix [for]="pickerInicio"></mat-datepicker-toggle>
-      <mat-datepicker #pickerInicio></mat-datepicker>
-    </mat-form-field>
+    <div class="filtros">
+      <!-- Fecha inicial -->
+      <mat-form-field appearance="outline">
+        <mat-label>Fecha inicial</mat-label>
+        <input matInput [matDatepicker]="pickerInicio" [(ngModel)]="fechaInicial">
+        <mat-datepicker-toggle matSuffix [for]="pickerInicio"></mat-datepicker-toggle>
+        <mat-datepicker #pickerInicio></mat-datepicker>
+      </mat-form-field>
 
-    <!-- Fecha final -->
-    <mat-form-field appearance="outline">
-      <mat-label>Fecha final</mat-label>
-      <input matInput [matDatepicker]="pickerFin" [(ngModel)]="fechaFinal">
-      <mat-datepicker-toggle matSuffix [for]="pickerFin"></mat-datepicker-toggle>
-      <mat-datepicker #pickerFin></mat-datepicker>
-    </mat-form-field>
+      <!-- Fecha final -->
+      <mat-form-field appearance="outline">
+        <mat-label>Fecha final</mat-label>
+        <input matInput [matDatepicker]="pickerFin" [(ngModel)]="fechaFinal">
+        <mat-datepicker-toggle matSuffix [for]="pickerFin"></mat-datepicker-toggle>
+        <mat-datepicker #pickerFin></mat-datepicker>
+      </mat-form-field>
 
-    <!-- Tipo de gráfico -->
-    <mat-form-field appearance="outline">
-      <mat-label>Tipo de gráfico</mat-label>
-      <mat-select [(ngModel)]="tipoGrafico">
-        <mat-option value="bar">Gráfico de Barras</mat-option>
-        <mat-option value="pie">Gráfico Circular</mat-option>
-        <mat-option value="scatter">Gráfico de Dispersión</mat-option>
-      </mat-select>
-    </mat-form-field>
+      <!-- Tipo de gráfico -->
+      <mat-form-field appearance="outline">
+        <mat-label>Tipo de gráfico</mat-label>
+        <mat-select [(ngModel)]="tipoGrafico">
+          <mat-option value="bar">Gráfico de Barras</mat-option>
+          <mat-option value="pie">Gráfico Circular</mat-option>
+          <mat-option value="scatter">Gráfico de Dispersión</mat-option>
+        </mat-select>
+      </mat-form-field>
 
-    <!-- Botón con estilo gradient -->
-    <button mat-raised-button class="btn-gradient" (click)="cargarEvolucion()">
-      Generar
-    </button>
+      <!-- Botón con estilo gradient -->
+      <button mat-raised-button class="btn-gradient" (click)="cargarEvolucion()">
+        Generar
+      </button>
+    </div>
 
-  </div>
-
-  <div class="grafico-container">
-    <canvas #chartEvolucion></canvas>
+    <div class="grafico-container">
+      <canvas #chartEvolucion></canvas>
+    </div>
   </div>
 </div>

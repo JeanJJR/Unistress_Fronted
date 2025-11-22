@@ -1,16 +1,35 @@
-.mi-evolucion {
-  width: 100%;
-  max-width: 900px;
-  margin: 0 auto;           /* centra horizontalmente */
-  padding: 20px;
+/* LAYOUT PRINCIPAL - MI EVOLUCIÓN */
+.vista-evolucion {
+  margin-left: 280px;        /* ✅ reserva espacio fijo para el sidebar */
+  padding: 10px 24px;        /* espacio interno normal */
+  background-color: #f4f6f8;
+  min-height: 100vh;
   box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;                /* separación vertical */
-  margin-left: 300px;       /* 👈 empuja todo un poco más a la derecha */
 }
 
-/* Filtros */
+/* TÍTULO */
+.mi-evolucion h2 {
+  font-family: "Poppins-Medium", Helvetica;
+  font-weight: 500;
+  font-size: 32px;
+  color: #000;
+  margin-bottom: 40px;
+  margin-left: 40px;         /* igual que en vista-emocional */
+  text-align: left;
+  width: 100%;
+}
+
+/* CONTENEDOR PRINCIPAL (centrado como en vista-emocional) */
+.mi-evolucion {
+  width: 100%;
+  max-width: 1200px;         /* usa 1200 como en vista-emocional */
+  margin: 0 auto 40px auto;  /* centrado horizontal + separación inferior */
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* FILTROS */
 .filtros {
   display: flex;
   flex-wrap: wrap;
@@ -20,7 +39,20 @@
   box-sizing: border-box;
 }
 
-/* Contenedor del gráfico */
+/* INPUTS */
+.filtros mat-form-field .mat-mdc-form-field-flex {
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 8px 12px 0 12px;
+}
+.filtros .mat-mdc-form-field-underline { display: none; }
+.filtros .mat-mdc-form-field-input-control.mat-mdc-form-field-input-control {
+  font-family: "Poppins-Regular", Helvetica;
+  font-size: 16px;
+}
+
+/* CONTENEDOR DEL GRÁFICO */
 .grafico-container {
   width: 100%;
   height: 400px;
@@ -31,7 +63,7 @@
   box-sizing: border-box;
 }
 
-/* Botón con gradiente estándar */
+/* BOTÓN GENERAR */
 .btn-gradient {
   background: linear-gradient(to left, #74ADCD, #A1D1D1) !important;
   color: #000 !important;
@@ -48,27 +80,34 @@
   margin: 0 auto;
   display: block;
 }
+.btn-gradient:hover { opacity: 0.85; }
 
-.btn-gradient:hover {
-  filter: brightness(1.1);
-  transform: translateY(-2px);
-}
-
-/* Responsividad */
+/* RESPONSIVIDAD */
 @media (max-width: 1024px) {
+  .vista-evolucion {
+    padding: 24px 16px 40px 16px; /* elimina reserva del sidebar */
+    margin-left: 0;
+  }
   .mi-evolucion {
-    margin-left: 0;        /* 👈 en tablet/móvil ya no se empuja */
+    max-width: 100%;
+    margin: 0;
     padding: 16px;
-    gap: 20px;
   }
-  .grafico-container {
-    height: 300px;
+  .mi-evolucion h2 {
+    margin-left: 0;
+    text-align: center;
   }
+  .grafico-container { height: 300px; }
 }
 
 @media (max-width: 600px) {
+  .vista-evolucion {
+    padding: 16px 12px 32px 12px;
+    margin-left: 0;
+  }
   .mi-evolucion {
-    margin-left: 0;        /* 👈 en móvil ocupa todo el ancho */
+    max-width: 100%;
+    margin: 0;
     padding: 12px;
     gap: 16px;
   }

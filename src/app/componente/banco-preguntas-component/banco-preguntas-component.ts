@@ -61,7 +61,10 @@ export class BancoPreguntasComponent implements OnInit {
     this.loading = true;
     console.log('Cargando preguntas...');
 
-    this.bancoPreguntaService.listar().subscribe({
+    // Recuperar el ID del psicólogo autenticado desde localStorage
+    const psicologoId = Number(localStorage.getItem('userId'));
+
+    this.bancoPreguntaService.listarPorPsicologo(psicologoId).subscribe({
       next: (data) => {
         console.log('Preguntas cargadas:', data);
         this.preguntas = data;
@@ -88,12 +91,17 @@ export class BancoPreguntasComponent implements OnInit {
     });
   }
 
+
   crearPregunta(): void {
     if (this.nuevaPregunta && this.nuevaPregunta.trim().length > 0) {
       this.loading = true;
 
+      // Recuperar el ID del psicólogo desde localStorage
+      const psicologoId = Number(localStorage.getItem('userId'));
+
       const nuevaPreguntaObj: BancoPregunta = {
-        enunciado: this.nuevaPregunta.trim()
+        enunciado: this.nuevaPregunta.trim(),
+        psicologoId: psicologoId // <-- se asigna automáticamente
       };
 
       console.log('Enviando pregunta:', nuevaPreguntaObj);
@@ -103,32 +111,21 @@ export class BancoPreguntasComponent implements OnInit {
           console.log('Respuesta del servidor:', response);
           this.showMessage('Pregunta creada exitosamente', 'success');
           this.nuevaPregunta = '';
-          // Recargar las preguntas
           this.cargarPreguntas();
         },
         error: (error) => {
           console.error('Error completo al crear pregunta:', error);
-          console.error('Status:', error.status);
-          console.error('Message:', error.message);
-          console.error('Error body:', error.error);
-
           let errorMessage = 'Error al crear la pregunta';
-          if (error.status === 401) {
-            errorMessage = 'No estás autenticado. Por favor inicia sesión.';
-          } else if (error.status === 403) {
+          if (error.status === 403) {
             errorMessage = 'No tienes permisos para crear preguntas. Solo psicólogos pueden crear preguntas.';
-          } else if (error.status === 0) {
-            errorMessage = 'No se pudo conectar con el servidor. Verifica que el backend esté corriendo en http://localhost:8080';
-          } else if (error.error) {
-            errorMessage = `Error: ${error.error}`;
           }
-
           this.showMessage(errorMessage, 'error');
           this.loading = false;
         }
       });
     }
   }
+
 
   selectQuestion(index: number): void {
     this.selectedIndex = index;

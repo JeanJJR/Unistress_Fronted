@@ -1,6 +1,13 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import {TendenciaEmocionalService} from '../../services/tendencia-emocional-service';
+import {TendenciaEmocional} from '../../model/tendencia-emocional';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatInputModule} from '@angular/material/input';
+import {MatNativeDateModule} from '@angular/material/core';
+import {MatIconModule} from '@angular/material/icon';
 
 // Usamos Chart.js por CDN:
 declare const Chart: any;
@@ -15,7 +22,13 @@ interface SampleRow {
 @Component({
   selector: 'app-tendencias-emocionales-component',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule,    CommonModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatNativeDateModule,
+    MatIconModule],
   templateUrl: './tendencias-emocionales-component.html',
   styleUrls: ['./tendencias-emocionales-component.css'], // <-- plural
 })
@@ -23,85 +36,85 @@ export class TendenciasEmocionalesComponent implements AfterViewInit {
   @ViewChild('chartCanvas') chartRef!: ElementRef<HTMLCanvasElement>;
   private chart!: any;
 
-  // Datos demo
-  private rows: SampleRow[] = [
-    { date: '2025-09-01', values: { Alegría: 3, Tristeza: 1, Miedo: 0, Ira: 1, Sorpresa: 2, Neutral: 1 } },
-    { date: '2025-09-05', values: { Alegría: 1, Tristeza: 0, Miedo: 1, Ira: 0, Sorpresa: 1, Neutral: 2 } },
-    { date: '2025-09-10', values: { Alegría: 0, Tristeza: 2, Miedo: 1, Ira: 1, Sorpresa: 0, Neutral: 1 } },
-    { date: '2025-09-15', values: { Alegría: 4, Tristeza: 0, Miedo: 1, Ira: 0, Sorpresa: 3, Neutral: 0 } },
-    { date: '2025-09-20', values: { Alegría: 2, Tristeza: 1, Miedo: 0, Ira: 2, Sorpresa: 0, Neutral: 3 } },
-    { date: '2025-09-25', values: { Alegría: 1, Tristeza: 2, Miedo: 1, Ira: 0, Sorpresa: 1, Neutral: 2 } },
-    { date: '2025-09-30', values: { Alegría: 3, Tristeza: 1, Miedo: 2, Ira: 1, Sorpresa: 0, Neutral: 1 } },
-  ];
+  startDate: Date = new Date();
+  endDate: Date = new Date();
+  emociones: TendenciaEmocional[] = [];
 
-  emotions: Emotion[] = ['Alegría', 'Tristeza', 'Miedo', 'Ira', 'Sorpresa', 'Neutral'];
-
-  startDate = this.rows[0].date;
-  endDate   = this.rows[this.rows.length - 1].date;
+  constructor(private service: TendenciaEmocionalService) {}
 
   ngAfterViewInit() {
-    this.buildChart();
+    this.fetchData();
   }
 
   onFilterChange() {
-    if (this.startDate && this.endDate && this.startDate > this.endDate) return;
-    this.updateChart();
+    if (this.startDate && this.endDate && this.startDate <= this.endDate) {
+      this.fetchData();
+    }
   }
 
-  private buildChart() {
-    const ctx = this.chartRef.nativeElement.getContext('2d')!;
-    const { labels, datasets } = this.computeDatasets();
+  private fetchData() {
+    const inicio = this.formatDate(this.startDate);
+    const fin = this.formatDate(this.endDate);
 
-    this.chart = new Chart(ctx, {
-      type: 'bar',
-      data: { labels, datasets },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        scales: {
-          x: { stacked: false },
-          y: { beginAtZero: true, ticks: { precision: 0 } },
-        },
-        plugins: {
-          legend: { position: 'bottom' },
-          tooltip: { mode: 'index', intersect: false },
-        },
-      },
+    this.service.listarTendencias(inicio, fin).subscribe(data => {
+      this.emociones = data;
+      this.updateChart();
     });
   }
 
-  private updateChart() {
-    const { labels, datasets } = this.computeDatasets();
-    this.chart.data.labels = labels;
-    this.chart.data.datasets = datasets;
-    this.chart.update();
+  private formatDate(date: Date): string {
+    return date.toISOString().split('T')[0]; // → "YYYY-MM-DD"
   }
 
-  private computeDatasets() {
-    const filtered = this.rows.filter(
-      r => (!this.startDate || r.date >= this.startDate) &&
-        (!this.endDate   || r.date <= this.endDate)
-    );
+  private updateChart() {
+    const ctx = this.chartRef.nativeElement.getContext('2d')!;
+    const labels = this.emociones.map(e => e.emocion);
+    const data = this.emociones.map(e => e.promedioNivel);
 
-    const labels = filtered.map(r => r.date);
-
-    const color: Record<Emotion, string> = {
-      Alegría: '#4CAF50',
-      Tristeza: '#2196F3',
-      Miedo: '#FF9800',
-      Ira: '#E53935',
-      Sorpresa: '#9C27B0',
-      Neutral: '#607D8B',
+    const colorMap: Record<string, string> = {
+      feliz: '#4CAF50',
+      triste: '#2196F3',
+      miedo: '#FF9800',
+      ira: '#E53935',
+      sorpresa: '#9C27B0',
+      neutral: '#607D8B',
+      ansioso: '#FFC107',
     };
 
-    const datasets = this.emotions.map(em => ({
-      label: em,
-      data: filtered.map(r => r.values[em] ?? 0),
-      backgroundColor: color[em],
-      borderRadius: 4,
-      maxBarThickness: 28,
-    }));
+    const backgroundColor = this.emociones.map(e =>
+      colorMap[e.emocion.toLowerCase()] || '#999'
+    );
 
-    return { labels, datasets };
+    if (!this.chart) {
+      this.chart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels,
+          datasets: [{
+            label: 'Promedio Nivel Emocional',
+            data,
+            backgroundColor,
+            borderRadius: 4,
+            maxBarThickness: 28,
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: { beginAtZero: true, ticks: { precision: 0 } }
+          },
+          plugins: {
+            legend: { display: false },
+            tooltip: { mode: 'index', intersect: false }
+          }
+        }
+      });
+    } else {
+      this.chart.data.labels = labels;
+      this.chart.data.datasets[0].data = data;
+      this.chart.data.datasets[0].backgroundColor = backgroundColor;
+      this.chart.update();
+    }
   }
 }

@@ -17,5 +17,11 @@ export class TendenciaEmocionalService {
       `${this.url}/evolucion-rango/${usuarioId}?fechaInicio=${fechaInicio}&fechaFin=${fechaFin}`
     );
   }
+  listarTendencias(fechaInicio: string, fechaFin: string): Observable<TendenciaEmocional[]> {
+    return this.http.get<TendenciaEmocional[]>(
+      `${this.url}?inicio=${fechaInicio}T00:00:00&fin=${fechaFin}T23:59:59`
+    );
+  }
+
 }
 

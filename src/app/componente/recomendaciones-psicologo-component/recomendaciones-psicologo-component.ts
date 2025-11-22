@@ -39,7 +39,6 @@ import {MatTooltip} from '@angular/material/tooltip';
     MatTableModule,
     MatRadioGroup,
     MatRadioButton,
-    SlicePipe,
     MatTooltip
   ],
   templateUrl: './recomendaciones-psicologo-component.html',

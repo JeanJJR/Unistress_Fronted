@@ -52,3 +52,29 @@
   background: #fff;
   border-radius: 8px;
 }
+.filters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+  margin-bottom: 16px;
+}
+
+/* Personalización del mat-form-field */
+mat-form-field {
+  background: #cfeadf;        /* fondo verde claro */
+  border-radius: 6px;         /* bordes redondeados */
+  padding: 10px 12px;         /* espacio interno */
+}
+
+mat-form-field .mat-form-field-flex {
+  background: transparent;    /* evita doble fondo */
+}
+
+mat-form-field input {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+}
+
+mat-label {
+  font-weight: 600;
+}

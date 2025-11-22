@@ -1,13 +1,12 @@
 /* LAYOUT PRINCIPAL - RECOMENDACIONES */
 .main-content {
-  position: relative;
-  min-height: 100vh;
+  margin-left: 120px;   /* reserva espacio fijo para el sidebar */
+  padding: 10px 24px;   /* espacio interno normal */
   background-color: #f4f6f8;
-  /* igual que vista-emocional: padding: 40px 0 0 280px */
-  padding: 10px 0 0px 150px; /* top | right | bottom | left (sidebar reservado) */
+  min-height: 100vh;
   box-sizing: border-box;
-  display: block;            /* evita re-centrado por flex */
 }
+
 
 /* TÍTULO */
 .page-title {

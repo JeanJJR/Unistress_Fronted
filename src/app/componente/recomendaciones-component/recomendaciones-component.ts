@@ -20,7 +20,7 @@ import {Resumen} from './Resumen/Resumen';
 })
 export class RecomendacionesComponent implements OnInit {
 
-  private readonly ESTUDIANTE_ID: number = 2;
+  private readonly ESTUDIANTE_ID: number = Number(localStorage.getItem('userId'));
 
   private recomendacionService = inject(RecomendacionService);
 
