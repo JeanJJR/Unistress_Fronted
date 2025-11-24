@@ -11,6 +11,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-mi-evolucion',
@@ -36,7 +37,7 @@ export class MiEvolucionComponent implements OnDestroy {
   usuarioId = Number(localStorage.getItem('userId'));
   datos: EvolucionEmocion[] = [];
 
-  constructor(private tendenciaService: TendenciaEmocionalService) {}
+  constructor(private tendenciaService: TendenciaEmocionalService,private snackBar: MatSnackBar ) {}
 
   ngOnDestroy(): void {
     this.chart?.destroy();
@@ -44,7 +45,12 @@ export class MiEvolucionComponent implements OnDestroy {
 
   cargarEvolucion(): void {
     if (!this.fechaInicial || !this.fechaFinal) {
-      alert('Debes seleccionar un rango de fechas');
+     // alert('Debes seleccionar un rango de fechas');
+      this.snackBar.open('Debes seleccionar un rango de fechas', 'Cerrar', {
+        duration: 3000, // tiempo en ms
+        horizontalPosition: 'center',
+        verticalPosition: 'top'
+      });
       return;
     }
 
@@ -78,7 +84,6 @@ export class MiEvolucionComponent implements OnDestroy {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    // 🔑 destruye cualquier gráfico previo en este canvas
     Chart.getChart(ctx)?.destroy();
     this.chart?.destroy();
     this.chart = undefined;

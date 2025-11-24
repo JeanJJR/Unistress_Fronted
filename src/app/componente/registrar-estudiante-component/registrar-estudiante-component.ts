@@ -11,6 +11,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { EstudianteService } from '../../services/estudiante-service';
 import { Estudiante } from '../../model/estudiante';
 import {MatCard} from '@angular/material/card';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-registrar-estudiante-component',
@@ -46,7 +47,7 @@ export class RegistrarEstudianteComponent {
   ciclos = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
   estados = ['Regular', 'Irregular', 'Egresado'];
 
-  constructor(private estudianteService: EstudianteService) {}
+  constructor(private estudianteService: EstudianteService,private snackBar: MatSnackBar ) {}
 
   onSubmit(): void {
     if (this.estudiante.contrasena.length < 6) {
@@ -56,7 +57,13 @@ export class RegistrarEstudianteComponent {
 
     this.estudianteService.registrar(this.estudiante).subscribe({
       next: () => {
-        alert('Estudiante registrado correctamente');
+        //alert('Estudiante registrado correctamente');
+        this.snackBar.open('Estudiante registrado correctamente', 'Cerrar', {
+          duration: 3000, // tiempo en ms
+          horizontalPosition: 'center',
+          verticalPosition: 'top'
+        });
+
         // Opcional: redirigir al login
         window.location.href = '/iniciar-sesion';
       },

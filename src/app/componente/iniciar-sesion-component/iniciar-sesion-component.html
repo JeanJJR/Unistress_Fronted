@@ -8,7 +8,7 @@
       <form class="login-form" (ngSubmit)="login()" #loginForm="ngForm">
         <div class="form-group">
           <label for="email" class="label">Correo electrónico</label>
-          <!-- ✅ "username", no "email" -->
+          <!--  "username", no "email" -->
           <input
             type="email"
             id="email"
@@ -19,16 +19,17 @@
           />
 
         </div>
-        <!-- ✅ "password", no "contrasena" -->
-        <input
-          type="password"
-          id="password"
-          class="input"
-          [(ngModel)]="password"
-          name="password"
-          required
-        />
-
+        <div class="form-group">
+          <label for="password" class="label">Contraseña</label>
+          <input
+            type="password"
+            id="password"
+            class="input"
+            [(ngModel)]="password"
+            name="password"
+            required
+          />
+        </div>
 
         <div *ngIf="error" class="login-error">{{ error }}</div>
 
