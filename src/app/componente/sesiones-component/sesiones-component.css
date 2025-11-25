@@ -63,6 +63,8 @@ mat-card {
   display: flex;
   gap:10px;
   width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
 
 }
 
@@ -76,6 +78,7 @@ mat-card {
 .mat-mdc-form-field {
   width: 100%;
   margin-bottom: 0;
+
 }
 .mat-mdc-form-field-flex {
   background-color: #e6f7ef !important;
@@ -95,6 +98,7 @@ mat-card {
 }
 .form-group-triple mat-form-field {
   flex: 1;
+
 }
 .message-group mat-form-field {
   width: 100%;
@@ -147,6 +151,7 @@ mat-card {
   text-align: left;
   background-color: transparent;
   border: 1px solid #000;
+
 }
 
 .mat-column-id, .mat-column-fecha, .mat-column-hora, .mat-column-psicologo, .mat-column-observaciones {

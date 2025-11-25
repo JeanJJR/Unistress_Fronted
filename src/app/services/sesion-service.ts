@@ -26,9 +26,17 @@ export class SessionService {
     return this.httpClient.put(this.url + '/sesion/aceptar/' + id, {},{ responseType: 'text' });
   }
 
-  editarSesion(id: number, sesion: any): Observable<Sesion> {
-    return this.httpClient.put<Sesion>(this.url + '/sesion/' + id, sesion);
+
+  list(): Observable<any>{
+    console.log(this.url + '/sesion')
+    return this.httpClient.get<Sesion[]>(this.url + '/sesion')
   }
+
+  delete(id: number){
+    console.log(this.url + '/sesion/' + id);
+    return this.httpClient.delete(this.url + '/sesion/' + id);
+  }
+
 
   cancelarSesion(id: number, estudianteId: number): Observable<string> {
     const body = { estudianteId: estudianteId };
