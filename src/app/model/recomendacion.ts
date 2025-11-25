@@ -4,6 +4,8 @@ export interface Recomendacion {
   tipo: string;
   registroEmocionalId: number;
   usuarioId: number;
+  nombreEstudiante?: string;
+
   psicologo?: {
     id: number;
   };
