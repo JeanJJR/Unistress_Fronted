@@ -14,20 +14,19 @@
   margin-bottom: 40px;
 }
 
-/* Contenedor de bloques alineado a la derecha */
 .config-bloques {
   display: flex;
   flex-direction: column;
-  align-items: flex-end; /* Mueve los bloques a la derecha */
+  align-items: flex-start; /* Ahora se alinean al inicio, mismo nivel que el título */
   gap: 40px;
   width: 100%;
 }
 
-/* Cada bloque */
 .config-bloque {
   width: 600px;
   text-align: left;
 }
+git status
 
 .recordatorio-de-test,
 .span {
