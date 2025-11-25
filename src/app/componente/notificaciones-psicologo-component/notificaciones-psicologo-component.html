@@ -56,6 +56,7 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
+
     </div>
 
   </ng-container> <ng-template #notificacionesApagadas>
@@ -64,5 +65,8 @@
     <p>Las notificaciones están actualmente <strong>apagadas</strong>.</p>
   </div>
 </ng-template>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
 
 </div>

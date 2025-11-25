@@ -19,11 +19,12 @@ import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/
 import {UsuarioService} from '../../services/usuario-servicio';
 import {Usuario} from '../../model/usuario';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {MatPaginator} from '@angular/material/paginator';
 
 @Component({
   selector: 'app-sesiones-component',
   providers:[provideNativeDateAdapter()],
-  imports: [MatCardModule, MatProgressBarModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatButtonModule, MatTableModule, MatIconModule, MatDatepickerModule, MatDatepickerInput, DatePipe, ReactiveFormsModule, MatSort, MatSortHeader],
+  imports: [MatCardModule, MatProgressBarModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatButtonModule, MatTableModule, MatIconModule, MatDatepickerModule, MatDatepickerInput, DatePipe, ReactiveFormsModule, MatSort, MatSortHeader, MatPaginator],
   templateUrl: './sesiones-component.html',
   styleUrl: './sesiones-component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -53,6 +54,7 @@ export class SesionesComponent {
   displayedColumnsUpcoming: string[] = ['id', 'fecha', 'hora', 'psicologo', 'mensaje', 'estado', 'acciones'];
   dataSourceUpcoming: MatTableDataSource<Sesion> = new MatTableDataSource<Sesion>();
   @ViewChild(MatSort) sort1: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   // Filtros para próximas sesiones
   startDate: Date | null = null;
@@ -81,6 +83,7 @@ export class SesionesComponent {
   ngAfterViewInit() {
     this.dataSourceHistory.sort = this.sort;
     this.dataSourceUpcoming.sort = this.sort1;
+    this.dataSourceUpcoming.paginator = this.paginator;
   }
 
   loadLista() {

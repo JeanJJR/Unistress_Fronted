@@ -9,11 +9,12 @@ import {Notificacion} from '../../model/notificacion';
 import {NotificacionService} from '../../services/notificacion-service';
 import {Router} from '@angular/router';
 import {CommonModule} from '@angular/common';
+import {MatPaginator} from '@angular/material/paginator';
 
 
 @Component({
   selector: 'app-notificaciones-psicologo-component',
-  imports: [MatFormFieldModule, MatTableModule, MatButtonModule, MatSort, MatIcon, MatTooltip, CommonModule],
+  imports: [MatFormFieldModule, MatTableModule, MatButtonModule, MatSort, MatIcon, MatTooltip, CommonModule, MatPaginator],
   templateUrl: './notificaciones-psicologo-component.html',
   styleUrl: './notificaciones-psicologo-component.css',
 })
@@ -22,7 +23,10 @@ export class NotificacionesPsicologoComponent {
   lista: Notificacion[] = [];
   displayedColumns: string[] = ['fecha', 'tipo', 'mensaje', 'estado', 'accion'];
   NotificacionesDataSource: MatTableDataSource<Notificacion> = new MatTableDataSource<Notificacion>();
+
   @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
   notificacionesService: NotificacionService = inject(NotificacionService)
   route: Router = inject(Router);
 
@@ -35,6 +39,7 @@ export class NotificacionesPsicologoComponent {
 
   ngAfterViewInit() {
     this.NotificacionesDataSource.sort = this.sort;
+    this.NotificacionesDataSource.paginator = this.paginator;
   }
 
   ngOnInit() {

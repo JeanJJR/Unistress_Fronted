@@ -47,8 +47,8 @@ export class AdminSesiones implements OnInit, AfterViewInit {
   private usuarioService = inject(UsuarioService);
   private dialog = inject(MatDialog);
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
   listarpsicologos: Usuario[] = [];
   listarestudiantes: Usuario[] = [];
