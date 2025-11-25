@@ -1,72 +1,44 @@
 <div class="configuracion-solo">
   <h2 class="text-wrapper-2">Configuraciones</h2>
 
-  <!-- Tema y accesibilidad -->
-  <div style="position: absolute; top: 160px; left: 300px; width: 600px;">
-    <div class="recordatorio-de-test">
-      <span class="span">Tema y accesibilidad:</span>
+  <div class="config-bloques">
+    <!-- Tema -->
+    <div class="config-bloque">
+      <div class="recordatorio-de-test"><span class="span">Tema y accesibilidad:</span></div>
+      <div class="boton-grupo">
+        <button class="button" (click)="cambiarTema('claro')" [class.active]="tema === 'claro'">
+          <div class="content"><div class="state-layer"><span class="label">Modo claro</span></div></div>
+        </button>
+        <button class="button" (click)="cambiarTema('oscuro')" [class.active]="tema === 'oscuro'">
+          <div class="content"><div class="state-layer"><span class="label">Modo oscuro</span></div></div>
+        </button>
+      </div>
     </div>
-    <div style="margin-top: 16px; display: flex; gap: 12px;">
-      <button class="button" (click)="cambiarTema('claro')" [class.active]="tema === 'claro'">
-        <div class="content">
-          <div class="state-layer">
-            <span class="label">Modo claro</span>
-          </div>
-        </div>
-      </button>
-      <button class="button" (click)="cambiarTema('oscuro')" [class.active]="tema === 'oscuro'">
-        <div class="content">
-          <div class="state-layer">
-            <span class="label">Modo oscuro</span>
-          </div>
-        </div>
-      </button>
-    </div>
-  </div>
 
-  <!-- Tamaño de fuente -->
-  <div style="position: absolute; top: 260px; left: 300px; width: 600px;">
-    <div class="recordatorio-de-test">
-      <span class="span">Tamaño de fuente:</span>
+    <!-- Fuente -->
+    <div class="config-bloque">
+      <div class="recordatorio-de-test"><span class="span">Tamaño de fuente:</span></div>
+      <div class="boton-grupo fuente">
+        <button class="button" (click)="ajustarFuente(-1)">
+          <div class="content"><div class="state-layer"><span class="label">A-</span></div></div>
+        </button>
+        <span class="font-size-value">{{ fontSize }}px</span>
+        <button class="button" (click)="ajustarFuente(1)">
+          <div class="content"><div class="state-layer"><span class="label">A+</span></div></div>
+        </button>
+      </div>
     </div>
-    <div style="margin-top: 16px; display: flex; align-items: center; gap: 16px;">
-      <button class="button" (click)="ajustarFuente(-1)">
-        <div class="content">
-          <div class="state-layer">
-            <span class="label">A-</span>
-          </div>
-        </div>
-      </button>
-      <span class="font-size-value">{{ fontSize }}px</span>
-      <button class="button" (click)="ajustarFuente(1)">
-        <div class="content">
-          <div class="state-layer">
-            <span class="label">A+</span>
-          </div>
-        </div>
-      </button>
-    </div>
-  </div>
 
-  <!-- Ayuda y soporte -->
-  <div style="position: absolute; top: 360px; left: 300px; width: 600px;">
-    <div class="recordatorio-de-test">
-      <span class="span">Ayuda y soporte:</span>
-    </div>
-    <div style="margin-top: 16px;">
-      <a href="/ayuda" class="config-link" style="color: #4a90e2; text-decoration: none;">Centro de ayuda</a>
-    </div>
-    <div style="margin-top: 12px;">
-      <button class="button" (click)="contactarSoporte()">
-        <div class="content">
-          <div class="state-layer">
-            <span class="label">Contactar soporte</span>
-          </div>
-        </div>
-      </button>
-    </div>
-    <div style="margin-top: 12px; color: #666; font-size: 14px;">
-      Versión: 1.0.0
+    <!-- Soporte -->
+    <div class="config-bloque">
+      <div class="recordatorio-de-test"><span class="span">Ayuda y soporte:</span></div>
+      <div class="boton-grupo soporte">
+        <a href="/ayuda" class="config-link">Centro de ayuda</a>
+        <button class="button" (click)="contactarSoporte()">
+          <div class="content"><div class="state-layer"><span class="label">Contactar soporte</span></div></div>
+        </button>
+      </div>
+      <div class="version-info">Versión: 1.0.0</div>
     </div>
   </div>
 </div>

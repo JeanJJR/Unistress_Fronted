@@ -81,7 +81,6 @@
 
     </mat-card-content>
   </mat-card>
-
   <!-- Historial -->
   <mat-card class="historial-emociones">
     <mat-card-header>
@@ -126,10 +125,15 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
         <!-- Sin datos -->
-        <tr *ngIf="historial.length === 0">
+        <tr *ngIf="historial.data.length === 0">
           <td class="empty" colspan="4">No hay registros</td>
         </tr>
       </table>
+
+      <!-- Paginador -->
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
+      </mat-paginator>
     </mat-card-content>
   </mat-card>
+
 </div>
