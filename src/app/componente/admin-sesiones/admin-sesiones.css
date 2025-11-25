@@ -1,0 +1,10 @@
+.main-content {
+  position: relative;
+  min-height: 100vh;
+  background-color: #f4f6f8;
+  padding: 50px 0 0 290px;
+}
+.filter-controls{
+  padding-top: 30px;
+  padding-bottom: 30px;
+}

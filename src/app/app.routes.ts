@@ -27,6 +27,7 @@ import {
 import {Layout3} from './layout3/layout3';
 import {AdminPerfilesComponent} from './componente/admin-perfiles/admin-perfiles';
 import {AuthGuard} from './guard/auth-guard';
+import {AdminSesiones} from './componente/admin-sesiones/admin-sesiones';
 export const routes: Routes = [
   { path: '', component: InicioComponent },
   { path: 'iniciar-sesion', component: IniciarSesionComponent },
@@ -78,7 +79,7 @@ export const routes: Routes = [
     data: { role: 'ROLE_ADMIN' },
     children: [
       {path: 'admin-perfiles', component: AdminPerfilesComponent,canActivate: [AuthGuard] },
-
+      {path:'admin-sesiones', component: AdminSesiones},
     ]
   },
 
