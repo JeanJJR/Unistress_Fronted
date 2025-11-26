@@ -59,7 +59,8 @@ export class RecomendacionesPsicologoComponent {
   isLoadingRegistros = false;
 
   // Configuración de Tabla
-  displayedColumnsRecomendaciones: string[] = ['id',  'tipo', 'mensaje'];
+  // Esto se mantiene igual, ya que en el HTML el matColumnDef="nombreEstudiante" coincide
+  displayedColumnsRecomendaciones: string[] = ['id', 'nombreEstudiante', 'tipo', 'mensaje'];
   dataSourceHistorialRecomendaciones: MatTableDataSource<Recomendacion> = new MatTableDataSource<Recomendacion>();
   @ViewChild(MatSort) sort: MatSort;
 
