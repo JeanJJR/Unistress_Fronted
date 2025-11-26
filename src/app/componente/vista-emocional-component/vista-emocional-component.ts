@@ -13,6 +13,7 @@ import { Usuario } from '../../model/usuario';
 import { RegistroEmocional } from '../../model/estado-emocional';
 import { UsuarioService } from '../../services/usuario-servicio';
 import { RegistroEmocionalService } from '../../services/estado-emocional-service';
+import {MatIcon} from '@angular/material/icon';
 
 @Component({
   selector: 'app-vista-emocional',
@@ -27,7 +28,8 @@ import { RegistroEmocionalService } from '../../services/estado-emocional-servic
     MatButtonModule,
     MatTableModule,
     MatCardModule,
-    MatListModule
+    MatListModule,
+    MatIcon
   ],
   templateUrl: './vista-emocional-component.html',
   styleUrls: ['./vista-emocional-component.css']

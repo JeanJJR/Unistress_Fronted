@@ -6,9 +6,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { MatAutocompleteModule } from '@angular/material/autocomplete'; // <-- AÑADIDO
-import { FormsModule, ReactiveFormsModule, FormControl } from '@angular/forms'; // <-- AÑADIDO
-import { Observable, map, startWith } from 'rxjs'; // <-- AÑADIDO
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { FormsModule, ReactiveFormsModule, FormControl } from '@angular/forms';
+import { Observable, map, startWith } from 'rxjs';
 
 import { Sesion } from '../../model/sesion';
 import { Usuario } from '../../model/usuario';
@@ -16,6 +16,8 @@ import { SessionService } from '../../services/sesion-service';
 import { UsuarioService } from '../../services/usuario-servicio';
 
 import { ResumenDialogComponent } from './resumen-dialog/resumen-dialog.component';
+import {MatList, MatListItem} from '@angular/material/list';
+import {MatIcon} from '@angular/material/icon';
 
 @Component({
   selector: 'app-historial-sesiones-component',
@@ -23,15 +25,17 @@ import { ResumenDialogComponent } from './resumen-dialog/resumen-dialog.componen
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule, // <-- AÑADIDO
+    ReactiveFormsModule,
     MatButtonModule,
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
-    // MatListModule, // <-- Ya no se usa
     MatTableModule,
     MatDialogModule,
-    MatAutocompleteModule, // <-- AÑADIDO
+    MatAutocompleteModule,
+    MatList,
+    MatListItem,
+    MatIcon,
   ],
   templateUrl: './historial-sesiones-component.html',
   styleUrls: ['./historial-sesiones-component.css'],
@@ -51,7 +55,6 @@ export class HistorialSesionesComponent implements OnInit {
 
   // Estado
   selectedEstudiante: Usuario | null = null;
-  // terminoBusqueda: string = ''; // <-- Reemplazado por terminoControl
 
   displayedColumns: string[] = ['id', 'fecha', 'hora', 'estado', 'acciones'];
 
@@ -93,7 +96,6 @@ export class HistorialSesionesComponent implements OnInit {
       console.error('Estudiante no encontrado. Seleccione un valor válido.');
       this.selectedEstudiante = null;
       this.sesiones = [];
-      // Opcional: alert('Estudiante no encontrado');
     }
   }
 

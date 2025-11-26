@@ -5,6 +5,76 @@
   padding: 40px 0 0 280px;
 }
 
+/* Reutilizamos estilos de tus cards para que se vean iguales */
+.card-lista {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto 40px auto; /* Mismo margen que search-card */
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+/* --- NUEVO: GRID PARA LA LISTA DE ESTUDIANTES --- */
+.contenido-lista {
+  padding: 16px !important;
+}
+
+.lista-grid {
+  display: grid;
+  /* Esto crea 5 columnas iguales. Si la pantalla se achica, se ajustan */
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px; /* Espacio entre cuadritos */
+  width: 100%;
+  padding-top: 0;
+}
+
+/* Estilo de cada "mini card" de estudiante */
+.item-grid {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: #fafafa;
+  height: auto !important; /* Permite que el item tenga altura natural */
+  margin-bottom: 0 !important; /* El grid controla el margen */
+  transition: transform 0.2s;
+}
+
+/* Ajustes de texto dentro de la mini card */
+.texto-nombre {
+  font-weight: 600;
+  font-size: 14px;
+  color: #333;
+}
+
+.texto-apellido {
+  font-size: 12px;
+  color: #666;
+}
+
+.mensaje-vacio {
+  grid-column: 1 / -1; /* Ocupa  el ancho si está vacío */
+  text-align: center;
+  padding: 20px;
+  color: #888;
+}
+
+/* --- RESPONSIVE: Adaptar columnas en pantallas más chicas --- */
+@media (max-width: 1024px) {
+  .lista-grid {
+    grid-template-columns: repeat(4, 1fr); /* 4 columnas en laptops pequeñas */
+  }
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    padding: 20px;
+  }
+
+  .lista-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas en tablets/moviles */
+  }
+}
+
 .page-title {
   font-family: "Poppins-Medium", Helvetica;
   font-weight: 500;

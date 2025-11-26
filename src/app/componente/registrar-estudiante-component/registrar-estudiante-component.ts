@@ -42,8 +42,8 @@ export class RegistrarEstudianteComponent {
     estadoAcademico: ''
   };
 
-  universidades = ['UPC', 'UNI', 'PUCP', 'USIL'];
-  carreras = ['Ingeniería de Sistemas', 'Ingeniería de Software', 'Psicología', 'Medicina'];
+  universidades = ['UPC', 'UNI', 'PUCP', 'USIL', 'USMP'];
+  carreras = ['Ingeniería de Sistemas', 'Ingeniería de Software', 'Ingeniería Industrial', 'Psicología', 'Medicina', 'Derecho'];
   ciclos = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
   estados = ['Regular', 'Irregular', 'Egresado'];
 

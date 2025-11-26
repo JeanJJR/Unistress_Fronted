@@ -1,7 +1,7 @@
 <div class="main-content">
   <h2 class="page-title">Vista de Sesiones de mis pacientes</h2>
 
-  <!-- Selección de paciente para Historial de Sesiones -->
+  <!-- Selección de paciente  -->
   <mat-card class="search-card">
     <mat-card-header>
       <mat-card-title>Selecciona paciente</mat-card-title>
@@ -27,6 +27,29 @@
           Buscar historial
         </button>
       </div>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="card-lista">
+    <mat-card-header>
+      <mat-card-title class="titulo-lista">Lista de Pacientes (Referencia)</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="contenido-lista">
+
+      <mat-list class="lista-grid">
+        <mat-list-item *ngFor="let est of estudiantes" class="item-grid">
+          <span matListItemIcon>
+            <mat-icon>person_outline</mat-icon>
+          </span>
+          <div matListItemTitle class="texto-nombre">{{ est.nombre }}</div>
+          <div matListItemLine class="texto-apellido">{{ est.apellidos }}</div>
+        </mat-list-item>
+
+        <div *ngIf="estudiantes.length === 0" class="mensaje-vacio">
+          Cargando listado...
+        </div>
+      </mat-list>
+
     </mat-card-content>
   </mat-card>
 
