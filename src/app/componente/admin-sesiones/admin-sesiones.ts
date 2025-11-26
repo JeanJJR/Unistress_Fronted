@@ -96,7 +96,7 @@ export class AdminSesiones implements OnInit, AfterViewInit {
     this.dataSourceSesion.filterPredicate = (data: Sesion, filter: string) => {
       if (!this.filterStartDate && !this.filterEndDate) return true;
 
-      const sessionDate = new Date(data.fecha);
+      const sessionDate = new Date(data.fecha + 'T00:00:00');
       sessionDate.setHours(0,0,0,0);
 
       let matchStart = true;
@@ -105,13 +105,13 @@ export class AdminSesiones implements OnInit, AfterViewInit {
       if (this.filterStartDate) {
         const start = new Date(this.filterStartDate);
         start.setHours(0,0,0,0);
-        matchStart = sessionDate >= start;
+        matchStart = sessionDate.getTime() >= start.getTime();
       }
 
       if (this.filterEndDate) {
         const end = new Date(this.filterEndDate);
         end.setHours(0,0,0,0);
-        matchEnd = sessionDate <= end;
+        matchEnd = sessionDate.getTime() <= end.getTime();
       }
 
       return matchStart && matchEnd;

@@ -23,7 +23,7 @@ import {MatPaginator} from '@angular/material/paginator';
 
 @Component({
   selector: 'app-sesiones-component',
-  providers:[provideNativeDateAdapter()],
+  providers:[provideNativeDateAdapter(), DatePipe],
   imports: [MatCardModule, MatProgressBarModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatButtonModule, MatTableModule, MatIconModule, MatDatepickerModule, MatDatepickerInput, DatePipe, ReactiveFormsModule, MatSort, MatSortHeader, MatPaginator],
   templateUrl: './sesiones-component.html',
   styleUrl: './sesiones-component.css',
@@ -34,6 +34,7 @@ export class SesionesComponent {
 
   sesionService = inject(SessionService);
   route: Router = inject(Router);
+  datePipe = inject(DatePipe);
 
   estudianteId: number = Number(localStorage.getItem('userId'));
 
@@ -129,20 +130,13 @@ export class SesionesComponent {
       return sesionDate >= now && (sesion.estado === 'PENDIENTE' || sesion.estado === 'ACEPTADA');
     });
 
-    // Aplicar filtros de fechas que si existen
-    if (this.startDate) {
-      upcoming = upcoming.filter(s => new Date(s.fecha) >= this.startDate!);
-    }
-    if (this.endDate) {
-      const inclusiveEndDate = new Date(this.endDate);
-      inclusiveEndDate.setHours(23, 59, 59, 999); // Incluir todo el día de fin
-      upcoming = upcoming.filter(s => new Date(s.fecha) <= inclusiveEndDate);
-    }
-
     this.dataSourceUpcoming.data = upcoming;
 
     this.dataSourceHistory._updateChangeSubscription();
     this.dataSourceUpcoming._updateChangeSubscription();
+
+    this.dataSourceUpcoming.paginator = this.paginator;
+    this.dataSourceUpcoming.sort = this.sort1;
   }
 
   onFilterDateChange(type: string, event: MatDatepickerInputEvent<Date>) {
@@ -151,7 +145,47 @@ export class SesionesComponent {
     } else {
       this.endDate = event.value;
     }
-    this.actualizarTablas(); // Re-filtrar los datos
+
+    if (this.startDate && this.endDate) {
+      this.filtrarSesiones();
+    } else {
+      this.actualizarTablas();
+    }
+  }
+
+  filtrarSesiones() {
+    if (!this.startDate || !this.endDate) return;
+
+    // Usamos el formateo manual para evitar problemas de zona horaria
+    const inicioStr = this.formatDateToISO(this.startDate);
+    const finStr = this.formatDateToISO(this.endDate);
+
+    this.sesionService.listarPorEstudianteyRango(this.estudianteId, inicioStr, finStr).subscribe({
+      next: (data: Sesion[]) => {
+        // Filtramos para quitar las CANCELADAS o pasadas.
+        const sesionesActivas = data.filter(sesion =>
+            sesion.estado === 'PENDIENTE' || sesion.estado === 'CONFIRMADA'
+        );
+
+        console.log("Sesiones filtradas (solo activas):", sesionesActivas);
+
+        this.dataSourceUpcoming.data = sesionesActivas;
+        this.dataSourceUpcoming.paginator = this.paginator;
+        this.dataSourceUpcoming.sort = this.sort1;
+      },
+      error: (err) => {
+        console.error('Error al filtrar sesiones:', err);
+        this.snackBar.open('Error al filtrar por fechas', 'Cerrar', { duration: 3000 });
+      }
+    });
+  }
+
+  // Función  para forzar la fecha local sin cambios de zona horaria
+  formatDateToISO(date: Date): string {
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
+    return `${year}-${month}-${day}`;
   }
 
 
