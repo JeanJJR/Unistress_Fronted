@@ -8,7 +8,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { FormsModule, ReactiveFormsModule, FormControl } from '@angular/forms';
-import { Observable, map, startWith } from 'rxjs';
+import {Observable, map, startWith, debounceTime, distinctUntilChanged, switchMap, of} from 'rxjs';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { Sesion } from '../../model/sesion';
 import { Usuario } from '../../model/usuario';
@@ -18,6 +19,7 @@ import { UsuarioService } from '../../services/usuario-servicio';
 import { ResumenDialogComponent } from './resumen-dialog/resumen-dialog.component';
 import {MatList, MatListItem} from '@angular/material/list';
 import {MatIcon} from '@angular/material/icon';
+import {catchError} from 'rxjs/operators';
 
 @Component({
   selector: 'app-historial-sesiones-component',
@@ -36,6 +38,7 @@ import {MatIcon} from '@angular/material/icon';
     MatList,
     MatListItem,
     MatIcon,
+    MatSnackBarModule,
   ],
   templateUrl: './historial-sesiones-component.html',
   styleUrls: ['./historial-sesiones-component.css'],
@@ -44,6 +47,7 @@ export class HistorialSesionesComponent implements OnInit {
   private sessionService = inject(SessionService);
   private usuarioService = inject(UsuarioService);
   private dialog = inject(MatDialog);
+  private snackBar = inject(MatSnackBar);
 
   estudiantes: Usuario[] = [];
   sesiones: Sesion[] = [];
@@ -64,13 +68,25 @@ export class HistorialSesionesComponent implements OnInit {
     // --- Inicializar el observable para el autocompletado ---
     this.filteredEstudiantes$ = this.terminoControl.valueChanges.pipe(
       startWith(''),
-      map(valor => {
-        const texto = typeof valor === 'string' ? valor.toLowerCase() : '';
-        return this.estudiantes.filter(est =>
-          `${est.nombre} ${est.apellidos}`.toLowerCase().includes(texto)
+      debounceTime(400), // Espera 400ms para no saturar el servidor mientras escribes
+      distinctUntilChanged(),  // Evita buscar lo mismo dos veces seguidas
+      switchMap(valor => {
+        const termino = typeof valor === 'string' ? valor : '';
+
+        if (!termino || termino.length < 2) {
+          return of(this.estudiantes);
+        }
+
+        // Si hay texto, buscamos en el BACKEND
+        return this.usuarioService.buscarEstudiantes(termino).pipe(
+          catchError(error => {
+            console.error('Error en búsqueda', error);
+            return of([]); // Si falla, devolvemos lista vacía para no romper la UI
+          })
         );
       })
     );
+
     // -------------------------------------------------------
   }
 
@@ -86,7 +102,7 @@ export class HistorialSesionesComponent implements OnInit {
   // --- FUNCIÓN DE BÚSQUEDA ACTUALIZADA ---
   buscarManualmente(): void {
     const texto = this.terminoControl.value?.toLowerCase() || '';
-    const est = this.estudiantes.find(e =>
+    let est = this.estudiantes.find(e =>
       `${e.nombre} ${e.apellidos}`.toLowerCase() === texto
     );
 
@@ -94,10 +110,21 @@ export class HistorialSesionesComponent implements OnInit {
       this.seleccionarEstudiante(est);
     } else {
       console.error('Estudiante no encontrado. Seleccione un valor válido.');
+      this.mostrarAlerta('No se encontró al paciente. Selecciona una opción del listado.');
       this.selectedEstudiante = null;
       this.sesiones = [];
     }
   }
+
+  mostrarAlerta(mensaje: string) {
+    this.snackBar.open(mensaje, 'Cerrar', {
+      duration: 4000,           // Dura 4 segundos
+      horizontalPosition: 'center',
+      verticalPosition: 'top',  // Aparece arriba
+      panelClass: ['error-snackbar'] // Clase  para estilos
+    });
+  }
+
 
   seleccionarEstudiante(estudiante: Usuario): void {
     this.selectedEstudiante = estudiante;

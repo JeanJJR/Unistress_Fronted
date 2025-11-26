@@ -17,4 +17,9 @@ export class UsuarioService {
     console.log(this.url + '/psicologos')
     return this.http.get<Usuario[]>(this.url + '/psicologos');
   }
+
+  buscarEstudiantes(termino: string): Observable<Usuario[]> {
+    return this.http.get<Usuario[]>(this.url + '/estudiantes/buscar/' + termino);
+  }
+
 }

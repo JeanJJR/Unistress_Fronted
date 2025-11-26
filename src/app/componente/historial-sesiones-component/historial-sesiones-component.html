@@ -24,7 +24,7 @@
         </mat-form-field>
 
         <button mat-raised-button class="btn-gradient boton-pequeno" (click)="buscarManualmente()">
-          Buscar historial
+          Buscar sesiones
         </button>
       </div>
     </mat-card-content>
@@ -56,7 +56,7 @@
 
   <!-- Tabla de sesiones -->
   <div *ngIf="selectedEstudiante" class="session-table-container">
-    <h3>Historial de: {{ selectedEstudiante.nombre }} {{ selectedEstudiante.apellidos }}</h3>
+    <h3>Sesiones de: {{ selectedEstudiante.nombre }} {{ selectedEstudiante.apellidos }}</h3>
 
     <table mat-table [dataSource]="sesiones" class="session-table mat-elevation-z2">
 
