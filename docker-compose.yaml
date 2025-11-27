@@ -1,7 +1,7 @@
 version:  '3.9'
 services:
   app:
-    image: javacf/unistress
+    image: josu1010v/unistress
     build:
       context: .
       dockerfile: Dockerfile
